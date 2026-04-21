@@ -1,37 +1,37 @@
 import { motion } from 'motion/react';
-import { Cpu, ShieldCheck, Zap, Globe, ArrowRight } from 'lucide-react';
+import { Wind, Zap, Leaf, Volume2, ArrowRight } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Technology() {
   const [hoveredFeature, setHoveredFeature] = useState<string | null>(null);
 
-  const features = [
+  const benefits = [
     {
       id: '01',
-      title: 'Zero Emissions',
-      desc: 'Eliminate tailpipe pollution and contribute to cleaner, healthier urban environments.',
-      icon: <Zap className="w-5 h-5" />,
+      title: 'Zero Tailpipe Emissions',
+      desc: 'Eliminate air pollution in cities with completely clean electric power.',
+      icon: <Wind className="w-5 h-5" />,
       color: 'from-cyan-400/20 to-cyan-400/5',
     },
     {
       id: '02',
-      title: 'Energy Efficiency',
-      desc: 'Convert energy 3x more efficiently than combustion engines, reducing waste and cost.',
-      icon: <Cpu className="w-5 h-5" />,
+      title: 'Lower Running Costs',
+      desc: 'Significantly more economical compared to petrol and diesel vehicles.',
+      icon: <Zap className="w-5 h-5" />,
       color: 'from-blue-400/20 to-blue-400/5',
     },
     {
       id: '03',
       title: 'Reduced Carbon Footprint',
       desc: 'Lower greenhouse gas emissions aligned with global sustainability goals.',
-      icon: <ShieldCheck className="w-5 h-5" />,
-      color: 'from-indigo-400/20 to-indigo-400/5',
+      icon: <Leaf className="w-5 h-5" />,
+      color: 'from-green-400/20 to-green-400/5',
     },
     {
       id: '04',
       title: 'Quiet Operation',
       desc: 'Silent drive experience reduces noise pollution in urban settings.',
-      icon: <Globe className="w-5 h-5" />,
+      icon: <Volume2 className="w-5 h-5" />,
       color: 'from-purple-400/20 to-purple-400/5',
     },
   ];
@@ -44,9 +44,11 @@ export default function Technology() {
       {/* Ambient Background */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-0 w-[600px] h-[600px] bg-brand-cyan/[0.05] blur-[120px] rounded-full -z-10" />
+        <div className="absolute bottom-0 right-0 w-[700px] h-[700px] bg-green-400/[0.05] blur-[120px] rounded-full -z-10" />
       </div>
       
       <div className="max-w-7xl mx-auto relative z-10">
+        {/* Header */}
         <motion.div
           className="flex flex-col md:flex-row justify-between items-start mb-24 gap-8"
           initial={{ opacity: 0, y: 20 }}
@@ -71,8 +73,8 @@ export default function Technology() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              SUSTAINABLE <br />
-              <span className="italic font-normal">SOLUTIONS.</span>
+              THE FUTURE <br />
+              <span className="italic font-normal">BENEFITS.</span>
             </motion.h2>
           </div>
           <motion.div
@@ -91,33 +93,32 @@ export default function Technology() {
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <p className="text-[10px] font-mono text-brand-cyan font-bold uppercase tracking-widest relative z-10">Status: Future-Ready</p>
+                <p className="text-[10px] font-mono text-brand-cyan font-bold uppercase tracking-widest relative z-10">Status: Active</p>
              </motion.div>
              <p className="text-black/40 text-xs tracking-widest leading-loose">
-               Traditional fuels are finite. Electric mobility powers a cleaner, greener future for urban transportation.
+               Traditional fuels are finite and increasingly expensive. Electric mobility is the sustainable solution for tomorrow's cities.
              </p>
           </motion.div>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-          {features.map((f, i) => (
+        {/* Benefits Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-24">
+          {benefits.map((benefit, i) => (
             <motion.div
-              key={f.title}
+              key={benefit.title}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1, duration: 0.6 }}
               viewport={{ once: true, margin: "-100px" }}
-              onHoverStart={() => setHoveredFeature(f.id)}
+              onHoverStart={() => setHoveredFeature(benefit.id)}
               onHoverEnd={() => setHoveredFeature(null)}
               className="relative group cursor-default"
             >
-              {/* Background Gradient */}
               <motion.div
-                className={`absolute inset-0 bg-gradient-to-br ${f.color} rounded-[32px] opacity-0 group-hover:opacity-100`}
+                className={`absolute inset-0 bg-gradient-to-br ${benefit.color} rounded-[32px] opacity-0 group-hover:opacity-100`}
                 transition={{ duration: 0.5 }}
               />
 
-              {/* Card Content */}
               <motion.div
                 className="relative p-8 rounded-[32px] glass backdrop-blur-sm border border-white/50 flex flex-col h-full overflow-hidden"
                 whileHover={{ y: -5, boxShadow: "0 20px 40px rgba(59, 130, 246, 0.15)" }}
@@ -132,26 +133,26 @@ export default function Technology() {
                     }}
                     transition={{ duration: 0.3 }}
                   >
-                    {f.icon}
+                    {benefit.icon}
                   </motion.div>
                   <motion.span
                     className="text-[10px] font-mono text-black/30 font-bold group-hover:text-brand-cyan transition-colors"
-                    animate={{ opacity: hoveredFeature === f.id ? 1 : 0.5 }}
+                    animate={{ opacity: hoveredFeature === benefit.id ? 1 : 0.5 }}
                   >
-                    {f.id}
+                    {benefit.id}
                   </motion.span>
                 </div>
 
                 <motion.h3
                   className="text-2xl font-display font-light mb-3 group-hover:italic transition-all"
-                  animate={{ scale: hoveredFeature === f.id ? 1.05 : 1 }}
+                  animate={{ scale: hoveredFeature === benefit.id ? 1.05 : 1 }}
                   transition={{ duration: 0.3 }}
                 >
-                  {f.title}
+                  {benefit.title}
                 </motion.h3>
 
                 <p className="text-black/40 text-xs leading-relaxed mb-6 flex-1">
-                  {f.desc}
+                  {benefit.desc}
                 </p>
 
                 <motion.div
@@ -162,7 +163,7 @@ export default function Technology() {
                 >
                   <span>Learn More</span>
                   <motion.div
-                    animate={{ x: hoveredFeature === f.id ? 4 : 0 }}
+                    animate={{ x: hoveredFeature === benefit.id ? 4 : 0 }}
                     transition={{ duration: 0.2 }}
                   >
                     <ArrowRight size={14} />
@@ -171,7 +172,7 @@ export default function Technology() {
 
                 <motion.div
                   className="mt-6 h-[1px] bg-gradient-to-r from-black/10 to-transparent group-hover:from-brand-cyan"
-                  animate={{ scaleX: hoveredFeature === f.id ? 1 : 0.3 }}
+                  animate={{ scaleX: hoveredFeature === benefit.id ? 1 : 0.3 }}
                   transition={{ duration: 0.5 }}
                 />
               </motion.div>
@@ -179,107 +180,79 @@ export default function Technology() {
           ))}
         </div>
 
+        {/* Challenge Section */}
         <motion.div
-          className="mt-24"
+          className="relative glass rounded-[48px] p-12 md:p-20 flex flex-col lg:flex-row items-center gap-16 overflow-hidden border-white/50 group"
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
         >
-          <div className="relative glass rounded-[48px] p-12 md:p-24 flex flex-col lg:flex-row items-center gap-20 overflow-hidden border-white/50 group">
-            {/* Visual background details */}
-            <motion.div
-              className="absolute top-0 right-0 w-[600px] h-full bg-gradient-to-l from-brand-cyan/[0.04] to-transparent pointer-events-none"
-              animate={{ opacity: [0.04, 0.08, 0.04] }}
-              transition={{ duration: 3, repeat: Infinity }}
-            />
+          <motion.div
+            className="absolute top-0 right-0 w-[600px] h-full bg-gradient-to-l from-brand-cyan/[0.04] to-transparent pointer-events-none"
+            animate={{ opacity: [0.04, 0.08, 0.04] }}
+            transition={{ duration: 3, repeat: Infinity }}
+          />
 
-            <motion.div
-              className="flex-1 z-10"
-              initial={{ opacity: 0, x: -30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-            >
-              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">After-Sales Support</span>
-              <h3 className="text-5xl md:text-7xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
-                EXPERT <br /> <span className="italic">SERVICES.</span>
-              </h3>
-              <p className="text-black/40 mb-10 leading-loose max-w-md text-sm md:text-base">
-                Beyond the sale, we provide dedicated EV servicing, genuine spare parts supply, and comprehensive after-sales support for a seamless ownership experience.
-              </p>
-              <motion.button
-                className="px-12 py-5 bg-black text-white font-bold rounded-2xl text-[10px] uppercase tracking-[0.3em] shadow-2xl overflow-hidden relative group/btn"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <motion.div
-                  className="absolute inset-0 bg-brand-cyan"
-                  initial={{ x: '-100%' }}
-                  whileHover={{ x: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
-                <span className="relative z-10">Learn More</span>
-              </motion.button>
-            </motion.div>
+          <motion.div
+            className="flex-1 z-10"
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2, duration: 0.6 }}
+          >
+            <span className="text-brand-cyan tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">The Challenge Today</span>
+            <h3 className="text-5xl md:text-6xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
+              TRADITIONAL FUELS <br /> ARE <span className="italic">UNSUSTAINABLE.</span>
+            </h3>
+            <p className="text-black/40 mb-8 leading-loose max-w-md text-sm md:text-base">
+              Petrol and diesel are finite, increasingly expensive, and major contributors to air pollution and climate change. Urban environments face rising fuel costs, deteriorating air quality, and growing environmental concerns.
+            </p>
+            <ul className="space-y-4 text-black/40 text-sm">
+              <li className="flex items-start gap-3">
+                <span className="text-brand-cyan font-bold mt-1">•</span>
+                <span>Finite and rapidly depleting reserves</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-brand-cyan font-bold mt-1">•</span>
+                <span>Rising fuel costs affecting everyday commuters</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-brand-cyan font-bold mt-1">•</span>
+                <span>Major contributors to air pollution and climate change</span>
+              </li>
+            </ul>
+          </motion.div>
 
-            <motion.div
-              className="flex-1 w-full lg:w-auto flex justify-center z-10"
-              initial={{ opacity: 0, x: 30 }}
-              whileInView={{ opacity: 1, x: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <div className="relative">
-                <motion.div
-                  className="w-72 h-72 rounded-full border border-black/5 flex items-center justify-center p-8 relative"
-                  animate={{ scale: [1, 1.02, 1] }}
-                  transition={{ duration: 3, repeat: Infinity }}
-                >
-                  <motion.div
-                    className="absolute inset-0 border-2 border-brand-cyan/30 rounded-full"
-                    animate={{ rotate: 360 }}
-                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    style={{ borderRightColor: 'transparent', borderLeftColor: 'transparent' }}
-                  />
-                  <motion.div
-                    className="absolute inset-4 border border-brand-cyan/15 rounded-full"
-                    animate={{ rotate: -360 }}
-                    transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-                  />
-
-                  <motion.div
-                    className="text-center relative z-10"
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: 0.5 }}
-                  >
-                    <motion.span
-                      className="block text-7xl font-sans font-light italic mb-2"
-                      animate={{ y: [0, -5, 0] }}
-                      transition={{ duration: 2, repeat: Infinity }}
-                    >
-                      3x
-                    </motion.span>
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold">More Efficient</span>
-                  </motion.div>
-                </motion.div>
-
-                {/* Floating Elements */}
-                <motion.div
-                  className="absolute top-0 right-0 w-20 h-20 bg-brand-cyan/10 rounded-full blur-xl"
-                  animate={{ y: [0, 20, 0], x: [0, 10, 0] }}
-                  transition={{ duration: 4, repeat: Infinity }}
-                />
-                <motion.div
-                  className="absolute bottom-0 left-0 w-24 h-24 bg-brand-cyan/5 rounded-full blur-2xl"
-                  animate={{ y: [0, -20, 0], x: [0, -10, 0] }}
-                  transition={{ duration: 5, repeat: Infinity, delay: 0.5 }}
-                />
-              </div>
-            </motion.div>
-          </div>
+          <motion.div
+            className="flex-1 z-10"
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.3, duration: 0.6 }}
+          >
+            <span className="text-green-600 tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">Our Solution</span>
+            <h3 className="text-5xl md:text-6xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
+              ELECTRIC <br /> <span className="italic">MOBILITY.</span>
+            </h3>
+            <p className="text-black/40 mb-8 leading-loose max-w-md text-sm md:text-base">
+              Axigear offers accessible EV options that empower individuals to transition toward sustainable transportation without compromising on performance or affordability.
+            </p>
+            <ul className="space-y-4 text-black/40 text-sm">
+              <li className="flex items-start gap-3">
+                <span className="text-green-600 font-bold mt-1">✓</span>
+                <span>Zero tailpipe emissions reducing air pollution</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-green-600 font-bold mt-1">✓</span>
+                <span>Lower running costs, more economical</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-green-600 font-bold mt-1">✓</span>
+                <span>Energy efficient, aligned with global goals</span>
+              </li>
+            </ul>
+          </motion.div>
         </motion.div>
       </div>
     </section>
