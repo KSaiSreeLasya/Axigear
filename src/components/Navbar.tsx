@@ -16,7 +16,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
   const navLinks = [
     { name: 'Models', href: '#models' },
     { name: 'Technology', href: '#technology' },
-    { name: 'Experience', href: '#experience' },
+    { name: 'Services', href: '#services' },
   ];
 
   return (

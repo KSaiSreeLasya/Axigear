@@ -26,7 +26,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              The Axi-Gen Collection
+              Our Product Portfolio
             </motion.span>
             <motion.h2
               className="text-6xl md:text-9xl font-sans font-extralight tracking-[-0.05em] leading-[0.8] mb-4"
@@ -35,8 +35,8 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              PERFORMANCE <br />
-              <span className="italic font-normal">ARTISTRY.</span>
+              ACCESSIBLE <br />
+              <span className="italic font-normal">MOBILITY.</span>
             </motion.h2>
           </div>
           <motion.div
@@ -47,7 +47,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <p className="max-w-sm text-black/40 text-xs uppercase tracking-widest leading-loose mb-6">
-              Precision engineered in the Axigear labs, every model represents a leap in sustainable high-performance mobility.
+              From affordable non-RTO vehicles for short commutes to high-performance RTO-registered models, we serve diverse mobility needs at ₹35K-₹1.2L price points.
             </p>
             <div className="flex gap-4">
                <motion.div
@@ -55,7 +55,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
                  animate={{ width: [0, 48, 48] }}
                  transition={{ duration: 1, delay: 0.5 }}
                />
-               <p className="text-[10px] font-mono text-black/40">2026 EDITION</p>
+               <p className="text-[10px] font-mono text-black/40">CURATED COLLECTION</p>
             </div>
           </motion.div>
         </motion.div>

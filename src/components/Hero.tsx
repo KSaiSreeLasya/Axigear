@@ -67,7 +67,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                   className="inline-block text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold glass px-5 py-3 rounded-full border border-brand-cyan/30"
                   whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)" }}
                 >
-                  Axigear EV / {currentVehicle.type}
+                  Axigear - Electric Mobility Pioneer
                 </motion.span>
               </motion.div>
 
@@ -78,14 +78,14 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.7 }}
               >
-                <span className="block">{currentVehicle.name.split(' ')[0]}</span>
+                <span className="block">REDEFINING</span>
                 <motion.span
                   className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-brand-cyan/40 bg-clip-text text-transparent font-normal italic"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.7 }}
                 >
-                  {currentVehicle.name.split(' ').slice(1).join(' ')}
+                  URBAN MOBILITY.
                 </motion.span>
               </motion.h1>
 
@@ -96,7 +96,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                ✓ Available for Reserve Q4 2026
+                ✓ Sustainable. Reliable. Innovative.
               </motion.p>
 
               {/* Specs Grid */}
@@ -107,9 +107,9 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
                 {[
-                  { label: 'Range', value: currentVehicle.range, symbol: '🔋' },
-                  { label: '0-60', value: currentVehicle.acceleration, symbol: '⚡' },
-                  { label: 'Top Speed', value: currentVehicle.topSpeed, symbol: '🚀' }
+                  { label: 'Price Range', value: '₹35K - ₹1.2L', symbol: '💰' },
+                  { label: 'Zero Emissions', value: 'Eco-Friendly', symbol: '🌱' },
+                  { label: 'Available', value: 'RTO & Non-RTO', symbol: '✓' }
                 ].map((spec, index) => (
                   <motion.div
                     key={spec.label}
@@ -153,7 +153,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 flex items-center gap-2">
-                  Reserve Your Future
+                  Explore Vehicles
                   <motion.div
                     initial={{ x: 0 }}
                     whileHover={{ x: 5 }}
@@ -228,8 +228,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.6, duration: 0.6 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Performance</p>
-                <p className="text-sm font-display font-light">Pure Innovation</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Commitment</p>
+                <p className="text-sm font-display font-light">Sustainable Future</p>
               </motion.div>
 
               <motion.div
@@ -239,8 +239,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.65, duration: 0.6 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Status</p>
-                <p className="text-sm font-display font-light">Next-Gen EV</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Support</p>
+                <p className="text-sm font-display font-light">Expert Service</p>
               </motion.div>
             </motion.div>
           </AnimatePresence>

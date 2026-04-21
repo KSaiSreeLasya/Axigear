@@ -8,29 +8,29 @@ export default function Technology() {
   const features = [
     {
       id: '01',
-      title: 'Quantum Drive',
-      desc: 'Proprietary solid-state powertrain delivering 98% efficiency from battery to road.',
+      title: 'Zero Emissions',
+      desc: 'Eliminate tailpipe pollution and contribute to cleaner, healthier urban environments.',
       icon: <Zap className="w-5 h-5" />,
       color: 'from-cyan-400/20 to-cyan-400/5',
     },
     {
       id: '02',
-      title: 'Axi-Self 7.0',
-      desc: 'Lidar-powered navigation with real-time neural network mapping.',
+      title: 'Energy Efficiency',
+      desc: 'Convert energy 3x more efficiently than combustion engines, reducing waste and cost.',
       icon: <Cpu className="w-5 h-5" />,
       color: 'from-blue-400/20 to-blue-400/5',
     },
     {
       id: '03',
-      title: 'Nano-Coat Shield',
-      desc: 'Self-healing molecular exterior that eliminates microscopic scratches.',
+      title: 'Reduced Carbon Footprint',
+      desc: 'Lower greenhouse gas emissions aligned with global sustainability goals.',
       icon: <ShieldCheck className="w-5 h-5" />,
       color: 'from-indigo-400/20 to-indigo-400/5',
     },
     {
       id: '04',
-      title: 'Global Mesh',
-      desc: 'Always-on satellite connectivity for seamless OTA updates.',
+      title: 'Quiet Operation',
+      desc: 'Silent drive experience reduces noise pollution in urban settings.',
       icon: <Globe className="w-5 h-5" />,
       color: 'from-purple-400/20 to-purple-400/5',
     },
@@ -62,7 +62,7 @@ export default function Technology() {
               viewport={{ once: true }}
               transition={{ duration: 0.5 }}
             >
-              Technology
+              Why Electric Mobility
             </motion.span>
             <motion.h2
               className="text-6xl md:text-8xl font-sans font-light tracking-[-0.04em] leading-[0.8] mb-8"
@@ -71,8 +71,8 @@ export default function Technology() {
               viewport={{ once: true }}
               transition={{ delay: 0.1, duration: 0.6 }}
             >
-              THE FUTURE, <br />
-              <span className="italic font-normal">DECODED.</span>
+              SUSTAINABLE <br />
+              <span className="italic font-normal">SOLUTIONS.</span>
             </motion.h2>
           </div>
           <motion.div
@@ -91,10 +91,10 @@ export default function Technology() {
                   animate={{ opacity: [0.5, 1, 0.5] }}
                   transition={{ duration: 2, repeat: Infinity }}
                 />
-                <p className="text-[10px] font-mono text-brand-cyan font-bold uppercase tracking-widest relative z-10">System Status: Active</p>
+                <p className="text-[10px] font-mono text-brand-cyan font-bold uppercase tracking-widest relative z-10">Status: Future-Ready</p>
              </motion.div>
              <p className="text-black/40 text-xs tracking-widest leading-loose">
-               We don't just build cars; we build intelligent platforms that evolve with every mile you drive.
+               Traditional fuels are finite. Electric mobility powers a cleaner, greener future for urban transportation.
              </p>
           </motion.div>
         </motion.div>
@@ -201,12 +201,12 @@ export default function Technology() {
               viewport={{ once: true }}
               transition={{ delay: 0.2, duration: 0.6 }}
             >
-              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">Charging Infrastructure</span>
+              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">After-Sales Support</span>
               <h3 className="text-5xl md:text-7xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
-                SUPERCHARGE <br /> IN <span className="italic">8 MINUTES.</span>
+                EXPERT <br /> <span className="italic">SERVICES.</span>
               </h3>
               <p className="text-black/40 mb-10 leading-loose max-w-md text-sm md:text-base">
-                Our liquid-cooled network spans the globe, adding 200 miles of range in less time than it takes to enjoy a coffee.
+                Beyond the sale, we provide dedicated EV servicing, genuine spare parts supply, and comprehensive after-sales support for a seamless ownership experience.
               </p>
               <motion.button
                 className="px-12 py-5 bg-black text-white font-bold rounded-2xl text-[10px] uppercase tracking-[0.3em] shadow-2xl overflow-hidden relative group/btn"
@@ -219,7 +219,7 @@ export default function Technology() {
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10">Station Map</span>
+                <span className="relative z-10">Learn More</span>
               </motion.button>
             </motion.div>
 
@@ -260,9 +260,9 @@ export default function Technology() {
                       animate={{ y: [0, -5, 0] }}
                       transition={{ duration: 2, repeat: Infinity }}
                     >
-                      98%
+                      3x
                     </motion.span>
-                    <span className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold">Grid Efficiency</span>
+                    <span className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold">More Efficient</span>
                   </motion.div>
                 </motion.div>
 
