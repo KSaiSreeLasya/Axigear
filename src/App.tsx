@@ -2,6 +2,7 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FeaturedVehicles from './components/FeaturedVehicles';
 import Technology from './components/Technology';
+import Comparison from './components/Comparison';
 import Services from './components/Services';
 import Footer from './components/Footer';
 import Configurator from './components/Configurator';
