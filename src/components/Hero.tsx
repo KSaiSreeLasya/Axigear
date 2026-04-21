@@ -1,4 +1,4 @@
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useMotionValue, useTransform } from 'motion/react';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { vehicles } from '../data/vehicles';
@@ -6,143 +6,309 @@ import { vehicles } from '../data/vehicles';
 export default function Hero({ onConfigure }: { onConfigure: (id: string) => void }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const currentVehicle = vehicles[currentIndex];
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
 
   const nextVehicle = () => {
     setCurrentIndex((prev) => (prev + 1) % vehicles.length);
+    setIsAutoPlay(true);
   };
 
   const prevVehicle = () => {
     setCurrentIndex((prev) => (prev - 1 + vehicles.length) % vehicles.length);
+    setIsAutoPlay(true);
   };
 
   // Auto-cycle every 8 seconds
   useEffect(() => {
+    if (!isAutoPlay) return;
     const timer = setInterval(nextVehicle, 8000);
     return () => clearInterval(timer);
-  }, []);
+  }, [isAutoPlay]);
 
   return (
-    <section className="relative h-screen flex flex-col justify-center overflow-hidden bg-transparent">
-      {/* Dynamic Massive Watermark Text */}
-      <AnimatePresence mode="wait">
+    <section className="relative h-screen flex flex-col overflow-hidden bg-white">
+      {/* Enhanced Gradient Background */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-cyan/[0.02] to-brand-cyan/[0.05] -z-20" />
+
+      {/* Ambient Glow Elements */}
+      <div className="absolute inset-0 pointer-events-none -z-10">
         <motion.div
-           key={currentVehicle.id}
-           initial={{ opacity: 0, x: 100 }}
-           animate={{ opacity: 0.03, x: 0 }}
-           exit={{ opacity: 0, x: -100 }}
-           transition={{ duration: 1 }}
-           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-[30vw] font-bold whitespace-nowrap pointer-events-none -z-10 uppercase tracking-tighter"
-        >
-          {currentVehicle.name.split(' ')[0]}
-        </motion.div>
-      </AnimatePresence>
+          className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-brand-cyan/[0.12] blur-[150px] rounded-full"
+          animate={{ y: [0, 30, 0] }}
+          transition={{ duration: 6, repeat: Infinity }}
+        />
+        <motion.div
+          className="absolute -bottom-1/4 left-1/3 w-[600px] h-[600px] bg-brand-cyan/[0.08] blur-[120px] rounded-full"
+          animate={{ y: [0, -40, 0] }}
+          transition={{ duration: 7, repeat: Infinity, delay: 1 }}
+        />
+      </div>
 
-      <div className="max-w-7xl mx-auto w-full px-6 relative z-10 grid grid-cols-1 md:grid-cols-12 gap-12 items-center">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={currentVehicle.id}
-            initial={{ opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.05 }}
-            transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-            className="col-span-1 md:col-span-12 flex flex-col items-center md:items-start"
-          >
-            <div className="flex flex-col md:flex-row md:items-end gap-6 mb-8">
-               <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold glass px-4 py-2 rounded-full border-brand-cyan/20">
-                 Axigear EV / {currentVehicle.type}
-               </span>
-               <p className="text-[10px] uppercase tracking-[0.3em] text-black/30 font-semibold mb-2">Available for Reserve Q4 2026</p>
-            </div>
-            
-            <h1 className="text-[12vw] md:text-[10vw] font-sans font-light leading-[0.8] tracking-[-0.05em] mb-12 text-center md:text-left">
-              {currentVehicle.name.split(' ')[0]} <br />
-              <span className="font-normal italic text-transparent bg-clip-text bg-gradient-to-r from-black via-black/80 to-black/20">
-                {currentVehicle.name.split(' ').slice(1).join(' ')}
-              </span>
-            </h1>
-            
-            <div className="flex flex-wrap gap-4 md:gap-10 mt-6 justify-center md:justify-start">
-              {[
-                { label: 'Range', value: currentVehicle.range },
-                { label: '0-60', value: currentVehicle.acceleration },
-                { label: 'Top', value: currentVehicle.topSpeed }
-              ].map((spec) => (
-                <div key={spec.label} className="relative group overflow-hidden px-8 py-6 rounded-[24px] glass-dark">
-                  <div className="absolute inset-0 bg-brand-cyan/5 -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                  <p className="text-[9px] uppercase tracking-[0.3em] text-black/30 font-bold mb-1 group-hover:text-brand-cyan transition-colors relative z-10">{spec.label}</p>
-                  <p className="text-3xl font-display font-medium relative z-10">{spec.value}</p>
-                </div>
-              ))}
+      <div className="flex-1 flex items-center justify-between relative z-10">
+        <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+          {/* Left: Text Content */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentVehicle.id}
+              initial={{ opacity: 0, x: -40, y: 20 }}
+              animate={{ opacity: 1, x: 0, y: 0 }}
+              exit={{ opacity: 0, x: -40, y: -20 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="flex flex-col"
+            >
+              {/* Header Badge */}
+              <motion.div
+                className="mb-8"
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.5 }}
+              >
+                <motion.span
+                  className="inline-block text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold glass px-5 py-3 rounded-full border border-brand-cyan/30"
+                  whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)" }}
+                >
+                  Axigear EV / {currentVehicle.type}
+                </motion.span>
+              </motion.div>
 
-              <button 
+              {/* Main Heading */}
+              <motion.h1
+                className="text-[4rem] md:text-[5.5rem] lg:text-[6rem] font-sans font-light leading-[0.95] tracking-[-0.02em] mb-6 text-black"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.25, duration: 0.7 }}
+              >
+                <span className="block">{currentVehicle.name.split(' ')[0]}</span>
+                <motion.span
+                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-brand-cyan/40 bg-clip-text text-transparent font-normal italic"
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.7 }}
+                >
+                  {currentVehicle.name.split(' ').slice(1).join(' ')}
+                </motion.span>
+              </motion.h1>
+
+              {/* Availability Tag */}
+              <motion.p
+                className="text-[11px] uppercase tracking-[0.25em] text-black/40 font-semibold mb-10"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.3, duration: 0.6 }}
+              >
+                ✓ Available for Reserve Q4 2026
+              </motion.p>
+
+              {/* Specs Grid */}
+              <motion.div
+                className="grid grid-cols-3 gap-6 mb-12"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.4, duration: 0.6 }}
+              >
+                {[
+                  { label: 'Range', value: currentVehicle.range, symbol: '🔋' },
+                  { label: '0-60', value: currentVehicle.acceleration, symbol: '⚡' },
+                  { label: 'Top Speed', value: currentVehicle.topSpeed, symbol: '🚀' }
+                ].map((spec, index) => (
+                  <motion.div
+                    key={spec.label}
+                    className="group relative overflow-hidden rounded-[20px] p-6 bg-gradient-to-br from-brand-cyan/[0.08] to-brand-cyan/[0.02] border border-brand-cyan/20 cursor-default"
+                    initial={{ opacity: 0, scale: 0.85 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ delay: 0.45 + index * 0.08, duration: 0.5 }}
+                    whileHover={{
+                      y: -8,
+                      boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)",
+                      borderColor: "rgba(59, 130, 246, 0.5)"
+                    }}
+                  >
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-brand-cyan/10 to-transparent opacity-0 group-hover:opacity-100"
+                      transition={{ duration: 0.4 }}
+                    />
+                    <p className="text-[12px] uppercase tracking-[0.3em] text-black/40 font-bold mb-2 relative z-10 group-hover:text-brand-cyan transition-colors">{spec.label}</p>
+                    <div className="flex items-baseline gap-2 relative z-10">
+                      <span className="text-2xl">{spec.symbol}</span>
+                      <p className="text-3xl md:text-4xl font-display font-light text-black">{spec.value}</p>
+                    </div>
+                  </motion.div>
+                ))}
+              </motion.div>
+
+              {/* CTA Button */}
+              <motion.button
                 onClick={() => onConfigure(currentVehicle.id)}
-                className="px-12 py-6 bg-black text-white font-bold rounded-[24px] flex items-center justify-center gap-3 hover:bg-brand-cyan transition-all group uppercase tracking-[0.2em] text-[10px] shadow-2xl shadow-black/20"
+                className="group relative w-full md:w-fit px-10 md:px-14 py-5 bg-black text-white font-bold rounded-[20px] uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_40px_rgba(0,0,0,0.15)] overflow-hidden flex items-center justify-center gap-3"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.65, duration: 0.6 }}
+                whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(59, 130, 246, 0.3)" }}
+                whileTap={{ scale: 0.95 }}
               >
-                Reserve Now
-                <ChevronRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
-              </button>
-            </div>
-          </motion.div>
-        </AnimatePresence>
+                <motion.div
+                  className="absolute inset-0 bg-brand-cyan"
+                  initial={{ x: '-100%' }}
+                  whileHover={{ x: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+                <span className="relative z-10 flex items-center gap-2">
+                  Reserve Your Future
+                  <motion.div
+                    initial={{ x: 0 }}
+                    whileHover={{ x: 5 }}
+                    transition={{ duration: 0.2 }}
+                  >
+                    <ChevronRight className="w-4 h-4" />
+                  </motion.div>
+                </span>
+              </motion.button>
+            </motion.div>
+          </AnimatePresence>
 
-        {/* Carousel Indicators - Vertical style for desktop */}
-        <div className="absolute right-12 top-1/2 -translate-y-1/2 hidden lg:flex flex-col gap-6 items-center">
-          <div className="w-[1px] h-32 bg-black/10 relative">
-            <motion.div 
-              className="absolute top-0 left-0 w-full bg-brand-cyan"
-              animate={{ height: `${((currentIndex + 1) / vehicles.length) * 100}%` }}
-              transition={{ duration: 0.5 }}
-            />
-          </div>
-          <div className="flex flex-col gap-4">
-            {vehicles.map((_, index) => (
-              <button 
-                key={index}
-                onClick={() => setCurrentIndex(index)}
-                className={`text-[9px] font-bold tracking-widest transition-all ${index === currentIndex ? 'text-black scale-125' : 'text-black/20 hover:text-black/50'}`}
+          {/* Right: Image Section */}
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={currentVehicle.id}
+              initial={{ opacity: 0, scale: 0.9, x: 60 }}
+              animate={{ opacity: 1, scale: 1, x: 0 }}
+              exit={{ opacity: 0, scale: 0.85, x: -60 }}
+              transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
+              className="relative h-[500px] lg:h-[600px] hidden lg:flex items-center justify-center"
+            >
+              {/* Image Frame */}
+              <div className="relative w-full h-full flex items-center justify-center group">
+                {/* Decorative Background Circle */}
+                <motion.div
+                  className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-brand-cyan/[0.15] to-brand-cyan/[0.05] border border-brand-cyan/20"
+                  animate={{ rotate: [0, 2, 0], y: [0, 10, 0] }}
+                  transition={{ duration: 4, repeat: Infinity }}
+                />
+
+                {/* Floating Accent Elements */}
+                <motion.div
+                  className="absolute -top-8 -right-8 w-32 h-32 bg-brand-cyan/[0.08] rounded-full blur-[50px]"
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                />
+                <motion.div
+                  className="absolute -bottom-12 -left-8 w-40 h-40 bg-brand-cyan/[0.06] rounded-full blur-[60px]"
+                  animate={{ scale: [1.1, 0.9, 1.1], opacity: [0.6, 0.9, 0.6] }}
+                  transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
+                />
+
+                {/* Vehicle Image */}
+                <motion.div
+                  className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden"
+                  whileHover={{ y: -10 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  <motion.img
+                    src={currentVehicle.image}
+                    alt={currentVehicle.name}
+                    className="w-full h-full object-contain drop-shadow-[0_20px_60px_rgba(59,130,246,0.25)] relative z-10"
+                    animate={{ y: [0, -15, 0] }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    referrerPolicy="no-referrer"
+                  />
+                </motion.div>
+
+                {/* Glow Effect on Hover */}
+                <motion.div
+                  className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-brand-cyan/[0.1] to-transparent opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.5 }}
+                />
+              </div>
+
+              {/* Floating Info Cards */}
+              <motion.div
+                className="absolute top-12 left-12 glass-premium px-6 py-4 rounded-[20px] z-20"
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.6, duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
               >
-                0{index + 1}
-              </button>
-            ))}
-          </div>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Performance</p>
+                <p className="text-sm font-display font-light">Pure Innovation</p>
+              </motion.div>
+
+              <motion.div
+                className="absolute bottom-12 right-12 glass-premium px-6 py-4 rounded-[20px] z-20"
+                initial={{ opacity: 0, x: 30 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.65, duration: 0.6 }}
+                whileHover={{ scale: 1.05 }}
+              >
+                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Status</p>
+                <p className="text-sm font-display font-light">Next-Gen EV</p>
+              </motion.div>
+            </motion.div>
+          </AnimatePresence>
         </div>
       </div>
 
-      {/* Navigation Arrows */}
-      <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex items-center gap-12 group">
-        <button 
-          onClick={prevVehicle}
-          className="w-14 h-14 rounded-full glass border-black/5 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-lg active:scale-90"
+      {/* Bottom Controls */}
+      <div className="relative z-10 px-6 pb-12 flex flex-col md:flex-row items-center justify-between gap-8">
+        {/* Carousel Indicators */}
+        <motion.div
+          className="flex items-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.7 }}
         >
-          <ChevronLeft size={24} />
-        </button>
-        <div className="w-12 h-[1px] bg-black/10 group-hover:w-24 transition-all" />
-        <button 
-          onClick={nextVehicle}
-          className="w-14 h-14 rounded-full glass border-black/5 flex items-center justify-center hover:bg-black hover:text-white transition-all shadow-lg active:scale-90"
-        >
-          <ChevronRight size={24} />
-        </button>
-      </div>
-
-      {/* Background Car Image - Lower Opacity Silhouette for clean look */}
-      <AnimatePresence mode="wait">
-        <motion.div 
-          key={currentVehicle.id}
-          initial={{ opacity: 0, x: 100, scale: 1.15 }}
-          animate={{ opacity: 0.08, x: 0, scale: 1.1 }}
-          exit={{ opacity: 0, x: -100, scale: 1.05 }}
-          transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
-          className="absolute right-[-10%] bottom-[-5%] pointer-events-none hidden lg:block w-[1200px]"
-        >
-          <img 
-            src={currentVehicle.image} 
-            alt={currentVehicle.name}
-            className="w-full h-auto filter grayscale blur-[2px]"
-            referrerPolicy="no-referrer"
-          />
+          {vehicles.map((_, index) => (
+            <motion.button
+              key={index}
+              onClick={() => {
+                setCurrentIndex(index);
+                setIsAutoPlay(false);
+              }}
+              className={`h-2 rounded-full transition-all cursor-pointer ${
+                index === currentIndex ? 'w-12 bg-brand-cyan' : 'w-2 bg-black/20 hover:bg-black/40'
+              }`}
+              whileHover={{ scale: 1.2 }}
+            />
+          ))}
         </motion.div>
-      </AnimatePresence>
+
+        {/* Navigation Arrows */}
+        <motion.div
+          className="flex items-center gap-4"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.75 }}
+        >
+          <motion.button
+            onClick={prevVehicle}
+            className="w-12 h-12 rounded-full glass border border-black/10 flex items-center justify-center text-black hover:text-white overflow-hidden relative group"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-black"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+            <ChevronLeft className="w-5 h-5 relative z-10" />
+          </motion.button>
+
+          <motion.button
+            onClick={nextVehicle}
+            className="w-12 h-12 rounded-full glass border border-black/10 flex items-center justify-center text-black hover:text-white overflow-hidden relative group"
+            whileHover={{ scale: 1.1 }}
+            whileTap={{ scale: 0.9 }}
+          >
+            <motion.div
+              className="absolute inset-0 bg-black"
+              initial={{ x: '-100%' }}
+              whileHover={{ x: 0 }}
+              transition={{ duration: 0.3 }}
+            />
+            <ChevronRight className="w-5 h-5 relative z-10" />
+          </motion.button>
+        </motion.div>
+      </div>
     </section>
   );
 }
