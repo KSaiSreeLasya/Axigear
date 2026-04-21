@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'motion/react';
-import { ChevronRight, ChevronLeft } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Zap, Leaf } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { vehicles } from '../data/vehicles';
 
@@ -18,7 +18,6 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
     setIsAutoPlay(true);
   };
 
-  // Auto-cycle every 8 seconds
   useEffect(() => {
     if (!isAutoPlay) return;
     const timer = setInterval(nextVehicle, 8000);
@@ -26,7 +25,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
   }, [isAutoPlay]);
 
   return (
-    <section className="relative h-screen flex flex-col overflow-hidden bg-white">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
       {/* Enhanced Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-cyan/[0.02] to-brand-cyan/[0.05] -z-20" />
 
@@ -38,7 +37,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
           transition={{ duration: 6, repeat: Infinity }}
         />
         <motion.div
-          className="absolute -bottom-1/4 left-1/3 w-[600px] h-[600px] bg-brand-cyan/[0.08] blur-[120px] rounded-full"
+          className="absolute -bottom-1/4 left-1/3 w-[600px] h-[600px] bg-green-400/[0.08] blur-[120px] rounded-full"
           animate={{ y: [0, -40, 0] }}
           transition={{ duration: 7, repeat: Infinity, delay: 1 }}
         />
@@ -63,40 +62,42 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
-                <motion.span
-                  className="inline-block text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold glass px-5 py-3 rounded-full border border-brand-cyan/30"
+                <motion.div
+                  className="inline-flex items-center gap-2 text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold glass px-5 py-3 rounded-full border border-brand-cyan/30"
                   whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)" }}
                 >
-                  Axigear EV / {currentVehicle.type}
-                </motion.span>
+                  <Zap className="w-3 h-3 fill-brand-cyan" />
+                  <span>{currentVehicle.type} / {currentVehicle.range}</span>
+                </motion.div>
               </motion.div>
 
               {/* Main Heading */}
               <motion.h1
-                className="text-[4rem] md:text-[5.5rem] lg:text-[6rem] font-sans font-light leading-[0.95] tracking-[-0.02em] mb-6 text-black"
+                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-sans font-light leading-[0.95] tracking-[-0.02em] mb-6 text-black"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.7 }}
               >
-                <span className="block">{currentVehicle.name.split(' ')[0]}</span>
+                <span className="block">{currentVehicle.name}</span>
                 <motion.span
-                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-brand-cyan/40 bg-clip-text text-transparent font-normal italic"
+                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/60 bg-clip-text text-transparent font-normal italic"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.7 }}
                 >
-                  {currentVehicle.name.split(' ').slice(1).join(' ')}
+                  {currentVehicle.description.split(' ').slice(0, 3).join(' ')}
                 </motion.span>
               </motion.h1>
 
-              {/* Availability Tag */}
+              {/* Price Tag */}
               <motion.p
-                className="text-[11px] uppercase tracking-[0.25em] text-black/40 font-semibold mb-10"
+                className="text-[16px] font-bold text-brand-cyan mb-10 flex items-center gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                ✓ Available for Reserve Q4 2026
+                <Leaf className="w-5 h-5 fill-green-500 text-green-500" />
+                Starting at ₹{(currentVehicle.basePrice / 100000).toFixed(2)} Lakh
               </motion.p>
 
               {/* Specs Grid */}
@@ -108,8 +109,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               >
                 {[
                   { label: 'Range', value: currentVehicle.range, symbol: '🔋' },
-                  { label: '0-60', value: currentVehicle.acceleration, symbol: '⚡' },
-                  { label: 'Top Speed', value: currentVehicle.topSpeed, symbol: '🚀' }
+                  { label: 'Performance', value: currentVehicle.acceleration, symbol: '⚡' },
+                  { label: 'Max Speed', value: currentVehicle.topSpeed, symbol: '🚀' }
                 ].map((spec, index) => (
                   <motion.div
                     key={spec.label}
@@ -130,7 +131,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                     <p className="text-[12px] uppercase tracking-[0.3em] text-black/40 font-bold mb-2 relative z-10 group-hover:text-brand-cyan transition-colors">{spec.label}</p>
                     <div className="flex items-baseline gap-2 relative z-10">
                       <span className="text-2xl">{spec.symbol}</span>
-                      <p className="text-3xl md:text-4xl font-display font-light text-black">{spec.value}</p>
+                      <p className="text-2xl md:text-3xl font-display font-light text-black">{spec.value}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -153,7 +154,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 flex items-center gap-2">
-                  Reserve Your Future
+                  Explore Now
                   <motion.div
                     initial={{ x: 0 }}
                     whileHover={{ x: 5 }}
@@ -176,28 +177,24 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="relative h-[500px] lg:h-[600px] hidden lg:flex items-center justify-center"
             >
-              {/* Image Frame */}
               <div className="relative w-full h-full flex items-center justify-center group">
-                {/* Decorative Background Circle */}
                 <motion.div
-                  className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-brand-cyan/[0.15] to-brand-cyan/[0.05] border border-brand-cyan/20"
+                  className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-brand-cyan/[0.15] to-green-400/[0.05] border border-brand-cyan/20"
                   animate={{ rotate: [0, 2, 0], y: [0, 10, 0] }}
                   transition={{ duration: 4, repeat: Infinity }}
                 />
 
-                {/* Floating Accent Elements */}
                 <motion.div
                   className="absolute -top-8 -right-8 w-32 h-32 bg-brand-cyan/[0.08] rounded-full blur-[50px]"
                   animate={{ scale: [1, 1.2, 1], opacity: [0.5, 0.8, 0.5] }}
                   transition={{ duration: 3, repeat: Infinity }}
                 />
                 <motion.div
-                  className="absolute -bottom-12 -left-8 w-40 h-40 bg-brand-cyan/[0.06] rounded-full blur-[60px]"
+                  className="absolute -bottom-12 -left-8 w-40 h-40 bg-green-400/[0.06] rounded-full blur-[60px]"
                   animate={{ scale: [1.1, 0.9, 1.1], opacity: [0.6, 0.9, 0.6] }}
                   transition={{ duration: 4, repeat: Infinity, delay: 0.5 }}
                 />
 
-                {/* Vehicle Image */}
                 <motion.div
                   className="relative z-10 w-full h-full flex items-center justify-center overflow-hidden"
                   whileHover={{ y: -10 }}
@@ -213,7 +210,6 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                   />
                 </motion.div>
 
-                {/* Glow Effect on Hover */}
                 <motion.div
                   className="absolute inset-0 rounded-[40px] bg-gradient-to-br from-brand-cyan/[0.1] to-transparent opacity-0 group-hover:opacity-100"
                   transition={{ duration: 0.5 }}
@@ -228,8 +224,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.6, duration: 0.6 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Performance</p>
-                <p className="text-sm font-display font-light">Pure Innovation</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Zero Emissions</p>
+                <p className="text-sm font-display font-light">Eco-Friendly</p>
               </motion.div>
 
               <motion.div
@@ -239,8 +235,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.65, duration: 0.6 }}
                 whileHover={{ scale: 1.05 }}
               >
-                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Status</p>
-                <p className="text-sm font-display font-light">Next-Gen EV</p>
+                <p className="text-[10px] uppercase tracking-[0.3em] text-brand-cyan font-bold mb-1">Affordable</p>
+                <p className="text-sm font-display font-light">₹35K - ₹1.2L</p>
               </motion.div>
             </motion.div>
           </AnimatePresence>
@@ -249,7 +245,6 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
       {/* Bottom Controls */}
       <div className="relative z-10 px-6 pb-12 flex flex-col md:flex-row items-center justify-between gap-8">
-        {/* Carousel Indicators */}
         <motion.div
           className="flex items-center gap-4"
           initial={{ opacity: 0, y: 20 }}
@@ -271,7 +266,6 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
           ))}
         </motion.div>
 
-        {/* Navigation Arrows */}
         <motion.div
           className="flex items-center gap-4"
           initial={{ opacity: 0, y: 20 }}

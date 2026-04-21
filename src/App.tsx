@@ -2,6 +2,8 @@ import Navbar from './components/Navbar';
 import Hero from './components/Hero';
 import FeaturedVehicles from './components/FeaturedVehicles';
 import Technology from './components/Technology';
+import Comparison from './components/Comparison';
+import Services from './components/Services';
 import Footer from './components/Footer';
 import Configurator from './components/Configurator';
 import ContactForm from './components/ContactForm';
@@ -45,71 +47,7 @@ export default function App() {
       <main>
         <Hero onConfigure={openConfigurator} />
         
-        {/* Experience Section */}
-        <section id="experience" className="py-40 px-6 relative overflow-hidden bg-transparent">
-          {/* Subtle atmospheric background element */}
-          <div className="absolute top-0 right-0 w-[50vw] h-[50vh] bg-brand-cyan/[0.03] blur-[150px] rounded-full -z-10" />
-          
-          <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-24 relative z-10">
-            <div className="flex-1 order-2 lg:order-1">
-              <div className="relative group">
-                <div className="relative z-10 rounded-[48px] overflow-hidden shadow-[0_32px_64px_-16px_rgba(0,0,0,0.1)] border border-black/5 aspect-[4/5] md:aspect-square">
-                  <motion.img 
-                    initial={{ scale: 1.1 }}
-                    whileInView={{ scale: 1 }}
-                    transition={{ duration: 1.5 }}
-                    src="https://images.unsplash.com/photo-1549421263-5407dc339385?auto=format&fit=crop&q=80&w=1200" 
-                    alt="Modern Showroom" 
-                    className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-1000"
-                    referrerPolicy="no-referrer"
-                  />
-                </div>
-                {/* Decorative Float Labels */}
-                <motion.div 
-                  initial={{ x: 20, opacity: 0 }}
-                  whileInView={{ x: 0, opacity: 1 }}
-                  className="absolute -top-6 -right-6 glass px-6 py-4 rounded-3xl shadow-xl z-20 hidden md:block"
-                >
-                  <p className="text-[10px] uppercase tracking-[0.3em] font-bold text-brand-cyan mb-1">Axi-Lab</p>
-                  <p className="text-sm font-display italic">Virtual Configurator</p>
-                </motion.div>
-                <div className="absolute -bottom-10 -left-10 w-80 h-80 border border-brand-cyan/10 rounded-full -z-10" />
-              </div>
-            </div>
-
-            <div className="flex-1 order-1 lg:order-2">
-              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] mb-6 block font-bold">
-                The Sanctuary
-              </span>
-              <h2 className="text-6xl md:text-8xl font-sans font-light tracking-tighter mb-10 leading-[0.9]">
-                REDEFINING <br />
-                <span className="italic font-normal">PRESENCE.</span>
-              </h2>
-              <p className="text-black/50 leading-relaxed mb-12 max-w-lg text-lg">
-                Step into the future of automotive retail. Our showrooms are designed to be sanctuaries of technology and design, where you can customize your vehicle in virtual reality.
-              </p>
-              
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-12">
-                <div className="border-l-2 border-brand-cyan/20 pl-8 transition-colors hover:border-brand-cyan">
-                  <h4 className="text-black font-display text-5xl mb-2 font-light">24/7</h4>
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-black/30 font-bold">Concierge Service</p>
-                </div>
-                <div className="border-l-2 border-brand-cyan/20 pl-8 transition-colors hover:border-brand-cyan">
-                  <h4 className="text-black font-display text-5xl mb-2 font-light">100+</h4>
-                  <p className="text-[10px] uppercase tracking-[0.4em] text-black/30 font-bold">Global Hubs</p>
-                </div>
-              </div>
-              
-              <button 
-                onClick={() => setContactOpen(true)}
-                className="group relative px-12 py-6 bg-black text-white font-bold rounded-2xl overflow-hidden shadow-2xl transition-all hover:shadow-brand-cyan/20"
-              >
-                <div className="absolute inset-0 bg-brand-cyan transform -translate-x-full group-hover:translate-x-0 transition-transform duration-500" />
-                <span className="relative z-10 text-[10px] uppercase tracking-[0.3em]">Explore Hubs</span>
-              </button>
-            </div>
-          </div>
-        </section>
+        <Services />
 
         <FeaturedVehicles onConfigure={openConfigurator} />
         <Technology />
@@ -117,28 +55,34 @@ export default function App() {
         {/* CTA Section */}
         <section className="py-60 px-6 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black -z-20" />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cyan/[0.1] to-transparent -z-10" />
-          
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cyan/[0.1] to-green-500/[0.05] -z-10" />
+
           <motion.div
             initial={{ opacity: 0, y: 40 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <span className="text-brand-cyan tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Limitless Potential</span>
-            <h2 className="text-6xl md:text-[160px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-16 text-white">
-              EVOLVE <br />
-              <span className="text-stroke-white opacity-80 italic font-normal">BEYOND.</span>
+            <span className="text-brand-cyan tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
+            <h2 className="text-6xl md:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-8 text-white">
+              SUSTAINABLE <br />
+              <span className="text-stroke-white opacity-80 italic font-normal">MOBILITY.</span>
             </h2>
+            <p className="text-white/60 max-w-2xl mx-auto mb-16 text-lg">
+              From ₹35,000 to ₹1,20,000. Explore our range of RTO and Non-RTO electric two-wheelers designed for every commute need.
+            </p>
             <div className="flex flex-wrap justify-center gap-8">
-              <button 
+              <button
                 onClick={() => openConfigurator()}
                 className="px-16 py-7 bg-white text-black font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-brand-cyan hover:text-white transition-all shadow-2xl active:scale-95"
               >
-                Build Yours
+                Explore Now
               </button>
-              <button className="px-16 py-7 glass border-white/20 text-white font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all">
-                Learn More
+              <button
+                onClick={() => setContactOpen(true)}
+                className="px-16 py-7 glass border-white/20 text-white font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
+              >
+                Contact Us
               </button>
             </div>
           </motion.div>
