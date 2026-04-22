@@ -64,14 +64,14 @@ export default function Comparison() {
       <div className="max-w-7xl mx-auto relative z-10">
         {/* Header */}
         <motion.div
-          className="text-center mb-24"
+          className="text-center mb-28"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
           <motion.span
-            className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block"
+            className="text-brand-cyan tracking-[0.5em] uppercase text-[11px] font-bold mb-8 block"
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
@@ -80,7 +80,7 @@ export default function Comparison() {
             The Clear Choice
           </motion.span>
           <motion.h2
-            className="text-6xl md:text-8xl font-sans font-light tracking-[-0.04em] leading-[0.8] mb-8"
+            className="text-6xl md:text-8xl font-sans font-light tracking-[-0.04em] leading-[0.8] mb-10"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -90,7 +90,7 @@ export default function Comparison() {
             <span className="italic font-normal">NON-EV.</span>
           </motion.h2>
           <motion.p
-            className="max-w-2xl mx-auto text-black/40 text-lg leading-relaxed"
+            className="max-w-2xl mx-auto text-black/60 text-lg leading-relaxed font-medium"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -112,38 +112,42 @@ export default function Comparison() {
               viewport={{ once: true }}
               className="group"
             >
-              <div className="mb-4">
-                <div className="flex items-center gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-lg bg-brand-cyan/10 flex items-center justify-center text-brand-cyan">
+              <div className="mb-5">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-lg bg-brand-cyan/15 flex items-center justify-center text-brand-cyan">
                     {item.icon}
                   </div>
-                  <h3 className="text-2xl font-display font-light">{item.aspect}</h3>
+                  <h3 className="text-2xl font-display font-semibold text-black">{item.aspect}</h3>
                 </div>
               </div>
 
               <div className="grid grid-cols-1 gap-4">
                 {/* EV Card */}
                 <motion.div
-                  className={`glass rounded-[24px] p-6 border-white/50 bg-gradient-to-br ${item.evColor} hover:border-green-500/50 transition-all`}
-                  whileHover={{ scale: 1.02 }}
+                  className={`glass rounded-[24px] p-7 border-2 border-green-400/40 bg-gradient-to-br ${item.evColor} hover:border-green-400/70 transition-all shadow-lg`}
+                  whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(34, 197, 94, 0.15)' }}
                 >
-                  <div className="flex items-start gap-3 mb-3">
-                    <Check className="w-5 h-5 text-green-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-green-600 font-bold">ELECTRIC</p>
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-6 h-6 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                      <Check className="w-4 h-4 text-green-700 font-bold" />
+                    </div>
+                    <p className="text-[11px] uppercase tracking-[0.35em] text-green-700 font-bold">ELECTRIC</p>
                   </div>
-                  <p className="text-black/80 font-medium">{item.ev}</p>
+                  <p className="text-black font-semibold text-base leading-relaxed">{item.ev}</p>
                 </motion.div>
 
                 {/* Non-EV Card */}
                 <motion.div
-                  className={`glass rounded-[24px] p-6 border-white/50 bg-gradient-to-br ${item.nonEvColor} hover:border-red-500/50 transition-all`}
-                  whileHover={{ scale: 1.02 }}
+                  className={`glass rounded-[24px] p-7 border-2 border-red-400/40 bg-gradient-to-br ${item.nonEvColor} hover:border-red-400/70 transition-all shadow-lg`}
+                  whileHover={{ scale: 1.02, boxShadow: '0 20px 40px rgba(239, 68, 68, 0.15)' }}
                 >
-                  <div className="flex items-start gap-3 mb-3">
-                    <X className="w-5 h-5 text-red-600 flex-shrink-0 mt-0.5" />
-                    <p className="text-[10px] uppercase tracking-[0.3em] text-red-600 font-bold">NON-ELECTRIC</p>
+                  <div className="flex items-start gap-3 mb-4">
+                    <div className="w-6 h-6 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                      <X className="w-4 h-4 text-red-700 font-bold" />
+                    </div>
+                    <p className="text-[11px] uppercase tracking-[0.35em] text-red-700 font-bold">NON-ELECTRIC</p>
                   </div>
-                  <p className="text-black/80 font-medium">{item.nonEv}</p>
+                  <p className="text-black font-semibold text-base leading-relaxed">{item.nonEv}</p>
                 </motion.div>
               </div>
             </motion.div>
@@ -152,26 +156,30 @@ export default function Comparison() {
 
         {/* Desktop Table View */}
         <motion.div
-          className="hidden lg:block overflow-hidden rounded-[32px] border border-white/50 glass"
+          className="hidden lg:block overflow-hidden rounded-[32px] border-2 border-white/40 glass shadow-2xl"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.2, duration: 0.6 }}
         >
-          <div className="grid grid-cols-3 bg-gradient-to-r from-brand-cyan/20 to-transparent border-b border-white/50">
-            <div className="px-8 py-6">
-              <p className="text-[11px] uppercase tracking-[0.4em] text-black/40 font-bold">Aspect</p>
+          <div className="grid grid-cols-3 bg-gradient-to-r from-brand-cyan/30 via-transparent to-transparent border-b border-white/50">
+            <div className="px-10 py-8">
+              <p className="text-[12px] uppercase tracking-[0.4em] text-black/60 font-bold">Aspect</p>
             </div>
-            <div className="px-8 py-6 border-l border-white/50 bg-gradient-to-r from-green-400/10 to-transparent">
-              <div className="flex items-center gap-2">
-                <Zap className="w-4 h-4 text-green-600" />
-                <p className="text-[11px] uppercase tracking-[0.4em] text-green-600 font-bold">Electric (EV)</p>
+            <div className="px-10 py-8 border-l border-white/50 bg-gradient-to-r from-green-400/15 to-transparent">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-lg bg-green-500/20 flex items-center justify-center">
+                  <Zap className="w-4 h-4 text-green-700" />
+                </div>
+                <p className="text-[12px] uppercase tracking-[0.4em] text-green-700 font-bold">Electric (EV)</p>
               </div>
             </div>
-            <div className="px-8 py-6 border-l border-white/50 bg-gradient-to-r from-red-400/10 to-transparent">
-              <div className="flex items-center gap-2">
-                <Fuel className="w-4 h-4 text-red-600" />
-                <p className="text-[11px] uppercase tracking-[0.4em] text-red-600 font-bold">Non-Electric</p>
+            <div className="px-10 py-8 border-l border-white/50 bg-gradient-to-r from-red-400/15 to-transparent">
+              <div className="flex items-center gap-3">
+                <div className="w-6 h-6 rounded-lg bg-red-500/20 flex items-center justify-center">
+                  <Fuel className="w-4 h-4 text-red-700" />
+                </div>
+                <p className="text-[12px] uppercase tracking-[0.4em] text-red-700 font-bold">Non-Electric</p>
               </div>
             </div>
           </div>
@@ -188,29 +196,33 @@ export default function Comparison() {
               }`}
             >
               {/* Aspect */}
-              <div className="px-8 py-6 flex items-center gap-3">
-                <div className="w-10 h-10 rounded-lg bg-brand-cyan/10 flex items-center justify-center text-brand-cyan flex-shrink-0">
+              <div className="px-10 py-8 flex items-center gap-4">
+                <div className="w-10 h-10 rounded-lg bg-brand-cyan/15 flex items-center justify-center text-brand-cyan flex-shrink-0">
                   {item.icon}
                 </div>
-                <p className="font-display font-light text-lg text-black">{item.aspect}</p>
+                <p className="font-display font-light text-lg text-black font-semibold">{item.aspect}</p>
               </div>
 
               {/* EV Value */}
               <motion.div
-                className="px-8 py-6 border-l border-white/50 flex items-center gap-3"
-                whileHover={{ scale: 1.02 }}
+                className="px-8 py-6 border-l border-white/50 flex items-center gap-3 hover:bg-green-500/[0.03] transition-colors"
+                whileHover={{ backgroundColor: 'rgba(34, 197, 94, 0.06)' }}
               >
-                <Check className="w-5 h-5 text-green-600 flex-shrink-0" />
-                <p className="text-black/70">{item.ev}</p>
+                <div className="w-6 h-6 rounded-lg bg-green-500/20 flex items-center justify-center flex-shrink-0">
+                  <Check className="w-4 h-4 text-green-700 font-bold" />
+                </div>
+                <p className="text-black font-semibold">{item.ev}</p>
               </motion.div>
 
               {/* Non-EV Value */}
               <motion.div
-                className="px-8 py-6 border-l border-white/50 flex items-center gap-3"
-                whileHover={{ scale: 1.02 }}
+                className="px-8 py-6 border-l border-white/50 flex items-center gap-3 hover:bg-red-500/[0.03] transition-colors"
+                whileHover={{ backgroundColor: 'rgba(239, 68, 68, 0.06)' }}
               >
-                <X className="w-5 h-5 text-red-600 flex-shrink-0" />
-                <p className="text-black/70">{item.nonEv}</p>
+                <div className="w-6 h-6 rounded-lg bg-red-500/20 flex items-center justify-center flex-shrink-0">
+                  <X className="w-4 h-4 text-red-700 font-bold" />
+                </div>
+                <p className="text-black font-semibold">{item.nonEv}</p>
               </motion.div>
             </motion.div>
           ))}
@@ -218,18 +230,18 @@ export default function Comparison() {
 
         {/* Bottom CTA */}
         <motion.div
-          className="text-center mt-24"
+          className="text-center mt-28"
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ delay: 0.4, duration: 0.6 }}
         >
-          <p className="text-black/40 mb-8 max-w-2xl mx-auto text-lg">
+          <p className="text-black/70 mb-10 max-w-2xl mx-auto text-lg font-medium leading-relaxed">
             Make the smart choice today. Axigear electric two-wheelers offer superior benefits across every important metric.
           </p>
           <motion.a
             href="#models"
-            className="inline-block px-16 py-6 bg-black text-white font-bold rounded-full text-[11px] uppercase tracking-[0.3em] shadow-2xl overflow-hidden relative group"
+            className="inline-block px-16 py-6 bg-black text-white font-bold rounded-full text-[11px] uppercase tracking-[0.3em] shadow-2xl overflow-hidden relative group hover:shadow-2xl"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >

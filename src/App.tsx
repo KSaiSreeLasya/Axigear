@@ -46,12 +46,14 @@ export default function App() {
       
       <main>
         <Hero onConfigure={openConfigurator} />
-        
+
         <Services />
 
         <FeaturedVehicles onConfigure={openConfigurator} />
         <Technology />
-        
+
+        <Comparison />
+
         {/* CTA Section */}
         <section className="py-60 px-6 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black -z-20" />

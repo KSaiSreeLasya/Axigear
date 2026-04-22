@@ -57,30 +57,30 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
             >
               {/* Header Badge */}
               <motion.div
-                className="mb-8"
+                className="mb-8 md:mb-10"
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.5 }}
               >
                 <motion.div
-                  className="inline-flex items-center gap-2 text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold glass px-5 py-3 rounded-full border border-brand-cyan/30"
-                  whileHover={{ scale: 1.05, boxShadow: "0 0 25px rgba(59, 130, 246, 0.4)" }}
+                  className="inline-flex items-center gap-2 text-brand-cyan tracking-[0.4em] uppercase text-[10px] md:text-xs font-bold glass px-4 md:px-6 py-2.5 md:py-3 rounded-full border border-brand-cyan/40 backdrop-blur-sm"
+                  whileHover={{ scale: 1.08, boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)" }}
                 >
-                  <Zap className="w-3 h-3 fill-brand-cyan" />
+                  <Zap className="w-3.5 h-3.5 fill-brand-cyan flex-shrink-0" />
                   <span>{currentVehicle.type} / {currentVehicle.range}</span>
                 </motion.div>
               </motion.div>
 
               {/* Main Heading */}
               <motion.h1
-                className="text-[3.5rem] md:text-[4.5rem] lg:text-[5.5rem] font-sans font-light leading-[0.95] tracking-[-0.02em] mb-6 text-black"
+                className="text-4xl md:text-5xl lg:text-7xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-4 md:mb-6 text-black"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.7 }}
               >
-                <span className="block">{currentVehicle.name}</span>
+                <span className="block font-light">{currentVehicle.name}</span>
                 <motion.span
-                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/60 bg-clip-text text-transparent font-normal italic"
+                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic mt-2"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.7 }}
@@ -91,48 +91,47 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
               {/* Price Tag */}
               <motion.p
-                className="text-[16px] font-bold text-brand-cyan mb-10 flex items-center gap-2"
+                className="text-base md:text-lg font-semibold text-brand-cyan mb-10 md:mb-12 flex items-center gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <Leaf className="w-5 h-5 fill-green-500 text-green-500" />
+                <Leaf className="w-5 h-5 fill-green-500 text-green-500 flex-shrink-0" />
                 Starting at ₹{(currentVehicle.basePrice / 100000).toFixed(2)} Lakh
               </motion.p>
 
               {/* Specs Grid */}
               <motion.div
-                className="grid grid-cols-3 gap-6 mb-12"
+                className="grid grid-cols-3 gap-3 md:gap-5 mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
                 {[
-                  { label: 'Range', value: currentVehicle.range, symbol: '🔋' },
-                  { label: 'Performance', value: currentVehicle.acceleration, symbol: '⚡' },
-                  { label: 'Max Speed', value: currentVehicle.topSpeed, symbol: '🚀' }
+                  { label: 'Range', value: currentVehicle.range.split(' ')[0], unit: 'km', symbol: '🔋' },
+                  { label: 'Performance', value: currentVehicle.acceleration.split(' ')[0], unit: '', symbol: '⚡' },
+                  { label: 'Max Speed', value: currentVehicle.topSpeed.split(' ')[0], unit: 'km/h', symbol: '🚀' }
                 ].map((spec, index) => (
                   <motion.div
                     key={spec.label}
-                    className="group relative overflow-hidden rounded-[20px] p-6 bg-gradient-to-br from-brand-cyan/[0.08] to-brand-cyan/[0.02] border border-brand-cyan/20 cursor-default"
+                    className="group relative overflow-hidden rounded-2xl md:rounded-3xl px-3 md:px-5 py-5 md:py-7 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center justify-center"
                     initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.45 + index * 0.08, duration: 0.5 }}
                     whileHover={{
                       y: -8,
-                      boxShadow: "0 20px 40px rgba(59, 130, 246, 0.2)",
-                      borderColor: "rgba(59, 130, 246, 0.5)"
+                      boxShadow: "0 20px 50px rgba(59, 130, 246, 0.25)",
+                      borderColor: "rgba(59, 130, 246, 0.4)"
                     }}
                   >
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-brand-cyan/10 to-transparent opacity-0 group-hover:opacity-100"
+                      className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-transparent opacity-0 group-hover:opacity-100"
                       transition={{ duration: 0.4 }}
                     />
-                    <p className="text-[12px] uppercase tracking-[0.3em] text-black/40 font-bold mb-2 relative z-10 group-hover:text-brand-cyan transition-colors">{spec.label}</p>
-                    <div className="flex items-baseline gap-2 relative z-10">
-                      <span className="text-2xl">{spec.symbol}</span>
-                      <p className="text-2xl md:text-3xl font-display font-light text-black">{spec.value}</p>
-                    </div>
+                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/60 font-bold mb-2 md:mb-3 relative z-10 group-hover:text-brand-cyan transition-colors whitespace-nowrap">{spec.label}</p>
+                    <span className="text-2xl md:text-3xl mb-1 md:mb-2 relative z-10 flex-shrink-0">{spec.symbol}</span>
+                    <p className="text-2xl md:text-3xl font-display font-light text-black relative z-10 leading-tight break-words">{spec.value}</p>
+                    {spec.unit && <p className="text-[10px] md:text-xs text-black/60 mt-1 font-medium relative z-10 whitespace-nowrap">{spec.unit}</p>}
                   </motion.div>
                 ))}
               </motion.div>
@@ -140,11 +139,11 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               {/* CTA Button */}
               <motion.button
                 onClick={() => onConfigure(currentVehicle.id)}
-                className="group relative w-full md:w-fit px-10 md:px-14 py-5 bg-black text-white font-bold rounded-[20px] uppercase tracking-[0.3em] text-[11px] shadow-[0_10px_40px_rgba(0,0,0,0.15)] overflow-hidden flex items-center justify-center gap-3"
+                className="group relative w-full md:w-fit px-8 md:px-12 py-4 md:py-5 bg-black text-white font-semibold rounded-xl md:rounded-2xl uppercase tracking-[0.25em] text-xs md:text-[11px] shadow-lg hover:shadow-2xl shadow-black/20 overflow-hidden flex items-center justify-center gap-2 md:gap-3 transition-all"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65, duration: 0.6 }}
-                whileHover={{ scale: 1.05, boxShadow: "0 20px 60px rgba(59, 130, 246, 0.3)" }}
+                whileHover={{ scale: 1.08, boxShadow: "0 20px 60px rgba(59, 130, 246, 0.3)" }}
                 whileTap={{ scale: 0.95 }}
               >
                 <motion.div
