@@ -55,7 +55,7 @@ export default function App() {
         <Comparison />
 
         {/* CTA Section */}
-        <section className="py-60 px-6 text-center relative overflow-hidden">
+        <section className="py-32 px-6 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black -z-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cyan/[0.1] to-green-500/[0.05] -z-10" />
 
@@ -65,12 +65,12 @@ export default function App() {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <span className="text-brand-cyan tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
-            <h2 className="text-6xl md:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-8 text-white">
+            <span className="text-brand-black tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
+            <h2 className="text-6xl md:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-8 text-black">
               SUSTAINABLE <br />
-              <span className="text-stroke-white opacity-80 italic font-normal">MOBILITY.</span>
+              <span className="text-brand-black opacity-20 italic font-normal">MOBILITY</span>
             </h2>
-            <p className="text-white/60 max-w-2xl mx-auto mb-16 text-lg">
+            <p className="text-black/60 max-w-2xl mx-auto mb-16 text-lg">
               From ₹35,000 to ₹1,20,000. Explore our range of RTO and Non-RTO electric two-wheelers designed for every commute need.
             </p>
             <div className="flex flex-wrap justify-center gap-8">
@@ -82,7 +82,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => setContactOpen(true)}
-                className="px-16 py-7 glass border-white/20 text-white font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
+                className="px-16 py-7 glass border-black/20 text-black font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
               >
                 Contact Us
               </button>

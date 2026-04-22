@@ -100,7 +100,14 @@ export default function Footer() {
                 <MapPin className="w-5 h-5 text-brand-cyan mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold mb-1">Visit Us</p>
-                  <p className="text-sm text-black/40">Find our showrooms nationwide</p>
+                  <a
+                    href="https://www.google.com/maps/place/Axigear+Electric+Lounge/@17.492970783412304,78.34556287493729,15z/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-sm text-black/40 hover:text-brand-cyan transition-colors"
+                  >
+                    View Location on Map
+                  </a>
                 </div>
               </div>
             </div>
