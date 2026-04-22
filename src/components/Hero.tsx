@@ -102,19 +102,19 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
               {/* Specs Grid */}
               <motion.div
-                className="grid grid-cols-3 gap-4 md:gap-6 mb-12"
+                className="grid grid-cols-3 gap-3 md:gap-5 mb-12"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
                 {[
-                  { label: 'Range', value: currentVehicle.range, unit: 'km', symbol: '🔋' },
-                  { label: 'Performance', value: currentVehicle.acceleration, unit: '', symbol: '⚡' },
-                  { label: 'Max Speed', value: currentVehicle.topSpeed, unit: 'km/h', symbol: '🚀' }
+                  { label: 'Range', value: currentVehicle.range.split(' ')[0], unit: 'km', symbol: '🔋' },
+                  { label: 'Performance', value: currentVehicle.acceleration.split(' ')[0], unit: '', symbol: '⚡' },
+                  { label: 'Max Speed', value: currentVehicle.topSpeed.split(' ')[0], unit: 'km/h', symbol: '🚀' }
                 ].map((spec, index) => (
                   <motion.div
                     key={spec.label}
-                    className="group relative overflow-hidden rounded-2xl md:rounded-3xl px-4 md:px-6 py-6 md:py-8 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center"
+                    className="group relative overflow-hidden rounded-2xl md:rounded-3xl px-3 md:px-5 py-5 md:py-7 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center justify-center"
                     initial={{ opacity: 0, scale: 0.85 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: 0.45 + index * 0.08, duration: 0.5 }}
@@ -128,10 +128,10 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                       className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-transparent opacity-0 group-hover:opacity-100"
                       transition={{ duration: 0.4 }}
                     />
-                    <p className="text-[10px] md:text-[11px] uppercase tracking-[0.25em] text-black/50 font-semibold mb-3 md:mb-4 relative z-10 group-hover:text-brand-cyan transition-colors">{spec.label}</p>
-                    <span className="text-3xl md:text-4xl mb-2 md:mb-3 relative z-10">{spec.symbol}</span>
-                    <p className="text-3xl md:text-4xl font-display font-light text-black relative z-10 leading-tight">{spec.value}</p>
-                    {spec.unit && <p className="text-xs md:text-sm text-black/50 mt-1 md:mt-2 font-medium relative z-10">{spec.unit}</p>}
+                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/60 font-bold mb-2 md:mb-3 relative z-10 group-hover:text-brand-cyan transition-colors whitespace-nowrap">{spec.label}</p>
+                    <span className="text-2xl md:text-3xl mb-1 md:mb-2 relative z-10 flex-shrink-0">{spec.symbol}</span>
+                    <p className="text-2xl md:text-3xl font-display font-light text-black relative z-10 leading-tight break-words">{spec.value}</p>
+                    {spec.unit && <p className="text-[10px] md:text-xs text-black/60 mt-1 font-medium relative z-10 whitespace-nowrap">{spec.unit}</p>}
                   </motion.div>
                 ))}
               </motion.div>
