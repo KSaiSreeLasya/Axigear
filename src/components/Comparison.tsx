@@ -87,7 +87,7 @@ export default function Comparison() {
             transition={{ delay: 0.1, duration: 0.6 }}
           >
             EV VS <br />
-            <span className="italic font-normal">NON-EV.</span>
+            <span className="italic font-normal">NON-EV</span>
           </motion.h2>
           <motion.p
             className="max-w-2xl mx-auto text-black/60 text-lg leading-relaxed font-medium"
