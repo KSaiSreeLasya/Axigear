@@ -68,7 +68,7 @@ export default function App() {
             <span className="text-brand-cyan tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
             <h2 className="text-6xl md:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-8 text-white">
               SUSTAINABLE <br />
-              <span className="text-white opacity-80 italic font-normal">MOBILITY.</span>
+              <span className="text-white opacity-20 italic font-normal">MOBILITY.</span>
             </h2>
             <p className="text-white/60 max-w-2xl mx-auto mb-16 text-lg">
               From ₹35,000 to ₹1,20,000. Explore our range of RTO and Non-RTO electric two-wheelers designed for every commute need.
