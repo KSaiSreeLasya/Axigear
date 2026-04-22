@@ -204,7 +204,7 @@ export default function Services() {
                 <h4 className="text-lg font-display font-light mb-4 group-hover:text-brand-cyan transition-colors">
                   {value.title}
                 </h4>
-                <p className="text-black/40 text-sm leading-relaxed">
+                <p className="text-black/70 text-sm leading-relaxed font-medium">
                   {value.desc}
                 </p>
               </motion.div>

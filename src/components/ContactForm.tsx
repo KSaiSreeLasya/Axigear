@@ -118,17 +118,12 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             {/* Close Button */}
             <motion.button
               onClick={onClose}
-              className="absolute top-6 right-6 z-20 w-10 h-10 rounded-full glass border-black/5 flex items-center justify-center text-black shadow-sm overflow-hidden relative group"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
+              className="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:shadow-xl overflow-hidden relative group border border-black/30"
+              whileHover={{ scale: 1.15, backgroundColor: '#0f172a' }}
+              whileTap={{ scale: 0.95 }}
+              title="Close"
             >
-              <motion.div
-                className="absolute inset-0 bg-black"
-                initial={{ x: '-100%' }}
-                whileHover={{ x: 0 }}
-                transition={{ duration: 0.3 }}
-              />
-              <X size={20} className="relative z-10 group-hover:text-white" />
+              <X size={24} className="relative z-10" />
             </motion.button>
 
             {/* Left: Contact Info */}
@@ -138,8 +133,8 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[9px] mb-2 block font-bold">Connect</span>
-              <h2 className="text-4xl font-sans font-extralight tracking-tight mb-8 uppercase">Reach Out</h2>
+              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[11px] mb-4 block font-bold">Connect</span>
+              <h2 className="text-4xl font-sans font-extralight tracking-tight mb-10 uppercase text-black">Reach Out</h2>
 
               <div className="space-y-8 mt-12">
                 {[
@@ -174,8 +169,8 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       {item.icon}
                     </motion.div>
                     <div>
-                      <h4 className="text-[10px] uppercase tracking-widest text-black/40 mb-1 group-hover:text-brand-cyan transition-colors">{item.title}</h4>
-                      <p className="text-sm font-medium whitespace-pre-line">{item.content}</p>
+                      <h4 className="text-xs uppercase tracking-widest text-black/60 font-semibold mb-2 group-hover:text-brand-cyan transition-colors">{item.title}</h4>
+                      <p className="text-sm font-medium text-black/80 whitespace-pre-line">{item.content}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -203,7 +198,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.1 + idx * 0.05 }}
                         >
-                          <label className="text-[10px] uppercase tracking-widest text-black/40 ml-1">
+                          <label className="text-xs md:text-sm uppercase tracking-widest text-black/60 font-semibold ml-1">
                             {field === 'fullName' ? 'Full Name' : 'Email Address'}
                           </label>
                           <motion.div className="relative">
@@ -233,7 +228,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           </motion.div>
                           {errors[field] && (
                             <motion.p
-                              className="text-[9px] text-red-500 ml-1"
+                              className="text-xs text-red-600 font-medium ml-1"
                               initial={{ opacity: 0, y: -5 }}
                               animate={{ opacity: 1, y: 0 }}
                             >
@@ -250,7 +245,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.2 }}
                     >
-                      <label className="text-[10px] uppercase tracking-widest text-black/40 ml-1">Inquiry Type</label>
+                      <label className="text-xs md:text-sm uppercase tracking-widest text-black/60 font-semibold ml-1">Inquiry Type</label>
                       <select
                         name="inquiryType"
                         value={formData.inquiryType}
@@ -270,7 +265,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.25 }}
                     >
-                      <label className="text-[10px] uppercase tracking-widest text-black/40 ml-1">Message</label>
+                      <label className="text-xs md:text-sm uppercase tracking-widest text-black/60 font-semibold ml-1">Message</label>
                       <motion.div className="relative">
                         <textarea
                           name="message"
@@ -297,7 +292,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       </motion.div>
                       {errors.message && (
                         <motion.p
-                          className="text-[9px] text-red-500 ml-1"
+                          className="text-xs text-red-600 font-medium ml-1"
                           initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
@@ -381,7 +376,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                       Message Received
                     </motion.h3>
                     <motion.p
-                      className="text-black/40 text-sm max-w-xs uppercase tracking-widest leading-loose"
+                      className="text-black/70 text-sm font-medium max-w-xs uppercase tracking-widest leading-loose"
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: 0.3 }}
