@@ -65,7 +65,7 @@ export default function App() {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <span className="text-brand-cyan tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
+            <span className="text-brand-black tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
             <h2 className="text-6xl md:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-8 text-black">
               SUSTAINABLE <br />
               <span className="text-black opacity-20 italic font-normal">MOBILITY.</span>
