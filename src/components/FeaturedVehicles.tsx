@@ -52,7 +52,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <p className="max-w-sm text-black/40 text-xs uppercase tracking-widest leading-loose mb-6">
-              From ₹35,000 to ₹1,20,000. RTO & Non-RTO options for every commute need.
+              From ₹48,000 to ₹1,50,000. RTO & Non-RTO options for every commute need.
             </p>
             <div className="flex gap-4">
                <motion.div
