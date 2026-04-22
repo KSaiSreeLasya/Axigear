@@ -140,8 +140,8 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                 {[
                   {
                     icon: <MapPin size={18} />,
-                    title: 'Our Flagship',
-                    content: '99 Future Way, Tech District\nNeo City, NC 90210'
+                    title: 'Axigear Electric Lounge',
+                    content: 'St No 2, Plot No. 148, beside Srikara Hospitals, Mythri Nagar, Hafeezpet, Madeenaguda, Hyderabad, Telangana 500049'
                   },
                   {
                     icon: <Phone size={18} />,
