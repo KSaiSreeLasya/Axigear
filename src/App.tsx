@@ -70,7 +70,7 @@ export default function App() {
               SUSTAINABLE <br />
               <span className="text-white opacity-20 italic font-normal">MOBILITY.</span>
             </h2>
-            <p className="text-white/60 max-w-2xl mx-auto mb-16 text-lg">
+            <p className="text-black/60 max-w-2xl mx-auto mb-16 text-lg">
               From ₹35,000 to ₹1,20,000. Explore our range of RTO and Non-RTO electric two-wheelers designed for every commute need.
             </p>
             <div className="flex flex-wrap justify-center gap-8">
