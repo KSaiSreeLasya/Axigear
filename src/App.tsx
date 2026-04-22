@@ -82,7 +82,7 @@ export default function App() {
               </button>
               <button
                 onClick={() => setContactOpen(true)}
-                className="px-16 py-7 glass border-white/20 text-white font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
+                className="px-16 py-7 glass border-black/20 text-black font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
               >
                 Contact Us
               </button>
