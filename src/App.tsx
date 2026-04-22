@@ -55,7 +55,7 @@ export default function App() {
         <Comparison />
 
         {/* CTA Section */}
-        <section className="py-60 px-6 text-center relative overflow-hidden">
+        <section className="py-32 px-6 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black -z-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cyan/[0.1] to-green-500/[0.05] -z-10" />
 

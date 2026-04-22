@@ -113,7 +113,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.4 }}
-            className="relative w-full max-w-4xl glass rounded-[32px] overflow-hidden flex flex-col md:flex-row min-h-[500px] shadow-2xl border border-white/50"
+            className="relative w-full max-w-4xl glass rounded-[32px] flex flex-col md:flex-row min-h-[500px] shadow-2xl border border-white/50"
           >
             {/* Close Button */}
             <motion.button
