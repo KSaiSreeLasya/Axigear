@@ -175,6 +175,25 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                   </motion.div>
                 ))}
               </div>
+
+              {/* Location Map */}
+              <motion.div
+                className="mt-16"
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.55, duration: 0.5 }}
+              >
+                <p className="text-xs uppercase tracking-[0.2em] text-black/60 font-semibold mb-4">Our Location</p>
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.3045241898153!2d78.34556287493729!3d17.492970783412304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93860329a3f3%3A0x8882b1be660002ad!2sAxigear%20Electric%20Lounge!5e0!3m2!1sen!2sin!4v1776837934689!5m2!1sen!2sin"
+                  width="100%"
+                  height="250"
+                  style={{ border: 0, borderRadius: '12px' }}
+                  allowFullScreen=""
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                />
+              </motion.div>
             </motion.div>
 
             {/* Right: Form */}
