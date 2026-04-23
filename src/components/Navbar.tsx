@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, Zap } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
 export default function Navbar({ onContact }: { onContact: () => void }) {
@@ -29,18 +29,11 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <div className="relative w-8 h-8 md:w-9 md:h-9 flex items-center justify-center">
-            <motion.div
-              animate={{ rotate: 0 }}
-              transition={{ duration: 0.3 }}
-            >
-              <Zap className="text-brand-cyan w-7 h-7 md:w-8 md:h-8 fill-brand-cyan" />
-            </motion.div>
-            <motion.div
-              className="absolute inset-0 bg-brand-cyan/30 blur-lg rounded-full"
-              initial={{ opacity: 0, scale: 0.8 }}
-              whileHover={{ opacity: 1, scale: 1.3 }}
-              transition={{ duration: 0.3 }}
+          <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0">
+            <img
+              src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2Fa2f6d0c2d2034ff79880f4c372eb447f?format=webp&width=800&height=1200"
+              alt="Axigear Logo"
+              className="w-full h-full object-contain"
             />
           </div>
           <span className="text-lg md:text-xl font-bold tracking-[0.3em] uppercase leading-none hidden sm:block text-black">Axigear</span>
