@@ -31,7 +31,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
         >
           <div className="relative w-10 h-10 md:w-12 md:h-12 flex items-center justify-center flex-shrink-0">
             <img
-              src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2Fa2f6d0c2d2034ff79880f4c372eb447f?format=webp&width=800&height=1200"
+              src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2F52f733b0dad049b3b14e2737328c7608?format=webp&width=800&height=1200"
               alt="Axigear Logo"
               className="w-full h-full object-contain"
             />
