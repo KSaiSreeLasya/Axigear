@@ -78,16 +78,17 @@ export default function App() {
     document.head.appendChild(breadcrumbScript);
 
     // Add Product schema for featured vehicles
-    const productSchemas = vehicles.slice(0, 3).map((vehicle, index) => ({
+    const productSchemas = vehicles.slice(0, 3).map((vehicle) => ({
       "@context": "https://schema.org",
       "@type": "Product",
       "name": vehicle.name,
-      "description": vehicle.specs.range + " km range electric scooter",
+      "description": vehicle.range + " range electric scooter - " + vehicle.description,
       "brand": "Axigear",
       "offers": {
         "@type": "Offer",
         "availability": "https://schema.org/InStock",
-        "priceCurrency": "INR"
+        "priceCurrency": "INR",
+        "price": vehicle.basePrice
       }
     }));
 
