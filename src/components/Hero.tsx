@@ -102,7 +102,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
               {/* Specs Grid */}
               <motion.div
-                className="grid grid-cols-3 gap-3 md:gap-5 mb-12"
+                className="grid gap-3 md:gap-5 mb-12"
+                style={{ gridTemplateColumns: `repeat(${currentVehicle.topSpeed ? 3 : 2}, minmax(0, 1fr))` }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
@@ -110,7 +111,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 {[
                   { label: 'Range', value: currentVehicle.range.split(' ')[0], unit: 'km', symbol: '🔋' },
                   { label: 'Performance', value: currentVehicle.acceleration.split(' ')[0], unit: '', symbol: '⚡' },
-                  { label: 'Max Speed', value: currentVehicle.topSpeed.split(' ')[0], unit: 'km/h', symbol: '🚀' }
+                  ...(currentVehicle.topSpeed ? [{ label: 'Max Speed', value: currentVehicle.topSpeed.split(' ')[0], unit: 'km/h', symbol: '🚀' }] : [])
                 ].map((spec, index) => (
                   <motion.div
                     key={spec.label}

@@ -24,7 +24,7 @@ export const vehicles: Vehicle[] = [
     type: 'RTO Registered',
     range: '80 km',
     acceleration: 'High Performance',
-    
+    topSpeed: '',
     basePrice: 65000,
     image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2Faf020b66e7f54cedb19327e5ff4a1c75?format=webp&width=800&height=1200',
     description: 'Premium RTO-registered electric scooter for longer commutes with full regulatory compliance.',
