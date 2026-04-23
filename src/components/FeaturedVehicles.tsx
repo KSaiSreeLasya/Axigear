@@ -50,7 +50,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <p className="max-w-sm text-black/40 text-xs uppercase tracking-widest leading-loose mb-6">
-              From ₹35,000 to ₹50,000. Affordable electric scooters for every commute need.
+              From ₹85,000 to ₹95,000. Premium electric scooters engineered for performance.
             </p>
             <div className="flex gap-4">
                <motion.div
@@ -142,7 +142,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
 
                   {/* Specs */}
                   <motion.div
-                    className="grid grid-cols-2 gap-6 border-t border-black/5 pt-6 mb-8"
+                    className="border-t border-black/5 pt-6 mb-8"
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     viewport={{ once: true }}
@@ -151,10 +151,6 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
                     <div className="group/spec cursor-default">
                       <p className="text-[9px] uppercase tracking-[0.3em] text-black/30 font-bold mb-2 group-hover/spec:text-brand-cyan transition-colors">Range</p>
                       <p className="text-xl font-display font-light">{vehicle.range}</p>
-                    </div>
-                    <div className="group/spec cursor-default">
-                      <p className="text-[9px] uppercase tracking-[0.3em] text-black/30 font-bold mb-2 group-hover/spec:text-brand-cyan transition-colors">Max Speed</p>
-                      <p className="text-xl font-display font-light">{vehicle.topSpeed}</p>
                     </div>
                   </motion.div>
 
