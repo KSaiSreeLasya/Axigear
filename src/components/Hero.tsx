@@ -25,14 +25,14 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
   }, [isAutoPlay]);
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-white pt-20 md:pt-24">
       {/* Enhanced Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-cyan/[0.02] to-brand-cyan/[0.05] -z-20" />
 
       {/* Ambient Glow Elements */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <motion.div
-          className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-brand-cyan/[0.12] blur-[150px] rounded-full"
+          className="absolute top-20 md:top-0 right-1/4 w-[800px] h-[800px] bg-brand-cyan/[0.12] blur-[150px] rounded-full"
           animate={{ y: [0, 30, 0] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
@@ -43,7 +43,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
         />
       </div>
 
-      <div className="flex-1 flex items-center justify-between relative z-10">
+      <div className="flex-1 flex items-center justify-between relative z-10 py-12 md:py-16">
         <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left: Text Content */}
           <AnimatePresence mode="wait">
