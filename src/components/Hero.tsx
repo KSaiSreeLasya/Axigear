@@ -1,5 +1,5 @@
 import { motion, AnimatePresence, useMotionValue, useTransform } from 'motion/react';
-import { ChevronRight, ChevronLeft, Zap, Leaf } from 'lucide-react';
+import { ChevronRight, ChevronLeft, Zap, Leaf, Battery, Gauge } from 'lucide-react';
 import { useState, useEffect } from 'react';
 import { vehicles } from '../data/vehicles';
 
@@ -25,14 +25,14 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
   }, [isAutoPlay]);
 
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden bg-white">
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-white pt-20 md:pt-24">
       {/* Enhanced Gradient Background */}
       <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-cyan/[0.02] to-brand-cyan/[0.05] -z-20" />
 
       {/* Ambient Glow Elements */}
       <div className="absolute inset-0 pointer-events-none -z-10">
         <motion.div
-          className="absolute top-0 right-1/4 w-[800px] h-[800px] bg-brand-cyan/[0.12] blur-[150px] rounded-full"
+          className="absolute top-20 md:top-0 right-1/4 w-[800px] h-[800px] bg-brand-cyan/[0.12] blur-[150px] rounded-full"
           animate={{ y: [0, 30, 0] }}
           transition={{ duration: 6, repeat: Infinity }}
         />
@@ -43,7 +43,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
         />
       </div>
 
-      <div className="flex-1 flex items-center justify-between relative z-10">
+      <div className="flex-1 flex items-center justify-between relative z-10 py-12 md:py-16">
         <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
           {/* Left: Text Content */}
           <AnimatePresence mode="wait">
@@ -55,22 +55,6 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
               className="flex flex-col"
             >
-              {/* Header Badge */}
-              <motion.div
-                className="mb-8 md:mb-10"
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2, duration: 0.5 }}
-              >
-                <motion.div
-                  className="inline-flex items-center gap-2 text-brand-cyan tracking-[0.4em] uppercase text-[10px] md:text-xs font-bold glass px-4 md:px-6 py-2.5 md:py-3 rounded-full border border-brand-cyan/40 backdrop-blur-sm"
-                  whileHover={{ scale: 1.08, boxShadow: "0 0 30px rgba(59, 130, 246, 0.5)" }}
-                >
-                  <Zap className="w-3.5 h-3.5 fill-brand-cyan flex-shrink-0" />
-                  <span>{currentVehicle.type} / {currentVehicle.range}</span>
-                </motion.div>
-              </motion.div>
-
               {/* Main Heading */}
               <motion.h1
                 className="text-4xl md:text-5xl lg:text-7xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-4 md:mb-6 text-black"
@@ -97,43 +81,47 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <Leaf className="w-5 h-5 fill-green-500 text-green-500 flex-shrink-0" />
-                Starting at ₹{(currentVehicle.basePrice / 100000).toFixed(2)} Lakh
+                Starting at ₹{(currentVehicle.basePrice / 1000).toFixed(0)}k
               </motion.p>
 
               {/* Specs Grid */}
               <motion.div
-                className="grid grid-cols-3 gap-3 md:gap-5 mb-12"
+                className="grid gap-3 md:gap-5 mb-12"
+                style={{ gridTemplateColumns: `repeat(${currentVehicle.topSpeed ? 3 : 2}, minmax(0, 1fr))` }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.6 }}
               >
                 {[
-                  { label: 'Range', value: currentVehicle.range.split(' ')[0], unit: 'km', symbol: '🔋' },
-                  { label: 'Performance', value: currentVehicle.acceleration.split(' ')[0], unit: '', symbol: '⚡' },
-                  { label: 'Max Speed', value: currentVehicle.topSpeed.split(' ')[0], unit: 'km/h', symbol: '🚀' }
-                ].map((spec, index) => (
-                  <motion.div
-                    key={spec.label}
-                    className="group relative overflow-hidden rounded-2xl md:rounded-3xl px-3 md:px-5 py-5 md:py-7 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center justify-center"
-                    initial={{ opacity: 0, scale: 0.85 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    transition={{ delay: 0.45 + index * 0.08, duration: 0.5 }}
-                    whileHover={{
-                      y: -8,
-                      boxShadow: "0 20px 50px rgba(59, 130, 246, 0.25)",
-                      borderColor: "rgba(59, 130, 246, 0.4)"
-                    }}
-                  >
+                  { label: 'Range', value: currentVehicle.range.split(' ')[0], unit: 'km', icon: Battery },
+                  { label: 'Performance', value: currentVehicle.acceleration.split(' ')[0], unit: '', icon: Zap },
+                  ...(currentVehicle.topSpeed ? [{ label: 'Max Speed', value: currentVehicle.topSpeed.split(' ')[0], unit: 'km/h', icon: Gauge }] : [])
+                ].map((spec, index) => {
+                  const IconComponent = spec.icon;
+                  return (
                     <motion.div
-                      className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-transparent opacity-0 group-hover:opacity-100"
-                      transition={{ duration: 0.4 }}
-                    />
-                    <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/60 font-bold mb-2 md:mb-3 relative z-10 group-hover:text-brand-cyan transition-colors whitespace-nowrap">{spec.label}</p>
-                    <span className="text-2xl md:text-3xl mb-1 md:mb-2 relative z-10 flex-shrink-0">{spec.symbol}</span>
-                    <p className="text-2xl md:text-3xl font-display font-light text-black relative z-10 leading-tight break-words">{spec.value}</p>
-                    {spec.unit && <p className="text-[10px] md:text-xs text-black/60 mt-1 font-medium relative z-10 whitespace-nowrap">{spec.unit}</p>}
-                  </motion.div>
-                ))}
+                      key={spec.label}
+                      className="group relative overflow-hidden rounded-2xl md:rounded-3xl px-3 md:px-5 py-5 md:py-7 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center justify-center"
+                      initial={{ opacity: 0, scale: 0.85 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      transition={{ delay: 0.45 + index * 0.08, duration: 0.5 }}
+                      whileHover={{
+                        y: -8,
+                        boxShadow: "0 20px 50px rgba(59, 130, 246, 0.25)",
+                        borderColor: "rgba(59, 130, 246, 0.4)"
+                      }}
+                    >
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-transparent opacity-0 group-hover:opacity-100"
+                        transition={{ duration: 0.4 }}
+                      />
+                      <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/60 font-bold mb-2 md:mb-3 relative z-10 group-hover:text-brand-cyan transition-colors whitespace-nowrap">{spec.label}</p>
+                      <IconComponent className="w-6 h-6 md:w-8 md:h-8 mb-1 md:mb-2 relative z-10 flex-shrink-0 text-brand-cyan group-hover:text-brand-cyan/80 transition-colors" />
+                      <p className="text-2xl md:text-3xl font-display font-light text-black relative z-10 leading-tight break-words">{spec.value}</p>
+                      {spec.unit && <p className="text-[10px] md:text-xs text-black/60 mt-1 font-medium relative z-10 whitespace-nowrap">{spec.unit}</p>}
+                    </motion.div>
+                  );
+                })}
               </motion.div>
 
               {/* CTA Button */}

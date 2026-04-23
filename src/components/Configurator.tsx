@@ -199,14 +199,14 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
                     whileHover={{ x: 5 }}
                   >
                     <span className="text-black/40 group-hover/summary:text-black transition-colors">Base Price</span>
-                    <span className="font-medium">${vehicle.basePrice.toLocaleString()}</span>
+                    <span className="font-medium">₹{(vehicle.basePrice / 1000).toFixed(0)}k</span>
                   </motion.div>
                   <motion.div
                     className="flex justify-between text-sm italic group/summary cursor-default"
                     whileHover={{ x: 5 }}
                   >
                     <span className="text-black/40 group-hover/summary:text-black transition-colors">Paint: {currentColor.name}</span>
-                    <span className="font-medium">{currentColor.price === 0 ? 'Included' : `+$${currentColor.price.toLocaleString()}`}</span>
+                    <span className="font-medium">{currentColor.price === 0 ? 'Included' : `+₹${(currentColor.price / 1000).toFixed(0)}k`}</span>
                   </motion.div>
                   <motion.div
                     className="flex justify-between text-sm border-t border-black/10 pt-4 mt-2 bg-gradient-to-r from-brand-cyan/5 to-transparent p-3 rounded-lg"
@@ -220,7 +220,7 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
                       animate={{ scale: 1 }}
                       transition={{ duration: 0.3 }}
                     >
-                      ${totalPrice.toLocaleString()}
+                      ₹{(totalPrice / 1000).toFixed(0)}k
                     </motion.span>
                   </motion.div>
                 </div>

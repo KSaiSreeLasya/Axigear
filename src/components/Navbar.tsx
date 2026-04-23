@@ -20,8 +20,8 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-4 md:px-6 ${scrolled ? 'pt-3' : 'pt-6 md:pt-8'}`}>
-      <div className={`max-w-7xl mx-auto flex items-center justify-between px-4 md:px-8 py-3 md:py-4 transition-all duration-700 rounded-2xl md:rounded-full ${scrolled ? 'glass shadow-[0_8px_32px_rgba(0,0,0,0.12)] backdrop-blur-xl border border-white/30' : 'bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-4 md:px-6 ${scrolled ? 'pt-4 md:pt-5' : 'pt-6 md:pt-8'}`}>
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-4 md:py-5 transition-all duration-700 rounded-2xl md:rounded-full ${scrolled ? 'glass shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-xl border border-white/40 bg-white/20' : 'bg-white/10 backdrop-blur-sm border border-white/10'}`}>
         {/* Logo with Enhanced Interaction */}
         <motion.div
           className="flex items-center gap-2 md:gap-3 group cursor-pointer flex-shrink-0"
