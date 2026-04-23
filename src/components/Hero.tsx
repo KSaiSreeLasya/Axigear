@@ -217,7 +217,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
               {/* Floating Info Cards */}
               <motion.div
-                className="absolute top-12 left-12 glass-premium px-6 py-4 rounded-[20px] z-20"
+                className="absolute top-28 left-12 glass-premium px-6 py-4 rounded-[20px] z-20"
                 initial={{ opacity: 0, x: -30 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
