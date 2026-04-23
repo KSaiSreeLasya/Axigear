@@ -50,7 +50,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
             transition={{ delay: 0.2, duration: 0.5 }}
           >
             <p className="max-w-sm text-black/40 text-xs uppercase tracking-widest leading-loose mb-6">
-              From ₹85,000 to ₹95,000. Premium electric scooters engineered for performance.
+              From ₹35k to ₹65k. Premium electric scooters for every commute need.
             </p>
             <div className="flex gap-4">
                <motion.div
@@ -137,7 +137,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
                   {/* Price Highlight */}
                   <div className="mb-8 p-4 bg-green-400/[0.1] rounded-[20px] border border-green-400/30">
                     <p className="text-[11px] uppercase tracking-[0.3em] text-black/40 font-bold mb-2">Starting Price</p>
-                    <p className="text-2xl font-display font-light text-green-600">₹{(vehicle.basePrice / 100000).toFixed(2)}L</p>
+                    <p className="text-2xl font-display font-light text-green-600">₹{(vehicle.basePrice / 1000).toFixed(0)}k</p>
                   </div>
 
                   {/* Specs */}

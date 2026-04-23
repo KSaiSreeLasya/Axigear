@@ -81,7 +81,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
                 <Leaf className="w-5 h-5 fill-green-500 text-green-500 flex-shrink-0" />
-                Starting at ₹{(currentVehicle.basePrice / 100000).toFixed(2)} Lakh
+                Starting at ₹{(currentVehicle.basePrice / 1000).toFixed(0)}k
               </motion.p>
 
               {/* Specs Grid */}
