@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, MapPin, Phone, Mail, AlertCircle } from 'lucide-react';
 import { useState, FormEvent } from 'react';
+import Swal from 'sweetalert2';
+import { submitContactForm } from '../utils/supabase';
 
 interface ContactFormProps {
   isOpen: boolean;
@@ -78,22 +80,64 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
     setIsSubmitting(true);
 
-    // Simulate API call
-    await new Promise(resolve => setTimeout(resolve, 1500));
-
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-
-    setTimeout(() => {
-      setIsSubmitted(false);
-      setFormData({
-        fullName: '',
-        email: '',
-        inquiryType: 'General Inquiry',
-        message: '',
+    try {
+      // Submit to Supabase
+      const result = await submitContactForm({
+        full_name: formData.fullName,
+        email: formData.email,
+        inquiry_type: formData.inquiryType,
+        message: formData.message,
+        user_agent: navigator.userAgent,
       });
-      onClose();
-    }, 3000);
+
+      if (result.success) {
+        // Show SweetAlert success message
+        await Swal.fire({
+          title: 'Success!',
+          text: 'Thank you for reaching out! We will get back to you within 24 hours.',
+          icon: 'success',
+          confirmButtonText: 'Great!',
+          confirmButtonColor: '#0f766e',
+          allowOutsideClick: false,
+          allowEscapeKey: false,
+          timer: 3000,
+          timerProgressBar: true,
+        });
+
+        setIsSubmitted(true);
+
+        setTimeout(() => {
+          setIsSubmitted(false);
+          setFormData({
+            fullName: '',
+            email: '',
+            inquiryType: 'General Inquiry',
+            message: '',
+          });
+          onClose();
+        }, 1000);
+      } else {
+        // Show error alert
+        await Swal.fire({
+          title: 'Error!',
+          text: result.error || 'Failed to submit the form. Please try again.',
+          icon: 'error',
+          confirmButtonText: 'Try Again',
+          confirmButtonColor: '#dc2626',
+        });
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      await Swal.fire({
+        title: 'Error!',
+        text: 'An unexpected error occurred. Please try again later.',
+        icon: 'error',
+        confirmButtonText: 'OK',
+        confirmButtonColor: '#dc2626',
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (

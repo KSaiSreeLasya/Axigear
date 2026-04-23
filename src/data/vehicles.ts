@@ -26,7 +26,7 @@ export const vehicles: Vehicle[] = [
     acceleration: 'High Performance',
     topSpeed: '80 km/h',
     basePrice: 120000,
-    image: 'https://images.pexels.com/photos/29766153/pexels-photo-29766153.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1000',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2Faf020b66e7f54cedb19327e5ff4a1c75?format=webp&width=800&height=1200',
     description: 'Premium RTO-registered electric scooter for longer commutes with full regulatory compliance.',
     colors: [
       { name: 'Matte Black', hex: '#1a1a1a', price: 0 },
@@ -42,7 +42,7 @@ export const vehicles: Vehicle[] = [
     acceleration: 'Premium',
     topSpeed: '70 km/h',
     basePrice: 85000,
-    image: 'https://images.pexels.com/photos/20164662/pexels-photo-20164662.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1000',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2F790ab0ae37184d8e9a6a7778b54cab17?format=webp&width=800&height=1200',
     description: 'Performance-focused RTO scooter perfect for daily commuting with advanced features.',
     colors: [
       { name: 'Stealth Black', hex: '#0f172a', price: 0 },
@@ -58,7 +58,7 @@ export const vehicles: Vehicle[] = [
     acceleration: 'Standard',
     topSpeed: '50 km/h',
     basePrice: 50000,
-    image: 'https://images.pexels.com/photos/2976179/pexels-photo-2976179.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1000',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2F537a31a658544d2580e4f2051d168cbd?format=webp&width=800&height=1200',
     description: 'Affordable non-RTO scooter ideal for short-distance urban commutes without registration hassle.',
     colors: [
       { name: 'Jet Black', hex: '#111111', price: 0 },
@@ -74,7 +74,7 @@ export const vehicles: Vehicle[] = [
     acceleration: 'Standard',
     topSpeed: '45 km/h',
     basePrice: 35000,
-    image: 'https://images.pexels.com/photos/29766153/pexels-photo-29766153.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1000',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2Fe75557a683e246189cdca8da38d5d9e6?format=webp&width=800&height=1200',
     description: 'Budget-friendly electric scooter for convenient last-mile connectivity and daily errands.',
     colors: [
       { name: 'Classic Black', hex: '#2a2a2a', price: 0 },
@@ -90,7 +90,7 @@ export const vehicles: Vehicle[] = [
     acceleration: 'High Performance',
     topSpeed: '85 km/h',
     basePrice: 110000,
-    image: 'https://images.pexels.com/photos/2976179/pexels-photo-2976179.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=1600&h=1000',
+    image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2F458f941f14dd4505b707a0c746b914ff?format=webp&width=800&height=1200',
     description: 'High-performance electric bike with premium features and extended range for serious riders.',
     colors: [
       { name: 'Midnight Purple', hex: '#191970', price: 0 },

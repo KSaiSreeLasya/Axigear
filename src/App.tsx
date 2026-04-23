@@ -8,13 +8,101 @@ import Footer from './components/Footer';
 import Configurator from './components/Configurator';
 import ContactForm from './components/ContactForm';
 import { motion, useScroll, useSpring } from 'motion/react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Vehicle, vehicles } from './data/vehicles';
 
 export default function App() {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [configuratorOpen, setConfiguratorOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+
+  // Add JSON-LD structured data for SEO
+  useEffect(() => {
+    const schemaScript = document.createElement('script');
+    schemaScript.type = 'application/ld+json';
+    schemaScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Axigear",
+      "description": "Best electric scooters in Hyderabad with affordable pricing, long battery range, and eco-friendly performance",
+      "url": "https://axigear.com",
+      "telephone": "+91-XXXXXXXXXX",
+      "areaServed": {
+        "@type": "City",
+        "name": "Hyderabad"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Hyderabad",
+        "addressRegion": "Telangana",
+        "addressCountry": "IN"
+      },
+      "priceRange": "₹40,000 - ₹1,50,000",
+      "sameAs": [
+        "https://www.facebook.com/axigear",
+        "https://www.instagram.com/axigear",
+        "https://www.twitter.com/axigear"
+      ]
+    });
+
+    document.head.appendChild(schemaScript);
+
+    // Add BreadcrumbList schema
+    const breadcrumbScript = document.createElement('script');
+    breadcrumbScript.type = 'application/ld+json';
+    breadcrumbScript.textContent = JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://axigear.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Products",
+          "item": "https://axigear.com#models"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Services",
+          "item": "https://axigear.com#services"
+        }
+      ]
+    });
+
+    document.head.appendChild(breadcrumbScript);
+
+    // Add Product schema for featured vehicles
+    const productSchemas = vehicles.slice(0, 3).map((vehicle) => ({
+      "@context": "https://schema.org",
+      "@type": "Product",
+      "name": vehicle.name,
+      "description": vehicle.range + " range electric scooter - " + vehicle.description,
+      "brand": "Axigear",
+      "offers": {
+        "@type": "Offer",
+        "availability": "https://schema.org/InStock",
+        "priceCurrency": "INR",
+        "price": vehicle.basePrice
+      }
+    }));
+
+    productSchemas.forEach(schema => {
+      const script = document.createElement('script');
+      script.type = 'application/ld+json';
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+    });
+
+    return () => {
+      // Cleanup scripts if needed
+    };
+  }, []);
 
   const openConfigurator = (vehicleId?: string) => {
     const vehicle = vehicleId 
