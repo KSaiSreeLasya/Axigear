@@ -25,4 +25,4 @@ User-agent: DotBot
 Disallow: /
 
 # Sitemap location
-Sitemap: https://d603400f29724cd6acabb43bf9959369-tropic-citadel-2wnkjz9s.builderio.xyz/sitemap.xml
+Sitemap: https://axigearelectric.com/sitemap.xml
