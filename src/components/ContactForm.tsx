@@ -157,7 +157,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.4 }}
-            className="relative w-full max-w-3xl glass rounded-3xl flex flex-col md:flex-row min-h-[500px] shadow-2xl border border-white/50 pt-6"
+            className="relative w-full max-w-2xl glass rounded-3xl flex flex-col md:flex-row max-h-[80vh] shadow-2xl border border-white/50 pt-6"
           >
             {/* Close Button */}
             <motion.button
@@ -172,49 +172,49 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
             {/* Left: Contact Info */}
             <motion.div
-              className="flex-1 bg-black/[0.02] p-8 md:p-10 border-b md:border-b-0 md:border-r border-black/5"
+              className="flex-1 bg-black/[0.02] p-6 md:p-7 border-b md:border-b-0 md:border-r border-black/5 overflow-y-auto"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
             >
-              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[11px] mb-4 block font-bold">Connect</span>
-              <h2 className="text-4xl font-sans font-extralight tracking-tight mb-10 uppercase text-black">Reach Out</h2>
+              <span className="text-brand-cyan tracking-[0.4em] uppercase text-[9px] mb-2 block font-bold">Connect</span>
+              <h2 className="text-2xl md:text-3xl font-sans font-extralight tracking-tight mb-6 uppercase text-black">Reach Out</h2>
 
-              <div className="space-y-8 mt-12">
+              <div className="space-y-6 mt-6">
                 {[
                   {
-                    icon: <MapPin size={18} />,
+                    icon: <MapPin size={14} />,
                     title: 'Axigear Electric Lounge',
                     content: 'St No 2, Plot No. 148, beside Srikara Hospitals, Mythri Nagar, Hafeezpet, Madeenaguda, Hyderabad, Telangana 500049'
                   },
                   {
-                    icon: <Phone size={18} />,
+                    icon: <Phone size={14} />,
                     title: 'Direct Line',
                     content: '+91 90526 53636\n+91 90526 33636'
                   },
                   {
-                    icon: <Mail size={18} />,
+                    icon: <Mail size={14} />,
                     title: 'Inquiries',
                     content: 'hello@axigear.com'
                   },
                 ].map((item, idx) => (
                   <motion.div
                     key={item.title}
-                    className="flex items-start gap-4 group cursor-default"
+                    className="flex items-start gap-3 group cursor-default"
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.25 + idx * 0.1 }}
                     whileHover={{ x: 5 }}
                   >
                     <motion.div
-                      className="w-10 h-10 rounded-xl glass flex items-center justify-center text-brand-cyan shrink-0 shadow-sm border-black/5"
+                      className="w-8 h-8 rounded-lg glass flex items-center justify-center text-brand-cyan shrink-0 shadow-sm border-black/5"
                       whileHover={{ scale: 1.1 }}
                     >
                       {item.icon}
                     </motion.div>
                     <div>
-                      <h4 className="text-xs uppercase tracking-widest text-black/60 font-semibold mb-2 group-hover:text-brand-cyan transition-colors">{item.title}</h4>
-                      <p className="text-sm font-medium text-black/80 whitespace-pre-line">{item.content}</p>
+                      <h4 className="text-[8px] md:text-xs uppercase tracking-widest text-black/60 font-semibold mb-0.5 group-hover:text-brand-cyan transition-colors">{item.title}</h4>
+                      <p className="text-xs md:text-sm font-medium text-black/80 whitespace-pre-line leading-snug">{item.content}</p>
                     </div>
                   </motion.div>
                 ))}
@@ -222,16 +222,16 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
               {/* Location Map */}
               <motion.div
-                className="mt-16"
+                className="mt-6 hidden md:block"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.55, duration: 0.5 }}
               >
-                <p className="text-xs uppercase tracking-[0.2em] text-black/60 font-semibold mb-4">Our Location</p>
+                <p className="text-[8px] uppercase tracking-[0.2em] text-black/60 font-semibold mb-3">Our Location</p>
                 <iframe
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.3045241898153!2d78.34556287493729!3d17.492970783412304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93860329a3f3%3A0x8882b1be660002ad!2sAxigear%20Electric%20Lounge!5e0!3m2!1sen!2sin!4v1776837934689!5m2!1sen!2sin"
                   width="100%"
-                  height="250"
+                  height="180"
                   style={{ border: 0, borderRadius: '12px' }}
                   allowFullScreen=""
                   loading="lazy"
@@ -241,7 +241,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             </motion.div>
 
             {/* Right: Form */}
-            <div className="flex-[1.2] p-8 md:p-10 bg-white/40 backdrop-blur-md">
+            <div className="flex-[1.2] p-6 md:p-7 bg-white/40 backdrop-blur-md overflow-y-auto">
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.form
