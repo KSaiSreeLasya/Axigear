@@ -185,7 +185,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                   {
                     icon: <MapPin size={14} />,
                     title: 'Axigear Electric Lounge',
-                    content: 'St No 2, Plot No. 148, beside Srikara Hospitals, Mythri Nagar, Hafeezpet, Madeenaguda, Hyderabad, Telangana 500049'
+                    content: 'St No 2, Plot No. 148, beside Srikara Hospitals, Mythri Nagar,  Madeenaguda, Hyderabad, Telangana 500049'
                   },
                   {
                     icon: <Phone size={14} />,
