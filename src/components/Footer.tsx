@@ -16,15 +16,18 @@ export default function Footer() {
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <div className="flex items-center gap-3 mb-10 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <div className="relative w-8 h-8 flex items-center justify-center flex-shrink-0">
-                <img
-                  src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2F52f733b0dad049b3b14e2737328c7608?format=webp&width=800&height=1200"
-                  alt="Axigear Logo"
-                  className="w-full h-full object-contain"
-                />
+            <div className="flex flex-col items-start mb-10 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="relative w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 flex items-center justify-center flex-shrink-0">
+                  <img
+                    src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2F52f733b0dad049b3b14e2737328c7608?format=webp&width=800&height=1200"
+                    alt="Axigear Logo"
+                    className="w-full h-full object-contain"
+                  />
+                </div>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold tracking-[0.3em] md:tracking-[0.4em] uppercase">Axigear</span>
               </div>
-              <span className="text-2xl font-bold tracking-[0.4em] uppercase">Axigear</span>
+              <span className="text-[9px] sm:text-[10px] md:text-xs uppercase tracking-[0.2em] text-black/40 font-bold ml-0">Axigear Auto Ventures LLP</span>
             </div>
             <p className="text-black/40 text-sm leading-loose max-w-sm mb-12 uppercase tracking-widest">
               Progressive electric mobility company redefining urban transportation through innovation, reliability, and sustainability.
@@ -98,8 +101,11 @@ export default function Footer() {
               <div className="flex items-start gap-4">
                 <Phone className="w-5 h-5 text-brand-cyan mt-0.5 flex-shrink-0" />
                 <div>
-                  <p className="text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold mb-1">Support</p>
-                  <a href="tel:+918001234567" className="text-sm text-black/40 hover:text-brand-cyan transition-colors">1-800-AXIGEAR</a>
+                  <p className="text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold mb-2">Support</p>
+                  <div className="space-y-1">
+                    <a href="tel:+919052653636" className="text-sm text-black/40 hover:text-brand-cyan transition-colors block">+91 90526 53636</a>
+                    <a href="tel:+919052633636" className="text-sm text-black/40 hover:text-brand-cyan transition-colors block">+91 90526 33636</a>
+                  </div>
                 </div>
               </div>
               <div className="flex items-start gap-4">

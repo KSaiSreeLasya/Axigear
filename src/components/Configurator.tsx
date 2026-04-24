@@ -36,12 +36,12 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.4 }}
-            className="relative w-full max-w-5xl glass rounded-[32px] overflow-hidden flex flex-col md:flex-row h-[90vh] md:h-auto max-h-[90vh] shadow-2xl border border-white/50"
+            className="relative w-full max-w-4xl glass rounded-3xl overflow-hidden flex flex-col md:flex-row max-h-[85vh] shadow-2xl border border-white/50 pt-4"
           >
             {/* Close Button */}
             <motion.button
               onClick={onClose}
-              className="absolute top-6 right-6 z-20 w-10 h-10 rounded-full glass border-black/5 flex items-center justify-center text-black shadow-sm overflow-hidden relative group"
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full glass border-black/5 flex items-center justify-center text-black shadow-sm overflow-hidden relative group"
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
             >
@@ -51,11 +51,11 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
                 whileHover={{ x: 0 }}
                 transition={{ duration: 0.3 }}
               />
-              <X size={20} className="relative z-10 group-hover:text-white" />
+              <X size={18} className="relative z-10 group-hover:text-white" />
             </motion.button>
 
             {/* Left: Visualizer */}
-            <div className="flex-[1.5] relative bg-black/[0.02] p-12 flex items-center justify-center overflow-hidden">
+            <div className="flex-[1.5] relative bg-black/[0.02] p-8 md:p-10 flex items-center justify-center overflow-hidden">
               <motion.div
                 className="absolute inset-0 bg-gradient-to-tr from-brand-cyan/5 to-transparent pointer-events-none"
                 animate={{ opacity: [0.05, 0.1, 0.05] }}
@@ -129,7 +129,7 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
             </div>
 
             {/* Right: Controls */}
-            <div className="flex-1 p-10 overflow-y-auto bg-white/40 backdrop-blur-md">
+            <div className="flex-1 p-8 md:p-10 overflow-y-auto bg-white/40 backdrop-blur-md">
               <motion.div
                 className="mb-10"
                 initial={{ opacity: 0, x: 20 }}
