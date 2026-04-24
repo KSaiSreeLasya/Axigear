@@ -52,7 +52,7 @@ export default function Footer() {
           >
             <h4 className="text-[10px] uppercase tracking-[0.5em] text-brand-cyan font-bold mb-10">Products</h4>
             <ul className="flex flex-col gap-5">
-              {['RTO Registered', 'Non-RTO Scooters', 'Electric Bikes', 'Multi-Brand'].map(item => (
+              {[ 'Non-RTO Scooters', 'Electric Bikes', 'Multi-Brand'].map(item => (
                 <li key={item}>
                   <a href="#" className="text-sm text-black/40 hover:text-brand-cyan transition-colors uppercase tracking-[0.2em] font-medium">{item}</a>
                 </li>
