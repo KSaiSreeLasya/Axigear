@@ -1,4 +1,4 @@
-import { Zap, Instagram, Twitter, Facebook, Youtube, ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Twitter, Facebook, Youtube, ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function Footer() {
@@ -9,7 +9,7 @@ export default function Footer() {
       <div className="max-w-7xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-12 gap-16 md:gap-8 mb-40">
           {/* Brand & Description */}
-          <motion.div 
+          <motion.div
             className="md:col-span-4"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -17,7 +17,13 @@ export default function Footer() {
             transition={{ duration: 0.6 }}
           >
             <div className="flex items-center gap-3 mb-10 group cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
-              <Zap className="text-brand-cyan w-6 h-6 fill-brand-cyan" />
+              <div className="relative w-8 h-8 flex items-center justify-center flex-shrink-0">
+                <img
+                  src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2F52f733b0dad049b3b14e2737328c7608?format=webp&width=800&height=1200"
+                  alt="Axigear Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
               <span className="text-2xl font-bold tracking-[0.4em] uppercase">Axigear</span>
             </div>
             <p className="text-black/40 text-sm leading-loose max-w-sm mb-12 uppercase tracking-widest">
@@ -46,7 +52,7 @@ export default function Footer() {
           >
             <h4 className="text-[10px] uppercase tracking-[0.5em] text-brand-cyan font-bold mb-10">Products</h4>
             <ul className="flex flex-col gap-5">
-              {['RTO Registered', 'Non-RTO Scooters', 'Electric Bikes', 'Multi-Brand'].map(item => (
+              {[ 'Non-RTO Scooters', 'Electric Bikes', 'Multi-Brand'].map(item => (
                 <li key={item}>
                   <a href="#" className="text-sm text-black/40 hover:text-brand-cyan transition-colors uppercase tracking-[0.2em] font-medium">{item}</a>
                 </li>
