@@ -20,32 +20,32 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-4 md:px-6 ${scrolled ? 'pt-4 md:pt-5' : 'pt-6 md:pt-8'}`}>
-      <div className={`max-w-7xl mx-auto flex items-center justify-between px-6 md:px-10 py-4 md:py-5 transition-all duration-700 rounded-2xl md:rounded-full ${scrolled ? 'glass shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-xl border border-white/40 bg-white/20' : 'bg-white/10 backdrop-blur-sm border border-white/10'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-3 sm:px-4 md:px-6 ${scrolled ? 'pt-3 sm:pt-4 md:pt-5' : 'pt-4 sm:pt-6 md:pt-8'}`}>
+      <div className={`max-w-7xl mx-auto flex items-center justify-between px-4 sm:px-6 md:px-10 py-3 sm:py-4 md:py-5 transition-all duration-700 rounded-xl sm:rounded-2xl md:rounded-full ${scrolled ? 'glass shadow-[0_12px_40px_rgba(0,0,0,0.15)] backdrop-blur-xl border border-white/40 bg-white/20' : 'bg-white/10 backdrop-blur-sm border border-white/10'}`}>
         {/* Logo with Enhanced Interaction */}
         <motion.div
-          className="flex items-center gap-2 md:gap-3 group cursor-pointer flex-shrink-0"
+          className="flex items-center gap-1.5 sm:gap-2 md:gap-3 group cursor-pointer flex-shrink-0"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <div className="relative w-12 h-12 md:w-16 md:h-16 flex items-center justify-center flex-shrink-0">
+          <div className="relative w-10 sm:w-12 md:w-16 h-10 sm:h-12 md:h-16 flex items-center justify-center flex-shrink-0">
             <img
               src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2F52f733b0dad049b3b14e2737328c7608?format=webp&width=800&height=1200"
               alt="Axigear Logo"
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-lg md:text-xl font-bold tracking-[0.3em] uppercase leading-none hidden sm:block text-black">Axigear</span>
+          <span className="text-base sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase leading-none hidden sm:block text-black">Axigear</span>
         </motion.div>
 
         {/* Desktop Links with Underline Animation */}
-        <div className="hidden md:flex items-center gap-8 lg:gap-12 ml-auto mr-8">
+        <div className="hidden md:flex items-center gap-6 lg:gap-12 ml-auto mr-6 lg:mr-8">
           {navLinks.map((link) => (
             <motion.a
               key={link.name}
               href={link.href}
-              className="text-[10px] md:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
+              className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
               onHoverStart={() => setActiveLink(link.name)}
               onHoverEnd={() => setActiveLink('')}
             >
@@ -64,10 +64,10 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-4 flex-shrink-0">
+        <div className="hidden md:flex items-center gap-3 flex-shrink-0">
           <motion.button
             onClick={onContact}
-            className="px-6 md:px-8 py-2.5 md:py-3 bg-black text-white text-[10px] md:text-xs font-bold rounded-full uppercase tracking-[0.2em] shadow-lg hover:shadow-xl shadow-black/20 overflow-hidden relative group transition-all"
+            className="px-5 md:px-6 lg:px-8 py-2 md:py-2.5 lg:py-3 bg-black text-white text-[9px] md:text-[10px] lg:text-xs font-bold rounded-full uppercase tracking-[0.2em] shadow-lg hover:shadow-xl shadow-black/20 overflow-hidden relative group transition-all active:scale-95"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -83,7 +83,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
 
         {/* Mobile Toggle */}
         <motion.button
-          className="md:hidden w-10 h-10 rounded-full glass border-black/5 flex items-center justify-center text-black"
+          className="md:hidden w-10 h-10 rounded-lg glass border-black/5 flex items-center justify-center text-black"
           onClick={() => setIsOpen(!isOpen)}
           whileHover={{ scale: 1.1 }}
           whileTap={{ scale: 0.95 }}
@@ -91,11 +91,11 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
           <AnimatePresence mode="wait">
             {isOpen ? (
               <motion.div key="close" initial={{ rotate: -90 }} animate={{ rotate: 0 }} exit={{ rotate: 90 }}>
-                <X size={20} />
+                <X size={18} />
               </motion.div>
             ) : (
               <motion.div key="menu" initial={{ rotate: 90 }} animate={{ rotate: 0 }} exit={{ rotate: -90 }}>
-                <Menu size={20} />
+                <Menu size={18} />
               </motion.div>
             )}
           </AnimatePresence>
@@ -110,13 +110,13 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.95 }}
             transition={{ duration: 0.3 }}
-            className="md:hidden absolute top-24 left-4 right-4 glass rounded-3xl p-6 flex flex-col gap-4 shadow-2xl border-white/40 backdrop-blur-xl"
+            className="md:hidden absolute top-20 sm:top-24 left-3 sm:left-4 right-3 sm:right-4 glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-2xl border-white/40 backdrop-blur-xl"
           >
             {navLinks.map((link, index) => (
               <motion.a
                 key={link.name}
                 href={link.href}
-                className="text-xl font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors"
+                className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2"
                 onClick={() => setIsOpen(false)}
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -130,7 +130,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
                 setIsOpen(false);
                 onContact();
               }}
-              className="mt-6 px-8 py-4 bg-brand-cyan text-white font-bold rounded-2xl uppercase tracking-[0.2em] text-xs shadow-lg shadow-brand-cyan/20 overflow-hidden relative group"
+              className="mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-brand-cyan text-white font-bold rounded-lg sm:rounded-2xl uppercase tracking-[0.2em] text-[10px] sm:text-xs shadow-lg shadow-brand-cyan/20 overflow-hidden relative group active:scale-95"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.3 }}

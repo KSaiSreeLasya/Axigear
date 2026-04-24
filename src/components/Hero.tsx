@@ -43,8 +43,8 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
         />
       </div>
 
-      <div className="flex-1 flex items-center justify-between relative z-10 py-12 md:py-16">
-        <div className="max-w-7xl mx-auto w-full px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 items-center">
+      <div className="flex-1 flex items-center justify-between relative z-10 py-8 sm:py-12 md:py-16">
+        <div className="max-w-7xl mx-auto w-full px-4 sm:px-6 grid grid-cols-1 lg:grid-cols-2 gap-6 sm:gap-12 lg:gap-24 items-center">
           {/* Left: Text Content */}
           <AnimatePresence mode="wait">
             <motion.div
@@ -57,14 +57,14 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
             >
               {/* Main Heading */}
               <motion.h1
-                className="text-4xl md:text-5xl lg:text-7xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-4 md:mb-6 text-black"
+                className="text-3xl sm:text-4xl md:text-5xl lg:text-7xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-3 sm:mb-4 md:mb-6 text-black"
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25, duration: 0.7 }}
               >
                 <span className="block font-light">{currentVehicle.name}</span>
                 <motion.span
-                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic mt-2"
+                  className="block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic mt-2 text-xl sm:text-2xl md:text-3xl lg:text-4xl"
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.7 }}
@@ -75,18 +75,18 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
               {/* Price Tag */}
               <motion.p
-                className="text-base md:text-lg font-semibold text-brand-cyan mb-10 md:mb-12 flex items-center gap-2"
+                className="text-sm sm:text-base md:text-lg font-semibold text-brand-cyan mb-8 sm:mb-10 md:mb-12 flex items-center gap-2"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
               >
-                <Leaf className="w-5 h-5 fill-green-500 text-green-500 flex-shrink-0" />
+                <Leaf className="w-4 sm:w-5 h-4 sm:h-5 fill-green-500 text-green-500 flex-shrink-0" />
                 Starting at ₹{(currentVehicle.basePrice / 1000).toFixed(0)}k
               </motion.p>
 
               {/* Specs Grid */}
               <motion.div
-                className="grid gap-3 md:gap-5 mb-12"
+                className="grid gap-2 sm:gap-3 md:gap-5 mb-10 md:mb-12"
                 style={{ gridTemplateColumns: `repeat(${currentVehicle.topSpeed ? 3 : 2}, minmax(0, 1fr))` }}
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -101,7 +101,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                   return (
                     <motion.div
                       key={spec.label}
-                      className="group relative overflow-hidden rounded-2xl md:rounded-3xl px-3 md:px-5 py-5 md:py-7 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center justify-center"
+                      className="group relative overflow-hidden rounded-lg sm:rounded-2xl md:rounded-3xl px-2.5 sm:px-3 md:px-5 py-4 sm:py-5 md:py-7 bg-gradient-to-br from-blue-100/60 via-purple-100/40 to-blue-50/40 border border-blue-200/50 backdrop-blur-sm cursor-default flex flex-col items-center text-center justify-center"
                       initial={{ opacity: 0, scale: 0.85 }}
                       animate={{ opacity: 1, scale: 1 }}
                       transition={{ delay: 0.45 + index * 0.08, duration: 0.5 }}
@@ -115,10 +115,10 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                         className="absolute inset-0 bg-gradient-to-br from-brand-cyan/5 to-transparent opacity-0 group-hover:opacity-100"
                         transition={{ duration: 0.4 }}
                       />
-                      <p className="text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/60 font-bold mb-2 md:mb-3 relative z-10 group-hover:text-brand-cyan transition-colors whitespace-nowrap">{spec.label}</p>
-                      <IconComponent className="w-6 h-6 md:w-8 md:h-8 mb-1 md:mb-2 relative z-10 flex-shrink-0 text-brand-cyan group-hover:text-brand-cyan/80 transition-colors" />
-                      <p className="text-2xl md:text-3xl font-display font-light text-black relative z-10 leading-tight break-words">{spec.value}</p>
-                      {spec.unit && <p className="text-[10px] md:text-xs text-black/60 mt-1 font-medium relative z-10 whitespace-nowrap">{spec.unit}</p>}
+                      <p className="text-[8px] sm:text-[9px] md:text-[10px] uppercase tracking-[0.2em] text-black/60 font-bold mb-1.5 sm:mb-2 md:mb-3 relative z-10 group-hover:text-brand-cyan transition-colors whitespace-nowrap">{spec.label}</p>
+                      <IconComponent className="w-5 sm:w-6 md:w-8 h-5 sm:h-6 md:h-8 mb-1 sm:mb-1.5 md:mb-2 relative z-10 flex-shrink-0 text-brand-cyan group-hover:text-brand-cyan/80 transition-colors" />
+                      <p className="text-xl sm:text-2xl md:text-3xl font-display font-light text-black relative z-10 leading-tight break-words">{spec.value}</p>
+                      {spec.unit && <p className="text-[8px] sm:text-[10px] md:text-xs text-black/60 mt-0.5 sm:mt-1 font-medium relative z-10 whitespace-nowrap">{spec.unit}</p>}
                     </motion.div>
                   );
                 })}
@@ -127,7 +127,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               {/* CTA Button */}
               <motion.button
                 onClick={() => onConfigure(currentVehicle.id)}
-                className="group relative w-full md:w-fit px-8 md:px-12 py-4 md:py-5 bg-black text-white font-semibold rounded-xl md:rounded-2xl uppercase tracking-[0.25em] text-xs md:text-[11px] shadow-lg hover:shadow-2xl shadow-black/20 overflow-hidden flex items-center justify-center gap-2 md:gap-3 transition-all"
+                className="group relative w-full md:w-fit px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 bg-black text-white font-semibold rounded-lg sm:rounded-xl md:rounded-2xl uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-[11px] shadow-lg hover:shadow-2xl shadow-black/20 overflow-hidden flex items-center justify-center gap-2 md:gap-3 transition-all active:scale-95"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65, duration: 0.6 }}
@@ -140,14 +140,14 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                   whileHover={{ x: 0 }}
                   transition={{ duration: 0.3 }}
                 />
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
                   Explore Now
                   <motion.div
                     initial={{ x: 0 }}
                     whileHover={{ x: 5 }}
                     transition={{ duration: 0.2 }}
                   >
-                    <ChevronRight className="w-4 h-4" />
+                    <ChevronRight className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
                   </motion.div>
                 </span>
               </motion.button>
@@ -231,9 +231,9 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
       </div>
 
       {/* Bottom Controls */}
-      <div className="relative z-10 px-6 pb-12 flex flex-col md:flex-row items-center justify-between gap-8">
+      <div className="relative z-10 px-6 pb-8 sm:pb-12 flex flex-col sm:flex-row items-center justify-between gap-6 sm:gap-8">
         <motion.div
-          className="flex items-center gap-4"
+          className="flex items-center gap-2 sm:gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.7 }}
@@ -246,7 +246,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 setIsAutoPlay(false);
               }}
               className={`h-2 rounded-full transition-all cursor-pointer ${
-                index === currentIndex ? 'w-12 bg-brand-cyan' : 'w-2 bg-black/20 hover:bg-black/40'
+                index === currentIndex ? 'w-10 sm:w-12 bg-brand-cyan' : 'w-2 bg-black/20 hover:bg-black/40'
               }`}
               whileHover={{ scale: 1.2 }}
             />
@@ -254,14 +254,14 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
         </motion.div>
 
         <motion.div
-          className="flex items-center gap-4"
+          className="flex items-center gap-3 sm:gap-4"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.75 }}
         >
           <motion.button
             onClick={prevVehicle}
-            className="w-12 h-12 rounded-full glass border border-black/10 flex items-center justify-center text-black hover:text-white overflow-hidden relative group"
+            className="w-10 sm:w-12 h-10 sm:h-12 rounded-full glass border border-black/10 flex items-center justify-center text-black hover:text-white overflow-hidden relative group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -271,12 +271,12 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
-            <ChevronLeft className="w-5 h-5 relative z-10" />
+            <ChevronLeft className="w-4 sm:w-5 h-4 sm:h-5 relative z-10" />
           </motion.button>
 
           <motion.button
             onClick={nextVehicle}
-            className="w-12 h-12 rounded-full glass border border-black/10 flex items-center justify-center text-black hover:text-white overflow-hidden relative group"
+            className="w-10 sm:w-12 h-10 sm:h-12 rounded-full glass border border-black/10 flex items-center justify-center text-black hover:text-white overflow-hidden relative group"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.9 }}
           >
@@ -286,7 +286,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               whileHover={{ x: 0 }}
               transition={{ duration: 0.3 }}
             />
-            <ChevronRight className="w-5 h-5 relative z-10" />
+            <ChevronRight className="w-4 sm:w-5 h-4 sm:h-5 relative z-10" />
           </motion.button>
         </motion.div>
       </div>

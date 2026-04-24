@@ -143,7 +143,7 @@ export default function App() {
         <Comparison />
 
         {/* CTA Section */}
-        <section className="py-32 px-6 text-center relative overflow-hidden">
+        <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 text-center relative overflow-hidden">
           <div className="absolute inset-0 bg-black -z-20" />
           <div className="absolute inset-0 bg-gradient-to-b from-transparent via-brand-cyan/[0.1] to-green-500/[0.05] -z-10" />
 
@@ -153,24 +153,24 @@ export default function App() {
             viewport={{ once: true }}
             className="max-w-5xl mx-auto"
           >
-            <span className="text-brand-black tracking-[0.6em] uppercase text-[11px] mb-8 block font-bold">Join The Revolution</span>
-            <h2 className="text-6xl md:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-8 text-black">
+            <span className="text-brand-black tracking-[0.6em] uppercase text-[9px] sm:text-[10px] md:text-[11px] mb-6 sm:mb-8 block font-bold">Join The Revolution</span>
+            <h2 className="text-3xl sm:text-5xl md:text-7xl lg:text-[140px] font-sans font-light leading-[0.8] tracking-[-0.06em] mb-6 sm:mb-8 text-black">
               SUSTAINABLE <br />
-              <span className="text-brand-black opacity-20 italic font-normal">MOBILITY</span>
+              <span className="text-brand-black opacity-20 italic font-normal text-2xl sm:text-3xl md:text-5xl lg:text-[100px]">MOBILITY</span>
             </h2>
-            <p className="text-black/60 max-w-2xl mx-auto mb-16 text-lg">
+            <p className="text-black/60 max-w-2xl mx-auto mb-8 sm:mb-12 md:mb-16 text-sm sm:text-base md:text-lg">
               From ₹48,000 to ₹1,50,000. Explore our range of RTO and Non-RTO electric two-wheelers designed for every commute need.
             </p>
-            <div className="flex flex-wrap justify-center gap-8">
+            <div className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6 md:gap-8">
               <button
                 onClick={() => openConfigurator()}
-                className="px-16 py-7 bg-white text-black font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-brand-cyan hover:text-white transition-all shadow-2xl active:scale-95"
+                className="px-8 sm:px-12 md:px-16 py-3 sm:py-5 md:py-7 bg-white text-black font-bold rounded-lg sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.3em] hover:bg-brand-cyan hover:text-white transition-all shadow-2xl active:scale-95"
               >
                 Explore Now
               </button>
               <button
                 onClick={() => setContactOpen(true)}
-                className="px-16 py-7 glass border-black/20 text-black font-bold rounded-full text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all"
+                className="px-8 sm:px-12 md:px-16 py-3 sm:py-5 md:py-7 glass border-black/20 text-black font-bold rounded-lg sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all active:scale-95"
               >
                 Contact Us
               </button>
