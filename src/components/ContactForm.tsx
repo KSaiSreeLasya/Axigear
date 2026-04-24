@@ -190,7 +190,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                   {
                     icon: <Phone size={18} />,
                     title: 'Direct Line',
-                    content: '+1 (555) AXIGEAR'
+                    content: '+91 90526 53636\n+91 90526 33636'
                   },
                   {
                     icon: <Mail size={18} />,
