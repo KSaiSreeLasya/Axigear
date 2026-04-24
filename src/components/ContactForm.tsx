@@ -157,22 +157,22 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.4 }}
-            className="relative w-full max-w-4xl glass rounded-[32px] flex flex-col md:flex-row min-h-[500px] shadow-2xl border border-white/50"
+            className="relative w-full max-w-3xl glass rounded-3xl flex flex-col md:flex-row min-h-[500px] shadow-2xl border border-white/50 pt-6"
           >
             {/* Close Button */}
             <motion.button
               onClick={onClose}
-              className="absolute top-6 right-6 z-20 w-12 h-12 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:shadow-xl overflow-hidden relative group border border-black/30"
+              className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:shadow-xl overflow-hidden relative group border border-black/30"
               whileHover={{ scale: 1.15, backgroundColor: '#0f172a' }}
               whileTap={{ scale: 0.95 }}
               title="Close"
             >
-              <X size={24} className="relative z-10" />
+              <X size={20} className="relative z-10" />
             </motion.button>
 
             {/* Left: Contact Info */}
             <motion.div
-              className="flex-1 bg-black/[0.02] p-12 border-b md:border-b-0 md:border-r border-black/5"
+              className="flex-1 bg-black/[0.02] p-8 md:p-10 border-b md:border-b-0 md:border-r border-black/5"
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 0.2, duration: 0.5 }}
@@ -241,7 +241,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
             </motion.div>
 
             {/* Right: Form */}
-            <div className="flex-[1.2] p-12 bg-white/40 backdrop-blur-md">
+            <div className="flex-[1.2] p-8 md:p-10 bg-white/40 backdrop-blur-md">
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.form
