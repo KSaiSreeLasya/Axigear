@@ -162,7 +162,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.85, x: -60 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="relative h-[500px] lg:h-[600px] hidden lg:flex items-center justify-center"
+              className="relative h-[300px] sm:h-[400px] lg:h-[600px] flex items-center justify-center"
             >
               <div className="relative w-full h-full flex items-center justify-center group">
                 <motion.div
