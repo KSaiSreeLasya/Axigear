@@ -95,7 +95,7 @@ export default function Footer() {
                 <Mail className="w-5 h-5 text-brand-cyan mt-0.5 flex-shrink-0" />
                 <div>
                   <p className="text-[10px] uppercase tracking-[0.2em] text-black/40 font-bold mb-1">Email</p>
-                  <a href="mailto:info@axigear.com" className="text-sm text-black/40 hover:text-brand-cyan transition-colors">info@axigear.com</a>
+                  <a href="mailto:info@axigear.com" className="text-sm text-black/40 hover:text-brand-cyan transition-colors">info@axigearelectric.com</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">
