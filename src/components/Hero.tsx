@@ -53,7 +53,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               animate={{ opacity: 1, x: 0, y: 0 }}
               exit={{ opacity: 0, x: -40, y: -20 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="flex flex-col"
+              className="flex flex-col order-1 lg:order-1"
             >
               {/* Main Heading */}
               <motion.h1
@@ -124,10 +124,10 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 })}
               </motion.div>
 
-              {/* CTA Button */}
+              {/* CTA Button - Desktop only */}
               <motion.button
                 onClick={() => onConfigure(currentVehicle.id)}
-                className="group relative w-full md:w-fit px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 bg-black text-white font-semibold rounded-lg sm:rounded-xl md:rounded-2xl uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-[11px] shadow-lg hover:shadow-2xl shadow-black/20 overflow-hidden flex items-center justify-center gap-2 md:gap-3 transition-all active:scale-95"
+                className="group relative w-full md:w-fit px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 bg-black text-white font-semibold rounded-lg sm:rounded-xl md:rounded-2xl uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-[11px] shadow-lg hover:shadow-2xl shadow-black/20 overflow-hidden flex items-center justify-center gap-2 md:gap-3 transition-all active:scale-95 hidden lg:flex"
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.65, duration: 0.6 }}
@@ -162,7 +162,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               animate={{ opacity: 1, scale: 1, x: 0 }}
               exit={{ opacity: 0, scale: 0.85, x: -60 }}
               transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-              className="relative h-[500px] lg:h-[600px] hidden lg:flex items-center justify-center"
+              className="relative h-[300px] sm:h-[400px] lg:h-[600px] flex items-center justify-center order-2 lg:order-2"
             >
               <div className="relative w-full h-full flex items-center justify-center group">
                 <motion.div
@@ -226,6 +226,38 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                 <p className="text-sm font-display font-light">₹35K - ₹1.2L</p>
               </motion.div>
             </motion.div>
+          </AnimatePresence>
+
+          {/* CTA Button - Displays below image on mobile */}
+          <AnimatePresence mode="wait">
+            <motion.button
+              key={`button-${currentVehicle.id}`}
+              onClick={() => onConfigure(currentVehicle.id)}
+              className="group relative w-full px-6 sm:px-8 md:px-12 py-3 sm:py-4 md:py-5 bg-black text-white font-semibold rounded-lg sm:rounded-xl md:rounded-2xl uppercase tracking-[0.25em] text-[10px] sm:text-xs md:text-[11px] shadow-lg hover:shadow-2xl shadow-black/20 overflow-hidden flex items-center justify-center gap-2 md:gap-3 transition-all active:scale-95 order-3 lg:hidden"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ delay: 0.65, duration: 0.6 }}
+              whileHover={{ scale: 1.08, boxShadow: "0 20px 60px rgba(59, 130, 246, 0.3)" }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <motion.div
+                className="absolute inset-0 bg-brand-cyan"
+                initial={{ x: '-100%' }}
+                whileHover={{ x: 0 }}
+                transition={{ duration: 0.3 }}
+              />
+              <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
+                Explore Now
+                <motion.div
+                  initial={{ x: 0 }}
+                  whileHover={{ x: 5 }}
+                  transition={{ duration: 0.2 }}
+                >
+                  <ChevronRight className="w-3.5 sm:w-4 h-3.5 sm:h-4" />
+                </motion.div>
+              </span>
+            </motion.button>
           </AnimatePresence>
         </div>
       </div>
