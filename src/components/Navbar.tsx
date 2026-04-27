@@ -36,7 +36,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
               className="w-full h-full object-contain"
             />
           </div>
-          <span className="text-base sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase leading-none hidden sm:block text-black">Axigear</span>
+          <span className="text-base sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase leading-none text-black">Axigear</span>
         </motion.div>
 
         {/* Desktop Links with Underline Animation */}

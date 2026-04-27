@@ -202,7 +202,7 @@ export default function Technology() {
             transition={{ delay: 0.2, duration: 0.6 }}
           >
             <span className="text-brand-cyan tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">The Challenge Today</span>
-            <h3 className="text-5xl md:text-6xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
               TRADITIONAL FUELS <br /> ARE <span className="italic">UNSUSTAINABLE.</span>
             </h3>
             <p className="text-black/40 mb-8 leading-loose max-w-md text-sm md:text-base">
@@ -232,7 +232,7 @@ export default function Technology() {
             transition={{ delay: 0.3, duration: 0.6 }}
           >
             <span className="text-green-600 tracking-[0.4em] uppercase text-[10px] font-bold mb-6 block">Our Solution</span>
-            <h3 className="text-5xl md:text-6xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
+            <h3 className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-sans font-light mb-8 tracking-[-0.03em] leading-tight group-hover:italic transition-all">
               ELECTRIC <br /> <span className="italic">MOBILITY.</span>
             </h3>
             <p className="text-black/40 mb-8 leading-loose max-w-md text-sm md:text-base">
