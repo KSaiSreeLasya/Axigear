@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { TrendingUp, Users, Globe, CheckCircle, ArrowRight, Target, Zap, Shield } from 'lucide-react';
+import { TrendingUp, Users, Globe, CheckCircle, ArrowRight, Target, Zap, Shield, Briefcase, Wrench, BarChart3, Headphones, RefreshCw, Award } from 'lucide-react';
 
 export default function Franchise({ onContact }: { onContact: () => void }) {
   const franchisePoints = [
@@ -45,6 +45,100 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
     'Co-branded marketing materials',
     'Flexible payment terms',
     'Lifetime brand support',
+  ];
+
+  const investmentHighlights = [
+    { value: '₹0', label: 'Franchise Cost', color: 'from-brand-cyan to-blue-400' },
+    { value: '₹3L', label: 'Starting Investment', color: 'from-green-400 to-cyan-400' },
+    { value: '8-12 M', label: 'Return of Investment', color: 'from-brand-cyan to-cyan-400' },
+  ];
+
+  const franchiseSupport = [
+    {
+      category: 'Pre-Launch Support',
+      icon: <Briefcase className="w-6 h-6" />,
+      items: [
+        'Site selection & layout planning',
+        'Showroom design & branding kit',
+        'Complete setup assistance',
+        'Staff recruitment guidance',
+      ],
+    },
+    {
+      category: 'Training Program',
+      icon: <Users className="w-6 h-6" />,
+      items: [
+        '3-day sales training (HQ)',
+        'Technical/service technician training',
+        'EV technology certification',
+        'Ongoing e-learning portal',
+      ],
+    },
+    {
+      category: 'Marketing Support',
+      icon: <BarChart3 className="w-6 h-6" />,
+      items: [
+        'Launch event & local PR',
+        'Digital marketing assets',
+        'Hyper-local social media kit',
+        'Festive campaign support',
+      ],
+    },
+    {
+      category: 'Ongoing Operations',
+      icon: <Headphones className="w-6 h-6" />,
+      items: [
+        'Dedicated franchise manager',
+        'Monthly performance review',
+        'Inventory & logistics support',
+        '24/7 helpdesk for franchisees',
+      ],
+    },
+    {
+      category: 'Financial Support',
+      icon: <BarChart3 className="w-6 h-6" />,
+      items: [
+        'Bank loan tie-ups (MUDRA, SBI)',
+        'Customer EMI schemes (0% options)',
+        'FAME II & state subsidy guidance',
+        'Fleet finance partnerships',
+      ],
+    },
+    {
+      category: 'After-Sales & Warranty',
+      icon: <Award className="w-6 h-6" />,
+      items: [
+        '3-year vehicle warranty backup',
+        'Battery warranty support',
+        'AMC plan framework provided',
+        'Rapid spare parts supply chain',
+      ],
+    },
+  ];
+
+  const eligibilityRequirements = [
+    {
+      title: 'Who Should Apply?',
+      items: [
+        'Existing petrol vehicle dealers looking to go EV',
+        'Business owners with commercial space in Hyderabad / Telangana',
+        'Entrepreneurs with min. ₹3L own investment',
+        'Corporate/HNI investors seeking passive franchise income',
+        'Auto sector professionals / mechanics',
+        'Group of investors / partnership firms',
+      ],
+    },
+    {
+      title: 'Requirements',
+      items: [
+        { label: 'Location', value: 'Commercial area, main road, Hyderabad/Telangana' },
+        { label: 'Space', value: 'Min 200 sq.ft (Silver) to 2000+ sq.ft (Platinum)' },
+        { label: 'Investment', value: '₹3L - ₹90L based on tier' },
+        { label: 'GST & Trade License', value: 'Existing or willing to obtain' },
+        { label: 'Agreement', value: '2-year franchise agreement (renewable)' },
+        { label: 'Team', value: 'Min. 2 staff — 1 sales + 1 technician' },
+      ],
+    },
   ];
 
   return (
@@ -200,6 +294,176 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                 <p className="text-white/80 text-sm sm:text-base leading-relaxed">
                   {req.text}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Investment Highlights Section */}
+      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-black to-black/80">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            {investmentHighlights.map((highlight, index) => (
+              <motion.div
+                key={index}
+                className="relative overflow-hidden rounded-[32px] p-8 sm:p-10"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                {/* Gradient Background */}
+                <div className={`absolute inset-0 bg-gradient-to-br ${highlight.color} opacity-15`} />
+                <div className="absolute inset-0 backdrop-blur-xl bg-white/5" />
+
+                <div className="relative z-10 text-center">
+                  <h3 className={`text-5xl sm:text-6xl md:text-7xl font-bold mb-3 bg-gradient-to-r ${highlight.color} bg-clip-text text-transparent`}>
+                    {highlight.value}
+                  </h3>
+                  <p className="text-white/70 text-sm sm:text-base font-medium tracking-wide">
+                    {highlight.label}
+                  </p>
+                </div>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Comprehensive Support Section */}
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cyan/[0.05] blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.05] blur-[120px] rounded-full" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="mb-16 sm:mb-20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Full Support</span>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight">
+              Franchisee Support — What You Get
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {franchiseSupport.map((support, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -8 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="group glass rounded-[28px] p-8 sm:p-10 flex flex-col h-full border-white/50 overflow-hidden relative"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-cyan-400/5 opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.5 }}
+                />
+
+                <div className="relative z-10">
+                  <motion.div
+                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-cyan/30 to-brand-cyan/10 flex items-center justify-center text-brand-cyan mb-6"
+                    whileHover={{ scale: 1.1 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {support.icon}
+                  </motion.div>
+
+                  <h3 className="text-lg sm:text-xl font-display font-semibold mb-5 text-black">
+                    {support.category}
+                  </h3>
+                  <ul className="space-y-3">
+                    {support.items.map((item, itemIndex) => (
+                      <li key={itemIndex} className="flex items-start gap-3">
+                        <CheckCircle className="w-4 h-4 text-brand-cyan flex-shrink-0 mt-0.5" />
+                        <span className="text-black/60 text-sm leading-relaxed">
+                          {item}
+                        </span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Eligibility Section */}
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-white via-white to-gray-50">
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="mb-16 sm:mb-20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Partner Requirements</span>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight">
+              Franchise Eligibility
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
+            {eligibilityRequirements.map((section, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, x: index === 0 ? -30 : 30 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true }}
+              >
+                <h3 className="text-2xl sm:text-3xl font-semibold text-black mb-8 pb-4 border-b-2 border-brand-cyan/30">
+                  {section.title}
+                </h3>
+
+                <div className="space-y-4">
+                  {section.items.map((item, itemIndex) => (
+                    <motion.div
+                      key={itemIndex}
+                      initial={{ opacity: 0, x: -10 }}
+                      whileInView={{ opacity: 1, x: 0 }}
+                      transition={{ delay: itemIndex * 0.05, duration: 0.4 }}
+                      viewport={{ once: true }}
+                      className={`p-4 sm:p-5 rounded-lg ${
+                        typeof item === 'string'
+                          ? 'glass border-white/50'
+                          : 'bg-brand-cyan/10 border-brand-cyan/20 border'
+                      }`}
+                    >
+                      {typeof item === 'string' ? (
+                        <div className="flex items-start gap-3">
+                          <CheckCircle className="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5" />
+                          <p className="text-black/70 text-sm sm:text-base">
+                            {item}
+                          </p>
+                        </div>
+                      ) : (
+                        <div>
+                          <p className="text-xs sm:text-sm font-semibold text-brand-cyan uppercase tracking-wider mb-1">
+                            {item.label}
+                          </p>
+                          <p className="text-black/70 text-sm sm:text-base">
+                            {item.value}
+                          </p>
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+                </div>
               </motion.div>
             ))}
           </div>
