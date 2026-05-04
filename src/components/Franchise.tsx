@@ -446,16 +446,10 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
       </section>
 
       {/* Eligibility Section */}
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-black/95 -z-20" />
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-white via-cyan-50/40 to-white">
         <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-cyan/[0.08] blur-[150px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.06] blur-[150px] rounded-full" />
-          <motion.div
-            className="absolute inset-0 bg-gradient-to-b from-brand-cyan/5 via-transparent to-transparent"
-            animate={{ opacity: [0.3, 0.5, 0.3] }}
-            transition={{ duration: 8, repeat: Infinity }}
-          />
+          <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-cyan/[0.06] blur-[150px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.04] blur-[150px] rounded-full" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
@@ -470,10 +464,10 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
               <div className="h-1 w-8 sm:w-12 bg-gradient-to-r from-brand-cyan to-green-400" />
               <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold">Eligibility Criteria</span>
             </div>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight text-white mb-4">
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight text-black mb-4">
               Franchise Eligibility & Requirements
             </h2>
-            <p className="text-white/50 text-base sm:text-lg max-w-3xl">
+            <p className="text-black/50 text-base sm:text-lg max-w-3xl">
               Check if you meet our eligibility criteria and understand what's required to become a successful Axigear franchise partner.
             </p>
           </motion.div>
@@ -488,14 +482,14 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                 viewport={{ once: true }}
                 className="relative group flex flex-col"
               >
-                {/* Card Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/10 via-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[32px] blur-xl" />
+                {/* Card Background Glow */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/15 via-cyan-300/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[32px] blur-2xl" />
 
-                <div className="relative p-8 sm:p-10 rounded-[32px] border border-white/10 group-hover:border-brand-cyan/30 transition-all duration-500 backdrop-blur-sm bg-white/5 flex flex-col h-full">
+                <div className="relative p-8 sm:p-10 rounded-[32px] border-2 border-brand-cyan/20 group-hover:border-brand-cyan/40 transition-all duration-500 bg-white/70 backdrop-blur-sm flex flex-col h-full shadow-lg shadow-brand-cyan/5">
                   {/* Section Title with Icon */}
                   <div className="flex items-center gap-4 mb-8">
                     <motion.div
-                      className="w-14 h-14 rounded-[16px] bg-gradient-to-br from-brand-cyan/30 to-cyan-500/20 flex items-center justify-center border border-brand-cyan/40 flex-shrink-0"
+                      className="w-14 h-14 rounded-[16px] bg-gradient-to-br from-brand-cyan/25 to-cyan-300/15 flex items-center justify-center border-2 border-brand-cyan/30 flex-shrink-0"
                       whileHover={{ scale: 1.1, rotate: 10 }}
                     >
                       {index === 0 ? (
@@ -504,16 +498,16 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                         <Briefcase className="w-7 h-7 text-brand-cyan" />
                       )}
                     </motion.div>
-                    <h3 className="text-2xl sm:text-3xl font-semibold text-white">
+                    <h3 className="text-2xl sm:text-3xl font-bold text-black">
                       {section.title}
                     </h3>
                   </div>
 
                   {/* Divider */}
-                  <div className="h-px bg-gradient-to-r from-brand-cyan/50 to-transparent mb-8" />
+                  <div className="h-px bg-gradient-to-r from-brand-cyan/40 to-transparent mb-8" />
 
                   {/* Items Container - Flex for better spacing */}
-                  <div className="space-y-4 sm:space-y-5 flex-1">
+                  <div className="space-y-3 sm:space-y-4 flex-1">
                     {section.items.map((item, itemIndex) => (
                       <motion.div
                         key={itemIndex}
@@ -525,20 +519,20 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                         {typeof item === 'string' ? (
                           <div className="flex items-start gap-3 group/item">
                             <motion.div
-                              className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-1 group-hover/item:scale-125"
+                              className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-1 group-hover/item:scale-125 shadow-md shadow-brand-cyan/30"
                               whileHover={{ scale: 1.2 }}
                             >
                               <CheckCircle className="w-3.5 h-3.5 text-white" />
                             </motion.div>
-                            <p className="text-white/75 text-sm sm:text-base leading-relaxed group-hover/item:text-white/90 transition-colors">
+                            <p className="text-black/70 text-sm sm:text-base leading-relaxed group-hover/item:text-black/90 transition-colors font-medium">
                               {item}
                             </p>
                           </div>
                         ) : (
-                          <div className="w-full p-4 sm:p-5 rounded-[16px] bg-gradient-to-br from-brand-cyan/15 to-cyan-400/5 border border-brand-cyan/20 hover:border-brand-cyan/40 transition-all duration-300">
+                          <div className="w-full p-4 sm:p-5 rounded-[16px] bg-gradient-to-br from-brand-cyan/12 to-cyan-200/8 border-2 border-brand-cyan/25 hover:border-brand-cyan/50 transition-all duration-300 shadow-sm shadow-brand-cyan/10 hover:shadow-md hover:shadow-brand-cyan/20">
                             <div className="flex items-start gap-3">
                               <motion.div
-                                className="w-5 h-5 rounded-lg bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5"
+                                className="w-5 h-5 rounded-lg bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5 shadow-md shadow-brand-cyan/30"
                                 whileHover={{ scale: 1.15 }}
                               >
                                 <span className="text-white text-xs font-bold">✓</span>
@@ -547,7 +541,7 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                                 <p className="text-xs sm:text-sm font-bold text-brand-cyan uppercase tracking-wider mb-2">
                                   {item.label}
                                 </p>
-                                <p className="text-white/70 text-sm leading-relaxed break-words">
+                                <p className="text-black/60 text-sm leading-relaxed break-words">
                                   {item.value}
                                 </p>
                               </div>
@@ -570,12 +564,12 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
             viewport={{ once: true }}
             transition={{ delay: 0.4, duration: 0.6 }}
           >
-            <div className="max-w-2xl mx-auto p-8 sm:p-10 rounded-[28px] bg-gradient-to-r from-brand-cyan/20 via-cyan-500/10 to-transparent border border-brand-cyan/30">
-              <p className="text-white/80 mb-2 text-base">Think you're a great fit?</p>
-              <p className="text-white/60 mb-6 text-sm">Our franchise experts are ready to discuss your opportunity and answer all your questions.</p>
+            <div className="max-w-2xl mx-auto p-8 sm:p-10 rounded-[28px] bg-gradient-to-r from-brand-cyan/15 via-cyan-300/10 to-green-400/10 border-2 border-brand-cyan/30 shadow-lg shadow-brand-cyan/20">
+              <p className="text-black/80 mb-2 text-base font-semibold">Think you're a great fit?</p>
+              <p className="text-black/60 mb-6 text-sm">Our franchise experts are ready to discuss your opportunity and answer all your questions.</p>
               <button
                 onClick={onContact}
-                className="px-8 sm:px-12 py-3 sm:py-4 bg-brand-cyan text-black font-bold rounded-full text-[11px] sm:text-[12px] uppercase tracking-[0.3em] hover:bg-cyan-300 transition-all active:scale-95 inline-flex items-center gap-2 shadow-lg hover:shadow-2xl hover:shadow-brand-cyan/40"
+                className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-brand-cyan to-cyan-500 text-black font-bold rounded-full text-[11px] sm:text-[12px] uppercase tracking-[0.3em] hover:shadow-2xl hover:shadow-brand-cyan/40 transition-all active:scale-95 inline-flex items-center gap-2 shadow-lg"
               >
                 Apply Now
                 <ArrowRight className="w-4 h-4" />
