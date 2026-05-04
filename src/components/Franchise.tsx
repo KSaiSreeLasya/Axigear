@@ -336,24 +336,30 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
       </section>
 
       {/* Comprehensive Support Section */}
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-white via-cyan-50/30 to-white">
         <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cyan/[0.05] blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.05] blur-[120px] rounded-full" />
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-cyan/[0.08] blur-[150px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-green-400/[0.06] blur-[150px] rounded-full" />
         </div>
 
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
-            className="mb-16 sm:mb-20"
+            className="mb-16 sm:mb-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Full Support</span>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight">
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-1 w-8 sm:w-12 bg-gradient-to-r from-brand-cyan to-green-400" />
+              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold">Complete Ecosystem</span>
+            </div>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight mb-4">
               Franchisee Support — What You Get
             </h2>
+            <p className="text-black/50 text-base sm:text-lg max-w-3xl">
+              We provide end-to-end support across every stage of your franchise journey, from pre-launch to operations and beyond.
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
@@ -362,111 +368,221 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                 key={index}
                 initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -8 }}
+                transition={{ delay: index * 0.08, duration: 0.6 }}
                 viewport={{ once: true, margin: "-100px" }}
-                className="group glass rounded-[28px] p-8 sm:p-10 flex flex-col h-full border-white/50 overflow-hidden relative"
+                className="group relative rounded-[32px] overflow-hidden h-full"
+                whileHover={{ y: -12 }}
               >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-cyan-400/5 opacity-0 group-hover:opacity-100"
-                  transition={{ duration: 0.5 }}
-                />
+                {/* Gradient Border Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/40 via-cyan-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
 
-                <div className="relative z-10">
+                {/* Card Background */}
+                <div className="absolute inset-0 bg-white/60 backdrop-blur-2xl border border-white/80 group-hover:border-brand-cyan/40 transition-all duration-500" />
+
+                <div className="relative z-10 p-8 sm:p-10 flex flex-col h-full">
+                  {/* Icon Container */}
                   <motion.div
-                    className="w-12 h-12 rounded-xl bg-gradient-to-br from-brand-cyan/30 to-brand-cyan/10 flex items-center justify-center text-brand-cyan mb-6"
-                    whileHover={{ scale: 1.1 }}
+                    className="w-16 h-16 rounded-[20px] bg-gradient-to-br from-brand-cyan/25 to-blue-400/15 flex items-center justify-center text-brand-cyan mb-6 border border-brand-cyan/20 group-hover:border-brand-cyan/50"
+                    whileHover={{ scale: 1.15, rotate: 5 }}
                     transition={{ duration: 0.3 }}
                   >
                     {support.icon}
                   </motion.div>
 
-                  <h3 className="text-lg sm:text-xl font-display font-semibold mb-5 text-black">
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-display font-semibold mb-6 text-black group-hover:text-brand-cyan transition-colors duration-300">
                     {support.category}
                   </h3>
-                  <ul className="space-y-3">
+
+                  {/* Items List */}
+                  <ul className="space-y-3 flex-1">
                     {support.items.map((item, itemIndex) => (
-                      <li key={itemIndex} className="flex items-start gap-3">
-                        <CheckCircle className="w-4 h-4 text-brand-cyan flex-shrink-0 mt-0.5" />
-                        <span className="text-black/60 text-sm leading-relaxed">
+                      <motion.li
+                        key={itemIndex}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.08 + itemIndex * 0.02, duration: 0.4 }}
+                        viewport={{ once: true }}
+                        className="flex items-start gap-3 group/item"
+                      >
+                        <motion.div
+                          className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110"
+                          whileHover={{ scale: 1.2 }}
+                        >
+                          <CheckCircle className="w-3 h-3 text-white" />
+                        </motion.div>
+                        <span className="text-black/65 text-sm leading-relaxed group-hover/item:text-black/80 transition-colors">
                           {item}
                         </span>
-                      </li>
+                      </motion.li>
                     ))}
                   </ul>
+
+                  {/* Animated Bottom Border */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Support CTA */}
+          <motion.div
+            className="mt-16 sm:mt-24 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <p className="text-black/50 mb-6 text-base">Have questions about our support? </p>
+            <button
+              onClick={onContact}
+              className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-brand-cyan to-cyan-500 text-black font-bold rounded-full text-[11px] sm:text-[12px] uppercase tracking-[0.3em] hover:shadow-2xl hover:shadow-brand-cyan/30 transition-all active:scale-95 inline-flex items-center gap-2"
+            >
+              Get Detailed Info
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
         </div>
       </section>
 
       {/* Eligibility Section */}
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-white via-white to-gray-50">
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-black via-black to-black/95 -z-20" />
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <div className="absolute top-0 right-0 w-[700px] h-[700px] bg-brand-cyan/[0.08] blur-[150px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.06] blur-[150px] rounded-full" />
+          <motion.div
+            className="absolute inset-0 bg-gradient-to-b from-brand-cyan/5 via-transparent to-transparent"
+            animate={{ opacity: [0.3, 0.5, 0.3] }}
+            transition={{ duration: 8, repeat: Infinity }}
+          />
+        </div>
+
         <div className="max-w-7xl mx-auto relative z-10">
           <motion.div
-            className="mb-16 sm:mb-20"
+            className="mb-16 sm:mb-24"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Partner Requirements</span>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight">
-              Franchise Eligibility
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-1 w-8 sm:w-12 bg-gradient-to-r from-brand-cyan to-green-400" />
+              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold">Eligibility Criteria</span>
+            </div>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight text-white mb-4">
+              Franchise Eligibility & Requirements
             </h2>
+            <p className="text-white/50 text-base sm:text-lg max-w-3xl">
+              Check if you meet our eligibility criteria and understand what's required to become a successful Axigear franchise partner.
+            </p>
           </motion.div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12">
             {eligibilityRequirements.map((section, index) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, x: index === 0 ? -30 : 30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6 }}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.15, duration: 0.6 }}
                 viewport={{ once: true }}
+                className="relative group"
               >
-                <h3 className="text-2xl sm:text-3xl font-semibold text-black mb-8 pb-4 border-b-2 border-brand-cyan/30">
-                  {section.title}
-                </h3>
+                {/* Card Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/10 via-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[32px] blur-xl" />
 
-                <div className="space-y-4">
-                  {section.items.map((item, itemIndex) => (
+                <div className="relative p-8 sm:p-10 rounded-[32px] border border-white/10 group-hover:border-brand-cyan/30 transition-all duration-500 backdrop-blur-sm bg-white/5">
+                  {/* Section Title with Icon */}
+                  <div className="flex items-center gap-4 mb-8">
                     <motion.div
-                      key={itemIndex}
-                      initial={{ opacity: 0, x: -10 }}
-                      whileInView={{ opacity: 1, x: 0 }}
-                      transition={{ delay: itemIndex * 0.05, duration: 0.4 }}
-                      viewport={{ once: true }}
-                      className={`p-4 sm:p-5 rounded-lg ${
-                        typeof item === 'string'
-                          ? 'glass border-white/50'
-                          : 'bg-brand-cyan/10 border-brand-cyan/20 border'
-                      }`}
+                      className="w-14 h-14 rounded-[16px] bg-gradient-to-br from-brand-cyan/30 to-cyan-500/20 flex items-center justify-center border border-brand-cyan/40 flex-shrink-0"
+                      whileHover={{ scale: 1.1, rotate: 10 }}
                     >
-                      {typeof item === 'string' ? (
-                        <div className="flex items-start gap-3">
-                          <CheckCircle className="w-5 h-5 text-brand-cyan flex-shrink-0 mt-0.5" />
-                          <p className="text-black/70 text-sm sm:text-base">
-                            {item}
-                          </p>
-                        </div>
+                      {index === 0 ? (
+                        <Users className="w-7 h-7 text-brand-cyan" />
                       ) : (
-                        <div>
-                          <p className="text-xs sm:text-sm font-semibold text-brand-cyan uppercase tracking-wider mb-1">
-                            {item.label}
-                          </p>
-                          <p className="text-black/70 text-sm sm:text-base">
-                            {item.value}
-                          </p>
-                        </div>
+                        <Briefcase className="w-7 h-7 text-brand-cyan" />
                       )}
                     </motion.div>
-                  ))}
+                    <h3 className="text-2xl sm:text-3xl font-semibold text-white">
+                      {section.title}
+                    </h3>
+                  </div>
+
+                  {/* Divider */}
+                  <div className="h-px bg-gradient-to-r from-brand-cyan/50 to-transparent mb-8" />
+
+                  {/* Items */}
+                  <div className={index === 0 ? "space-y-4" : "space-y-3"}>
+                    {section.items.map((item, itemIndex) => (
+                      <motion.div
+                        key={itemIndex}
+                        initial={{ opacity: 0, x: -20 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.15 + itemIndex * 0.05, duration: 0.4 }}
+                        viewport={{ once: true }}
+                        className={index === 0 ? "flex items-start gap-3 group/item" : ""}
+                      >
+                        {typeof item === 'string' ? (
+                          <>
+                            <motion.div
+                              className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-1 group-hover/item:scale-125"
+                              whileHover={{ scale: 1.2 }}
+                            >
+                              <CheckCircle className="w-3.5 h-3.5 text-white" />
+                            </motion.div>
+                            <p className="text-white/75 text-sm sm:text-base leading-relaxed group-hover/item:text-white/90 transition-colors">
+                              {item}
+                            </p>
+                          </>
+                        ) : (
+                          <div className="w-full p-4 sm:p-5 rounded-[16px] bg-gradient-to-br from-brand-cyan/15 to-cyan-400/5 border border-brand-cyan/20 hover:border-brand-cyan/40 transition-all duration-300">
+                            <div className="flex items-start gap-3">
+                              <motion.div
+                                className="w-5 h-5 rounded-lg bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5"
+                                whileHover={{ scale: 1.15 }}
+                              >
+                                <span className="text-white text-xs font-bold">✓</span>
+                              </motion.div>
+                              <div className="flex-1">
+                                <p className="text-xs sm:text-sm font-bold text-brand-cyan uppercase tracking-wider mb-2">
+                                  {item.label}
+                                </p>
+                                <p className="text-white/70 text-sm leading-relaxed">
+                                  {item.value}
+                                </p>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </motion.div>
+                    ))}
+                  </div>
                 </div>
               </motion.div>
             ))}
           </div>
+
+          {/* Eligibility CTA */}
+          <motion.div
+            className="mt-16 sm:mt-24 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <div className="max-w-2xl mx-auto p-8 sm:p-10 rounded-[28px] bg-gradient-to-r from-brand-cyan/20 via-cyan-500/10 to-transparent border border-brand-cyan/30">
+              <p className="text-white/80 mb-2 text-base">Think you're a great fit?</p>
+              <p className="text-white/60 mb-6 text-sm">Our franchise experts are ready to discuss your opportunity and answer all your questions.</p>
+              <button
+                onClick={onContact}
+                className="px-8 sm:px-12 py-3 sm:py-4 bg-brand-cyan text-black font-bold rounded-full text-[11px] sm:text-[12px] uppercase tracking-[0.3em] hover:bg-cyan-300 transition-all active:scale-95 inline-flex items-center gap-2 shadow-lg hover:shadow-2xl hover:shadow-brand-cyan/40"
+              >
+                Apply Now
+                <ArrowRight className="w-4 h-4" />
+              </button>
+            </div>
+          </motion.div>
         </div>
       </section>
 
