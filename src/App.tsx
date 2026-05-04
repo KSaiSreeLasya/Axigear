@@ -4,6 +4,7 @@ import FeaturedVehicles from './components/FeaturedVehicles';
 import Technology from './components/Technology';
 import Comparison from './components/Comparison';
 import Services from './components/Services';
+import Franchise from './components/Franchise';
 import Footer from './components/Footer';
 import Configurator from './components/Configurator';
 import ContactForm from './components/ContactForm';
@@ -15,6 +16,7 @@ export default function App() {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
   const [configuratorOpen, setConfiguratorOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
+  const [currentPage, setCurrentPage] = useState<'home' | 'franchise'>('home');
 
   // Add JSON-LD structured data for SEO
   useEffect(() => {
@@ -122,6 +124,24 @@ export default function App() {
     restDelta: 0.001
   });
 
+  if (currentPage === 'franchise') {
+    return (
+      <div className="relative min-h-screen">
+        <Navbar
+          onContact={() => setContactOpen(true)}
+          onFranchise={() => setCurrentPage('home')}
+          currentPage="franchise"
+        />
+        <Franchise onContact={() => setContactOpen(true)} />
+        <Footer />
+        <ContactForm
+          isOpen={contactOpen}
+          onClose={() => setContactOpen(false)}
+        />
+      </div>
+    );
+  }
+
   return (
     <div className="relative min-h-screen">
       {/* Progress Bar */}
@@ -129,9 +149,13 @@ export default function App() {
         className="fixed top-0 left-0 right-0 h-1 bg-brand-cyan origin-left z-[100]"
         style={{ scaleX }}
       />
-      
-      <Navbar onContact={() => setContactOpen(true)} />
-      
+
+      <Navbar
+        onContact={() => setContactOpen(true)}
+        onFranchise={() => setCurrentPage('franchise')}
+        currentPage="home"
+      />
+
       <main>
         <Hero onConfigure={openConfigurator} />
 
@@ -181,15 +205,15 @@ export default function App() {
 
       <Footer />
 
-      <Configurator 
-        vehicle={selectedVehicle} 
-        isOpen={configuratorOpen} 
-        onClose={() => setConfiguratorOpen(false)} 
+      <Configurator
+        vehicle={selectedVehicle}
+        isOpen={configuratorOpen}
+        onClose={() => setConfiguratorOpen(false)}
       />
 
-      <ContactForm 
-        isOpen={contactOpen} 
-        onClose={() => setContactOpen(false)} 
+      <ContactForm
+        isOpen={contactOpen}
+        onClose={() => setContactOpen(false)}
       />
     </div>
   );
