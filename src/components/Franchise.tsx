@@ -486,12 +486,12 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: index * 0.15, duration: 0.6 }}
                 viewport={{ once: true }}
-                className="relative group"
+                className="relative group flex flex-col"
               >
                 {/* Card Background */}
                 <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/10 via-cyan-400/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-[32px] blur-xl" />
 
-                <div className="relative p-8 sm:p-10 rounded-[32px] border border-white/10 group-hover:border-brand-cyan/30 transition-all duration-500 backdrop-blur-sm bg-white/5">
+                <div className="relative p-8 sm:p-10 rounded-[32px] border border-white/10 group-hover:border-brand-cyan/30 transition-all duration-500 backdrop-blur-sm bg-white/5 flex flex-col h-full">
                   {/* Section Title with Icon */}
                   <div className="flex items-center gap-4 mb-8">
                     <motion.div
@@ -512,8 +512,8 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                   {/* Divider */}
                   <div className="h-px bg-gradient-to-r from-brand-cyan/50 to-transparent mb-8" />
 
-                  {/* Items */}
-                  <div className={index === 0 ? "space-y-4" : "space-y-3"}>
+                  {/* Items Container - Flex for better spacing */}
+                  <div className="space-y-4 sm:space-y-5 flex-1">
                     {section.items.map((item, itemIndex) => (
                       <motion.div
                         key={itemIndex}
@@ -521,10 +521,9 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                         whileInView={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.15 + itemIndex * 0.05, duration: 0.4 }}
                         viewport={{ once: true }}
-                        className={index === 0 ? "flex items-start gap-3 group/item" : ""}
                       >
                         {typeof item === 'string' ? (
-                          <>
+                          <div className="flex items-start gap-3 group/item">
                             <motion.div
                               className="w-6 h-6 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-1 group-hover/item:scale-125"
                               whileHover={{ scale: 1.2 }}
@@ -534,7 +533,7 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                             <p className="text-white/75 text-sm sm:text-base leading-relaxed group-hover/item:text-white/90 transition-colors">
                               {item}
                             </p>
-                          </>
+                          </div>
                         ) : (
                           <div className="w-full p-4 sm:p-5 rounded-[16px] bg-gradient-to-br from-brand-cyan/15 to-cyan-400/5 border border-brand-cyan/20 hover:border-brand-cyan/40 transition-all duration-300">
                             <div className="flex items-start gap-3">
@@ -544,11 +543,11 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                               >
                                 <span className="text-white text-xs font-bold">✓</span>
                               </motion.div>
-                              <div className="flex-1">
+                              <div className="flex-1 min-w-0">
                                 <p className="text-xs sm:text-sm font-bold text-brand-cyan uppercase tracking-wider mb-2">
                                   {item.label}
                                 </p>
-                                <p className="text-white/70 text-sm leading-relaxed">
+                                <p className="text-white/70 text-sm leading-relaxed break-words">
                                   {item.value}
                                 </p>
                               </div>
