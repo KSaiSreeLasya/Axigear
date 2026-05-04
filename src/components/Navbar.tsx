@@ -13,12 +13,11 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const isHomePage = currentPage === 'home';
-  const navLinks = isHomePage ? [
+  const navLinks = [
     { name: 'Products', href: '#models' },
     { name: 'Why EV', href: '#technology' },
     { name: 'Services', href: '#services' },
-  ] : [];
+  ];
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-3 sm:px-4 md:px-6 ${scrolled ? 'pt-3 sm:pt-4 md:pt-5' : 'pt-4 sm:pt-6 md:pt-8'}`}>
@@ -49,9 +48,24 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
         {/* Desktop Links with Underline Animation */}
         <div className="hidden md:flex items-center gap-6 lg:gap-12 ml-auto mr-6 lg:mr-8">
           {navLinks.map((link) => (
-            <motion.a
+            <motion.button
               key={link.name}
-              href={link.href}
+              onClick={() => {
+                if (currentPage !== 'home' && onFranchise) {
+                  onFranchise();
+                  setTimeout(() => {
+                    const element = document.querySelector(link.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }, 100);
+                } else {
+                  const element = document.querySelector(link.href);
+                  if (element) {
+                    element.scrollIntoView({ behavior: 'smooth' });
+                  }
+                }
+              }}
               className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
               onHoverStart={() => setActiveLink(link.name)}
               onHoverEnd={() => setActiveLink('')}
@@ -67,7 +81,7 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
                   transition={{ duration: 0.3 }}
                 />
               )}
-            </motion.a>
+            </motion.button>
           ))}
           {onFranchise && (
             <motion.button
@@ -140,17 +154,32 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
             className="md:hidden absolute top-20 sm:top-24 left-3 sm:left-4 right-3 sm:right-4 glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-2xl border-white/40 backdrop-blur-xl"
           >
             {navLinks.map((link, index) => (
-              <motion.a
+              <motion.button
                 key={link.name}
-                href={link.href}
-                className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2"
-                onClick={() => setIsOpen(false)}
+                onClick={() => {
+                  setIsOpen(false);
+                  if (currentPage !== 'home' && onFranchise) {
+                    onFranchise();
+                    setTimeout(() => {
+                      const element = document.querySelector(link.href);
+                      if (element) {
+                        element.scrollIntoView({ behavior: 'smooth' });
+                      }
+                    }, 100);
+                  } else {
+                    const element = document.querySelector(link.href);
+                    if (element) {
+                      element.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }
+                }}
+                className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ delay: index * 0.1 }}
               >
                 {link.name}
-              </motion.a>
+              </motion.button>
             ))}
             {onFranchise && (
               <motion.button
