@@ -131,6 +131,7 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
                       viewport={{ once: true }}
                       transition={{ duration: 0.6 }}
                       referrerPolicy="no-referrer"
+                      loading="lazy"
                     />
                   </div>
 

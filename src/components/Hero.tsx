@@ -194,6 +194,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
                     animate={{ y: [0, -15, 0] }}
                     transition={{ duration: 3, repeat: Infinity }}
                     referrerPolicy="no-referrer"
+                    loading="lazy"
                   />
                 </motion.div>
 

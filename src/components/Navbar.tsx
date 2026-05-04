@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-export default function Navbar({ onContact }: { onContact: () => void }) {
+export default function Navbar({ onContact, onFranchise, currentPage = 'home' }: { onContact: () => void; onFranchise?: () => void; currentPage?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
@@ -13,11 +13,12 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const navLinks = [
+  const isHomePage = currentPage === 'home';
+  const navLinks = isHomePage ? [
     { name: 'Products', href: '#models' },
     { name: 'Why EV', href: '#technology' },
     { name: 'Services', href: '#services' },
-  ];
+  ] : [];
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-3 sm:px-4 md:px-6 ${scrolled ? 'pt-3 sm:pt-4 md:pt-5' : 'pt-4 sm:pt-6 md:pt-8'}`}>
@@ -25,7 +26,12 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
         {/* Logo with Enhanced Interaction */}
         <motion.div
           className="flex items-center gap-1.5 sm:gap-2 md:gap-3 group cursor-pointer flex-shrink-0"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          onClick={() => {
+            if (currentPage !== 'home' && onFranchise) {
+              onFranchise();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+          }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
@@ -34,6 +40,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
               src="https://cdn.builder.io/api/v1/image/assets%2F9cb17e967f804ce2b909c6bc3232a9f0%2F52f733b0dad049b3b14e2737328c7608?format=webp&width=800&height=1200"
               alt="Axigear Logo"
               className="w-full h-full object-contain"
+              loading="eager"
             />
           </div>
           <span className="text-base sm:text-lg md:text-xl font-bold tracking-[0.3em] uppercase leading-none text-black">Axigear</span>
@@ -62,6 +69,26 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
               )}
             </motion.a>
           ))}
+          {onFranchise && (
+            <motion.button
+              onClick={onFranchise}
+              className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
+              onHoverStart={() => setActiveLink('Franchise')}
+              onHoverEnd={() => setActiveLink('')}
+            >
+              Franchise
+              {activeLink === 'Franchise' && (
+                <motion.div
+                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-brand-cyan/50 rounded-full"
+                  layoutId="navbar-underline"
+                  initial={{ scaleX: 0 }}
+                  animate={{ scaleX: 1 }}
+                  exit={{ scaleX: 0 }}
+                  transition={{ duration: 0.3 }}
+                />
+              )}
+            </motion.button>
+          )}
         </div>
 
         <div className="hidden md:flex items-center gap-3 flex-shrink-0">
@@ -125,6 +152,20 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
                 {link.name}
               </motion.a>
             ))}
+            {onFranchise && (
+              <motion.button
+                onClick={() => {
+                  setIsOpen(false);
+                  onFranchise();
+                }}
+                className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: navLinks.length * 0.1 }}
+              >
+                Franchise
+              </motion.button>
+            )}
             <motion.button
               onClick={() => {
                 setIsOpen(false);
@@ -133,7 +174,7 @@ export default function Navbar({ onContact }: { onContact: () => void }) {
               className="mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-brand-cyan text-white font-bold rounded-lg sm:rounded-2xl uppercase tracking-[0.2em] text-[10px] sm:text-xs shadow-lg shadow-brand-cyan/20 overflow-hidden relative group active:scale-95"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
+              transition={{ delay: (navLinks.length + (onFranchise ? 1 : 0)) * 0.1 + 0.2 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >
