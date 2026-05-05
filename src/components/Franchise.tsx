@@ -172,9 +172,9 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Join the Revolution</span>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-6 sm:mb-8 text-black">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-6 sm:mb-8 text-black">
                 Build Your <br />
-                <span className="bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic">EV Empire</span>
+                <span className="bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic whitespace-nowrap">EV Empire</span>
               </h1>
               <p className="text-black/60 max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
                 Join the sustainable mobility revolution as an Axigear franchise partner. Own a profitable business while driving positive environmental change across India.
@@ -231,6 +231,29 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
               >
                 Learn More
               </a>
+            </motion.div>
+
+            {/* Scroll Down Arrow */}
+            <motion.div
+              className="flex justify-center mt-12 sm:mt-16"
+              animate={{ y: [0, 10, 0] }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              <motion.button
+                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-brand-cyan/50 flex items-center justify-center text-brand-cyan hover:border-brand-cyan hover:bg-brand-cyan/10 transition-all duration-300 group"
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                <svg
+                  className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:text-brand-cyan transition-transform"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
+                </svg>
+              </motion.button>
             </motion.div>
           </div>
         </div>
