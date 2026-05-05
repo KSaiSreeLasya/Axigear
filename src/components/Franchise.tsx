@@ -143,7 +143,7 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
 
   return (
     <div className="relative min-h-screen bg-white">
-      {/* Hero Image Section */}
+      {/* Hero Section */}
       <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 md:pt-24">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-cyan/[0.02] to-brand-cyan/[0.05] -z-20" />
@@ -164,14 +164,74 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
 
         <div className="flex-1 flex items-center justify-center relative z-10 py-8 sm:py-12 md:py-16">
           <div className="max-w-5xl mx-auto w-full px-4 sm:px-6">
-            <motion.img
-              src="https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2F0185da8767b449edafa882d60e816bbd?format=webp&width=800&height=1200"
-              alt="Franchise Opportunity"
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.6 }}
-              className="w-full h-auto rounded-[32px] shadow-2xl"
-            />
+            {/* Main Hero Content */}
+            <motion.div
+              className="text-center mb-16 sm:mb-20"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 0.6 }}
+            >
+              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Join the Revolution</span>
+              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-6 sm:mb-8 text-black">
+                Build Your <br />
+                <span className="bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic">EV Empire</span>
+              </h1>
+              <p className="text-black/60 max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
+                Join the sustainable mobility revolution as an Axigear franchise partner. Own a profitable business while driving positive environmental change across India.
+              </p>
+            </motion.div>
+
+            {/* Investment Highlights */}
+            <motion.div
+              className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"
+              initial={{ opacity: 0, y: 40 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.2, duration: 0.6 }}
+            >
+              {investmentHighlights.map((highlight, index) => (
+                <motion.div
+                  key={index}
+                  className="relative overflow-hidden rounded-[28px] p-8 sm:p-10 backdrop-blur-xl"
+                  whileHover={{ scale: 1.02, y: -8 }}
+                  transition={{ duration: 0.3 }}
+                >
+                  {/* Gradient Background */}
+                  <div className={`absolute inset-0 bg-gradient-to-br ${highlight.color} opacity-20`} />
+                  <div className="absolute inset-0 bg-white/30 backdrop-blur-xl border border-white/40" />
+
+                  <div className="relative z-10 text-center">
+                    <h3 className={`text-4xl sm:text-5xl md:text-6xl font-bold mb-4 bg-gradient-to-r ${highlight.color} bg-clip-text text-transparent`}>
+                      {highlight.value}
+                    </h3>
+                    <p className="text-black/70 text-sm sm:text-base font-semibold tracking-wide">
+                      {highlight.label}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
+            </motion.div>
+
+            {/* CTA Buttons */}
+            <motion.div
+              className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.3, duration: 0.6 }}
+            >
+              <button
+                onClick={onContact}
+                className="px-8 sm:px-12 md:px-16 py-3 sm:py-5 md:py-7 bg-black text-white font-bold rounded-lg sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.3em] hover:bg-brand-cyan transition-all shadow-2xl active:scale-95 flex items-center justify-center gap-2"
+              >
+                Start Your Journey
+                <ArrowRight className="w-4 h-4" />
+              </button>
+              <a
+                href="#benefits"
+                className="px-8 sm:px-12 md:px-16 py-3 sm:py-5 md:py-7 glass border-black/20 text-black font-bold rounded-lg sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all active:scale-95"
+              >
+                Learn More
+              </a>
+            </motion.div>
           </div>
         </div>
       </section>
