@@ -172,9 +172,9 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
               transition={{ delay: 0.1, duration: 0.6 }}
             >
               <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Join the Revolution</span>
-              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-light leading-[1.15] tracking-[-0.02em] mb-6 sm:mb-8 text-black w-full overflow-hidden">
-                Build Your <br />
-                <span className="inline-block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic">EV Empire</span>
+              <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-sans font-light leading-[1.2] tracking-[-0.02em] mb-6 sm:mb-8 text-black">
+                Build Your <br className="hidden sm:block" />
+                <span className="block sm:inline-block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic px-1">EV Empire</span>
               </h1>
               <p className="text-black/60 max-w-3xl mx-auto text-sm sm:text-base md:text-lg leading-relaxed">
                 Join the sustainable mobility revolution as an Axigear franchise partner. Own a profitable business while driving positive environmental change across India.
