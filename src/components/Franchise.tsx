@@ -143,7 +143,7 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
 
   return (
     <div className="relative min-h-screen bg-white">
-      {/* Hero Section */}
+      {/* Hero Image Section */}
       <section className="relative min-h-screen flex flex-col overflow-hidden pt-20 md:pt-24">
         {/* Gradient Background */}
         <div className="absolute inset-0 bg-gradient-to-br from-white via-brand-cyan/[0.02] to-brand-cyan/[0.05] -z-20" />
@@ -163,285 +163,16 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
         </div>
 
         <div className="flex-1 flex items-center justify-center relative z-10 py-8 sm:py-12 md:py-16">
-          <div className="max-w-5xl mx-auto w-full px-4 sm:px-6 text-center">
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 0.6 }}
-            >
-              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Partner With Us</span>
-              <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-sans font-light leading-[1.1] tracking-[-0.02em] mb-6 sm:mb-8 text-black">
-                Build Your <br />
-                <span className="bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text text-transparent font-normal italic">EV Empire</span>
-              </h1>
-              <p className="text-black/60 max-w-3xl mx-auto mb-8 sm:mb-12 md:mb-16 text-sm sm:text-base md:text-lg leading-relaxed">
-                Join the sustainable mobility revolution as an Axigear franchise partner. Own a profitable business while driving positive environmental change across India.
-              </p>
-            </motion.div>
-
-            <motion.div
-              className="flex flex-col sm:flex-row flex-wrap justify-center gap-4 sm:gap-6"
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3, duration: 0.6 }}
-            >
-              <button
-                onClick={onContact}
-                className="px-8 sm:px-12 md:px-16 py-3 sm:py-5 md:py-7 bg-black text-white font-bold rounded-lg sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.3em] hover:bg-brand-cyan transition-all shadow-2xl active:scale-95 flex items-center justify-center gap-2"
-              >
-                Start Your Journey
-                <ArrowRight className="w-4 h-4" />
-              </button>
-              <a
-                href="#benefits"
-                className="px-8 sm:px-12 md:px-16 py-3 sm:py-5 md:py-7 glass border-black/20 text-black font-bold rounded-lg sm:rounded-full text-[10px] sm:text-[11px] uppercase tracking-[0.3em] hover:bg-white/10 transition-all active:scale-95"
-              >
-                Learn More
-              </a>
-            </motion.div>
+          <div className="max-w-5xl mx-auto w-full px-4 sm:px-6">
+            <motion.img
+              src="https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2F0185da8767b449edafa882d60e816bbd?format=webp&width=800&height=1200"
+              alt="Franchise Opportunity"
+              initial={{ opacity: 0, scale: 0.95 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.6 }}
+              className="w-full h-auto rounded-[32px] shadow-2xl"
+            />
           </div>
-        </div>
-      </section>
-
-      {/* Why Franchise Section */}
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
-        <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cyan/[0.05] blur-[120px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.05] blur-[120px] rounded-full" />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            className="mb-16 sm:mb-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Why Axigear</span>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight">
-              Why Partner With Axigear?
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
-            {franchisePoints.map((point, index) => (
-              <motion.div
-                key={point.id}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                whileHover={{ y: -8 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="group glass rounded-[32px] p-8 sm:p-10 flex flex-col h-full border-white/50 overflow-hidden relative"
-              >
-                <motion.div
-                  className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-cyan-400/5 opacity-0 group-hover:opacity-100"
-                  transition={{ duration: 0.5 }}
-                />
-
-                <div className="relative z-10">
-                  <motion.div
-                    className="w-14 h-14 rounded-xl glass-dark flex items-center justify-center text-brand-cyan mb-6"
-                    whileHover={{ scale: 1.1, background: "rgba(59, 130, 246, 0.2)" }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {point.icon}
-                  </motion.div>
-
-                  <h3 className="text-xl sm:text-2xl font-display font-light mb-4">
-                    {point.title}
-                  </h3>
-                  <p className="text-black/40 text-sm leading-relaxed">
-                    {point.desc}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Requirements Section */}
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-black">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            className="mb-16 sm:mb-20"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Eligibility</span>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight text-white">
-              What We're Looking For
-            </h2>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 mb-12">
-            {requirements.map((req, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, x: -30 }}
-                whileInView={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1, duration: 0.6 }}
-                viewport={{ once: true }}
-                className="flex items-start gap-4 p-6 sm:p-8 glass rounded-[24px] border-white/10"
-              >
-                <div className="flex-shrink-0 w-8 h-8 rounded-full bg-brand-cyan/20 flex items-center justify-center text-brand-cyan mt-1">
-                  {req.icon}
-                </div>
-                <p className="text-white/80 text-sm sm:text-base leading-relaxed">
-                  {req.text}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Investment Highlights Section */}
-      <section className="py-16 sm:py-24 md:py-32 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-black to-black/80">
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8"
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            {investmentHighlights.map((highlight, index) => (
-              <motion.div
-                key={index}
-                className="relative overflow-hidden rounded-[32px] p-8 sm:p-10"
-                whileHover={{ scale: 1.02 }}
-                transition={{ duration: 0.3 }}
-              >
-                {/* Gradient Background */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${highlight.color} opacity-15`} />
-                <div className="absolute inset-0 backdrop-blur-xl bg-white/5" />
-
-                <div className="relative z-10 text-center">
-                  <h3 className={`text-5xl sm:text-6xl md:text-7xl font-bold mb-3 bg-gradient-to-r ${highlight.color} bg-clip-text text-transparent`}>
-                    {highlight.value}
-                  </h3>
-                  <p className="text-white/70 text-sm sm:text-base font-medium tracking-wide">
-                    {highlight.label}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Comprehensive Support Section */}
-      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-white via-cyan-50/30 to-white">
-        <div className="absolute inset-0 pointer-events-none -z-10">
-          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-cyan/[0.08] blur-[150px] rounded-full" />
-          <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-green-400/[0.06] blur-[150px] rounded-full" />
-        </div>
-
-        <div className="max-w-7xl mx-auto relative z-10">
-          <motion.div
-            className="mb-16 sm:mb-24"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <div className="flex items-center gap-3 mb-6">
-              <div className="h-1 w-8 sm:w-12 bg-gradient-to-r from-brand-cyan to-green-400" />
-              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold">Complete Ecosystem</span>
-            </div>
-            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight mb-4">
-              Franchisee Support — What You Get
-            </h2>
-            <p className="text-black/50 text-base sm:text-lg max-w-3xl">
-              We provide end-to-end support across every stage of your franchise journey, from pre-launch to operations and beyond.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
-            {franchiseSupport.map((support, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: index * 0.08, duration: 0.6 }}
-                viewport={{ once: true, margin: "-100px" }}
-                className="group relative rounded-[32px] overflow-hidden h-full"
-                whileHover={{ y: -12 }}
-              >
-                {/* Gradient Border Background */}
-                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/40 via-cyan-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
-
-                {/* Card Background */}
-                <div className="absolute inset-0 bg-white/60 backdrop-blur-2xl border border-white/80 group-hover:border-brand-cyan/40 transition-all duration-500" />
-
-                <div className="relative z-10 p-8 sm:p-10 flex flex-col h-full">
-                  {/* Icon Container */}
-                  <motion.div
-                    className="w-16 h-16 rounded-[20px] bg-gradient-to-br from-brand-cyan/25 to-blue-400/15 flex items-center justify-center text-brand-cyan mb-6 border border-brand-cyan/20 group-hover:border-brand-cyan/50"
-                    whileHover={{ scale: 1.15, rotate: 5 }}
-                    transition={{ duration: 0.3 }}
-                  >
-                    {support.icon}
-                  </motion.div>
-
-                  {/* Title */}
-                  <h3 className="text-xl sm:text-2xl font-display font-semibold mb-6 text-black group-hover:text-brand-cyan transition-colors duration-300">
-                    {support.category}
-                  </h3>
-
-                  {/* Items List */}
-                  <ul className="space-y-3 flex-1">
-                    {support.items.map((item, itemIndex) => (
-                      <motion.li
-                        key={itemIndex}
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.08 + itemIndex * 0.02, duration: 0.4 }}
-                        viewport={{ once: true }}
-                        className="flex items-start gap-3 group/item"
-                      >
-                        <motion.div
-                          className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110"
-                          whileHover={{ scale: 1.2 }}
-                        >
-                          <CheckCircle className="w-3 h-3 text-white" />
-                        </motion.div>
-                        <span className="text-black/65 text-sm leading-relaxed group-hover/item:text-black/80 transition-colors">
-                          {item}
-                        </span>
-                      </motion.li>
-                    ))}
-                  </ul>
-
-                  {/* Animated Bottom Border */}
-                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                </div>
-              </motion.div>
-            ))}
-          </div>
-
-          {/* Support CTA */}
-          <motion.div
-            className="mt-16 sm:mt-24 text-center"
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4, duration: 0.6 }}
-          >
-            <p className="text-black/50 mb-6 text-base">Have questions about our support? </p>
-            <button
-              onClick={onContact}
-              className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-brand-cyan to-cyan-500 text-black font-bold rounded-full text-[11px] sm:text-[12px] uppercase tracking-[0.3em] hover:shadow-2xl hover:shadow-brand-cyan/30 transition-all active:scale-95 inline-flex items-center gap-2"
-            >
-              Get Detailed Info
-              <ArrowRight className="w-4 h-4" />
-            </button>
-          </motion.div>
         </div>
       </section>
 
@@ -579,6 +310,116 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
         </div>
       </section>
 
+      {/* Comprehensive Support Section */}
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden bg-gradient-to-b from-white via-cyan-50/30 to-white">
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-brand-cyan/[0.08] blur-[150px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[800px] h-[800px] bg-green-400/[0.06] blur-[150px] rounded-full" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="mb-16 sm:mb-24"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <div className="flex items-center gap-3 mb-6">
+              <div className="h-1 w-8 sm:w-12 bg-gradient-to-r from-brand-cyan to-green-400" />
+              <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold">Complete Ecosystem</span>
+            </div>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight mb-4">
+              Franchisee Support — What You Get
+            </h2>
+            <p className="text-black/50 text-base sm:text-lg max-w-3xl">
+              We provide end-to-end support across every stage of your franchise journey, from pre-launch to operations and beyond.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
+            {franchiseSupport.map((support, index) => (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.08, duration: 0.6 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="group relative rounded-[32px] overflow-hidden h-full"
+                whileHover={{ y: -12 }}
+              >
+                {/* Gradient Border Background */}
+                <div className="absolute inset-0 bg-gradient-to-br from-brand-cyan/40 via-cyan-400/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 -z-10" />
+
+                {/* Card Background */}
+                <div className="absolute inset-0 bg-white/60 backdrop-blur-2xl border border-white/80 group-hover:border-brand-cyan/40 transition-all duration-500" />
+
+                <div className="relative z-10 p-8 sm:p-10 flex flex-col h-full">
+                  {/* Icon Container */}
+                  <motion.div
+                    className="w-16 h-16 rounded-[20px] bg-gradient-to-br from-brand-cyan/25 to-blue-400/15 flex items-center justify-center text-brand-cyan mb-6 border border-brand-cyan/20 group-hover:border-brand-cyan/50"
+                    whileHover={{ scale: 1.15, rotate: 5 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {support.icon}
+                  </motion.div>
+
+                  {/* Title */}
+                  <h3 className="text-xl sm:text-2xl font-display font-semibold mb-6 text-black group-hover:text-brand-cyan transition-colors duration-300">
+                    {support.category}
+                  </h3>
+
+                  {/* Items List */}
+                  <ul className="space-y-3 flex-1">
+                    {support.items.map((item, itemIndex) => (
+                      <motion.li
+                        key={itemIndex}
+                        initial={{ opacity: 0, x: -10 }}
+                        whileInView={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.08 + itemIndex * 0.02, duration: 0.4 }}
+                        viewport={{ once: true }}
+                        className="flex items-start gap-3 group/item"
+                      >
+                        <motion.div
+                          className="w-5 h-5 rounded-full bg-gradient-to-br from-brand-cyan to-cyan-500 flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:scale-110"
+                          whileHover={{ scale: 1.2 }}
+                        >
+                          <CheckCircle className="w-3 h-3 text-white" />
+                        </motion.div>
+                        <span className="text-black/65 text-sm leading-relaxed group-hover/item:text-black/80 transition-colors">
+                          {item}
+                        </span>
+                      </motion.li>
+                    ))}
+                  </ul>
+
+                  {/* Animated Bottom Border */}
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-brand-cyan to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Support CTA */}
+          <motion.div
+            className="mt-16 sm:mt-24 text-center"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.4, duration: 0.6 }}
+          >
+            <p className="text-black/50 mb-6 text-base">Have questions about our support? </p>
+            <button
+              onClick={onContact}
+              className="px-8 sm:px-12 py-3 sm:py-4 bg-gradient-to-r from-brand-cyan to-cyan-500 text-black font-bold rounded-full text-[11px] sm:text-[12px] uppercase tracking-[0.3em] hover:shadow-2xl hover:shadow-brand-cyan/30 transition-all active:scale-95 inline-flex items-center gap-2"
+            >
+              Get Detailed Info
+              <ArrowRight className="w-4 h-4" />
+            </button>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Benefits Section */}
       <section id="benefits" className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
         <div className="absolute inset-0 pointer-events-none -z-10">
@@ -615,6 +456,65 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                 <p className="text-sm sm:text-base text-black/70 group-hover:text-black transition-colors">
                   {benefit}
                 </p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Why Franchise Section */}
+      <section className="py-24 sm:py-32 md:py-40 px-4 sm:px-6 relative overflow-hidden">
+        <div className="absolute inset-0 pointer-events-none -z-10">
+          <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-cyan/[0.05] blur-[120px] rounded-full" />
+          <div className="absolute bottom-0 left-0 w-[700px] h-[700px] bg-green-400/[0.05] blur-[120px] rounded-full" />
+        </div>
+
+        <div className="max-w-7xl mx-auto relative z-10">
+          <motion.div
+            className="mb-16 sm:mb-20"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+          >
+            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">Why Axigear</span>
+            <h2 className="text-5xl sm:text-6xl md:text-7xl font-sans font-light tracking-[-0.04em] leading-tight">
+              Why Partner With Axigear?
+            </h2>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 sm:gap-8">
+            {franchisePoints.map((point, index) => (
+              <motion.div
+                key={point.id}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: index * 0.1, duration: 0.6 }}
+                whileHover={{ y: -8 }}
+                viewport={{ once: true, margin: "-100px" }}
+                className="group glass rounded-[32px] p-8 sm:p-10 flex flex-col h-full border-white/50 overflow-hidden relative"
+              >
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-br from-cyan-400/20 to-cyan-400/5 opacity-0 group-hover:opacity-100"
+                  transition={{ duration: 0.5 }}
+                />
+
+                <div className="relative z-10">
+                  <motion.div
+                    className="w-14 h-14 rounded-xl glass-dark flex items-center justify-center text-brand-cyan mb-6"
+                    whileHover={{ scale: 1.1, background: "rgba(59, 130, 246, 0.2)" }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    {point.icon}
+                  </motion.div>
+
+                  <h3 className="text-xl sm:text-2xl font-display font-light mb-4">
+                    {point.title}
+                  </h3>
+                  <p className="text-black/40 text-sm leading-relaxed">
+                    {point.desc}
+                  </p>
+                </div>
               </motion.div>
             ))}
           </div>
