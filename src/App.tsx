@@ -8,6 +8,7 @@ import Franchise from './components/Franchise';
 import Footer from './components/Footer';
 import Configurator from './components/Configurator';
 import ContactForm from './components/ContactForm';
+import ScrollToTop from './components/ScrollToTop';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Vehicle, vehicles } from './data/vehicles';
@@ -138,6 +139,7 @@ export default function App() {
           isOpen={contactOpen}
           onClose={() => setContactOpen(false)}
         />
+        <ScrollToTop />
       </div>
     );
   }
@@ -215,6 +217,8 @@ export default function App() {
         isOpen={contactOpen}
         onClose={() => setContactOpen(false)}
       />
+
+      <ScrollToTop />
     </div>
   );
 }
