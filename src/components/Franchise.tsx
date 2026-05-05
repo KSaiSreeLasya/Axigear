@@ -232,29 +232,6 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
                 Learn More
               </a>
             </motion.div>
-
-            {/* Scroll Down Arrow */}
-            <motion.div
-              className="flex justify-center mt-12 sm:mt-16"
-              animate={{ y: [0, 10, 0] }}
-              transition={{ duration: 2, repeat: Infinity }}
-            >
-              <motion.button
-                onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-                className="w-12 h-12 sm:w-14 sm:h-14 rounded-full border-2 border-brand-cyan/50 flex items-center justify-center text-brand-cyan hover:border-brand-cyan hover:bg-brand-cyan/10 transition-all duration-300 group"
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <svg
-                  className="w-5 h-5 sm:w-6 sm:h-6 transform group-hover:text-brand-cyan transition-transform"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 11l5-5m0 0l5 5m-5-5v12" />
-                </svg>
-              </motion.button>
-            </motion.div>
           </div>
         </div>
       </section>
