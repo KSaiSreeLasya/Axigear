@@ -50,7 +50,7 @@ export default function Franchise({ onContact }: { onContact: () => void }) {
   const investmentHighlights = [
     { value: '₹0', label: 'Franchise Cost', color: 'from-brand-cyan to-blue-400' },
     { value: '₹3L', label: 'Starting Investment', color: 'from-green-400 to-cyan-400' },
-    { value: '8-12 M', label: 'Return of Investment', color: 'from-brand-cyan to-cyan-400' },
+    { value: '8-12 M', label: 'Return on Investment', color: 'from-brand-cyan to-cyan-400' },
   ];
 
   const franchiseSupport = [
