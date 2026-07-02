@@ -85,21 +85,6 @@ export const vehicles: Vehicle[] = [
       { name: 'Maroon', hex: '#800000', price: 1500 },
       { name: 'Jet Black', hex: '#111111', price: 1000 },
     ]
-  },
-  {
-    id: 'axigear-green-udaan',
-    name: 'Axigear Green Udaan',
-    type: 'Electric Scooter',
-    range: '60 km',
-    acceleration: 'Standard',
-    topSpeed: '25 km/h',
-    basePrice: 35000,
-    image: 'https://cdn.builder.io/api/v1/image/assets%2F2f195b82614d46a0b777d649ad418b24%2Ff202638d6ff049e48477e65f9bdc1f30?format=webp&width=800&height=1200',
-    video: '/videos/axigear-udaan.mp4',
-    description: 'Eco-friendly electric scooter perfect for daily commuting.',
-    colors: [
-      { name: 'Mint Green', hex: '#98ff98', price: 0 },
-      { name: 'Forest Green', hex: '#228b22', price: 1000 },
-    ]
   }
+ 
 ];
