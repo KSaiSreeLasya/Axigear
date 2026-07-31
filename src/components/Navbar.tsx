@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { Menu, X } from 'lucide-react';
 import { useState, useEffect } from 'react';
 
-export default function Navbar({ onContact, onFranchise, currentPage = 'home' }: { onContact: () => void; onFranchise?: () => void; currentPage?: string }) {
+export default function Navbar({ onContact, onFranchise, onNavigate, currentPage = 'home' }: { onContact?: () => void; onFranchise?: () => void; onNavigate?: (path: string) => void; currentPage?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
@@ -14,10 +14,19 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
   }, []);
 
   const navLinks = [
-    { name: 'Products', href: '#models' },
-    { name: 'Why EV', href: '#technology' },
-    { name: 'Services', href: '#services' },
+    { name: 'Products', href: '/products' },
+    { name: 'Why EV', href: '/why-ev' },
+    { name: 'Services', href: '/services' },
   ];
+
+  const navigateTo = (path: string) => {
+    setIsOpen(false);
+    if (onNavigate) {
+      onNavigate(path);
+      return;
+    }
+    window.location.href = path;
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-3 sm:px-4 md:px-6 ${scrolled ? 'pt-3 sm:pt-4 md:pt-5' : 'pt-4 sm:pt-6 md:pt-8'}`}>
@@ -26,10 +35,7 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
         <motion.div
           className="flex items-center gap-1.5 sm:gap-2 md:gap-3 group cursor-pointer flex-shrink-0"
           onClick={() => {
-            if (currentPage !== 'home' && onFranchise) {
-              onFranchise();
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navigateTo('/');
           }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -50,22 +56,7 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
           {navLinks.map((link) => (
             <motion.button
               key={link.name}
-              onClick={() => {
-                if (currentPage !== 'home' && onFranchise) {
-                  onFranchise();
-                  setTimeout(() => {
-                    const element = document.querySelector(link.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }, 100);
-                } else {
-                  const element = document.querySelector(link.href);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-              }}
+              onClick={() => navigateTo(link.href)}
               className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
               onHoverStart={() => setActiveLink(link.name)}
               onHoverEnd={() => setActiveLink('')}
@@ -83,9 +74,8 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
               )}
             </motion.button>
           ))}
-          {onFranchise && (
-            <motion.button
-              onClick={onFranchise}
+          <motion.button
+              onClick={() => navigateTo('/franchise')}
               className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
               onHoverStart={() => setActiveLink('Franchise')}
               onHoverEnd={() => setActiveLink('')}
@@ -102,12 +92,11 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
                 />
               )}
             </motion.button>
-          )}
         </div>
 
         <div className="hidden md:flex items-center gap-3 flex-shrink-0">
           <motion.button
-            onClick={onContact}
+            onClick={() => onContact ? onContact() : navigateTo('/contact')}
             className="px-5 md:px-6 lg:px-8 py-2 md:py-2.5 lg:py-3 bg-black text-white text-[9px] md:text-[10px] lg:text-xs font-bold rounded-full uppercase tracking-[0.2em] shadow-lg hover:shadow-xl shadow-black/20 overflow-hidden relative group transition-all active:scale-95"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
@@ -157,21 +146,7 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
               <motion.button
                 key={link.name}
                 onClick={() => {
-                  setIsOpen(false);
-                  if (currentPage !== 'home' && onFranchise) {
-                    onFranchise();
-                    setTimeout(() => {
-                      const element = document.querySelector(link.href);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }, 100);
-                  } else {
-                    const element = document.querySelector(link.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
+                  navigateTo(link.href);
                 }}
                 className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
                 initial={{ opacity: 0, x: -20 }}
@@ -181,12 +156,8 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
                 {link.name}
               </motion.button>
             ))}
-            {onFranchise && (
-              <motion.button
-                onClick={() => {
-                  setIsOpen(false);
-                  onFranchise();
-                }}
+            <motion.button
+                onClick={() => navigateTo('/franchise')}
                 className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -194,16 +165,14 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
               >
                 Franchise
               </motion.button>
-            )}
             <motion.button
               onClick={() => {
-                setIsOpen(false);
-                onContact();
+                if (onContact) onContact(); else navigateTo('/contact');
               }}
               className="mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-brand-cyan text-white font-bold rounded-lg sm:rounded-2xl uppercase tracking-[0.2em] text-[10px] sm:text-xs shadow-lg shadow-brand-cyan/20 overflow-hidden relative group active:scale-95"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: (navLinks.length + (onFranchise ? 1 : 0)) * 0.1 + 0.2 }}
+              transition={{ delay: (navLinks.length + 1) * 0.1 + 0.2 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

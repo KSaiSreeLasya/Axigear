@@ -9,6 +9,7 @@ import Footer from './components/Footer';
 import Configurator from './components/Configurator';
 import ContactForm from './components/ContactForm';
 import ScrollToTop from './components/ScrollToTop';
+import RoutePage from './components/RoutePage';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Vehicle, vehicles } from './data/vehicles';
@@ -18,6 +19,19 @@ export default function App() {
   const [configuratorOpen, setConfiguratorOpen] = useState(false);
   const [contactOpen, setContactOpen] = useState(false);
   const [currentPage, setCurrentPage] = useState<'home' | 'franchise'>('home');
+  const [path, setPath] = useState(window.location.pathname);
+
+  useEffect(() => {
+    const handlePopState = () => setPath(window.location.pathname);
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, []);
+
+  const navigateTo = (nextPath: string) => {
+    window.history.pushState({}, '', nextPath);
+    setPath(nextPath);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   // Add JSON-LD structured data for SEO
   useEffect(() => {
@@ -125,6 +139,10 @@ export default function App() {
     restDelta: 0.001
   });
 
+  if (path !== '/') {
+    return <RoutePage path={path} onNavigate={navigateTo} />;
+  }
+
   if (currentPage === 'franchise') {
     return (
       <div className="relative min-h-screen">
@@ -153,8 +171,9 @@ export default function App() {
       />
 
       <Navbar
-        onContact={() => setContactOpen(true)}
-        onFranchise={() => setCurrentPage('franchise')}
+        onContact={() => navigateTo('/contact')}
+        onFranchise={() => navigateTo('/franchise')}
+        onNavigate={navigateTo}
         currentPage="home"
       />
 
