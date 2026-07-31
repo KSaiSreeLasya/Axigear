@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Check, Battery, Gauge, Zap, ShoppingCart } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Vehicle, VehicleColor } from '../data/vehicles';
 
 interface ConfiguratorProps {
@@ -12,10 +12,16 @@ interface ConfiguratorProps {
 export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorProps) {
   const [selectedColor, setSelectedColor] = useState<VehicleColor | null>(null);
   const [isPlacingOrder, setIsPlacingOrder] = useState(false);
-  
+
+  useEffect(() => {
+    if (vehicle) {
+      setSelectedColor(vehicle.colors[0]);
+      setIsPlacingOrder(false);
+    }
+  }, [vehicle?.id]);
+
   if (!vehicle) return null;
 
-  // Initialize color if not set or if vehicle changed
   const currentColor = selectedColor || vehicle.colors[0];
   const totalPrice = vehicle.basePrice + currentColor.price;
 
@@ -151,7 +157,7 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
               >
                 <span className="text-brand-cyan tracking-[0.4em] uppercase text-[9px] mb-2 block font-bold">Configurator</span>
                 <h2 className="text-4xl font-sans font-extralight tracking-tight mb-2 uppercase">{vehicle.name}</h2>
-                <p className="text-black/40 text-sm italic">{vehicle.type}</p>
+                <div className="flex items-center gap-3"><p className="text-black/40 text-sm italic">{vehicle.type}</p><span className="px-3 py-1 rounded-full bg-green-400/10 text-green-600 text-[9px] uppercase tracking-[0.2em] font-bold">Ready to personalize</span></div>
               </motion.div>
 
               <motion.div
@@ -160,7 +166,7 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
               >
-                <h4 className="text-[11px] uppercase tracking-widest font-bold mb-6 text-black/80">Select Exterior</h4>
+                <div className="flex items-end justify-between gap-4 mb-6"><div><h4 className="text-[11px] uppercase tracking-widest font-bold text-black/80">Select Exterior</h4><p className="text-xs text-black/40 mt-2">Choose your finish for {vehicle.name}.</p></div><span className="text-[10px] font-bold text-brand-cyan uppercase tracking-widest">{currentColor.name}</span></div>
                 <div className="grid grid-cols-4 gap-4">
                   {vehicle.colors.map((color, idx) => (
                     <motion.button
@@ -242,6 +248,7 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
               <motion.button
                 onClick={() => setIsPlacingOrder(true)}
                 disabled={isPlacingOrder}
+                aria-label={`Continue with ${vehicle.name} in ${currentColor.name}`}
                 className="w-full py-5 bg-black text-white font-bold rounded-xl text-xs uppercase tracking-[0.2em] shadow-xl shadow-black/10 overflow-hidden relative group disabled:opacity-75"
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
@@ -256,12 +263,12 @@ export default function Configurator({ vehicle, isOpen, onClose }: ConfiguratorP
                   transition={{ duration: 0.3 }}
                 />
                 <span className="relative z-10 flex items-center justify-center gap-2">
-                  <ShoppingCart size={16} />
-                  Place Order
+                  {isPlacingOrder ? <Check size={16} /> : <ShoppingCart size={16} />}
+                  {isPlacingOrder ? 'Configuration Saved' : 'Continue with this model'}
                 </span>
               </motion.button>
               <p className="text-[9px] text-center text-black/20 mt-4 uppercase tracking-widest">
-                Delivery estimates vary by selection.
+                {isPlacingOrder ? 'Your selected configuration is ready for the next step.' : 'Delivery estimates vary by selection.'}
               </p>
             </div>
           </motion.div>

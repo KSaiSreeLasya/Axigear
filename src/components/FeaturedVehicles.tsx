@@ -2,7 +2,7 @@ import { motion } from 'motion/react';
 import { vehicles } from '../data/vehicles';
 import { ChevronRight, Zap, ArrowUpRight, Leaf } from 'lucide-react';
 
-export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: string) => void }) {
+export default function FeaturedVehicles({ onConfigure, onView }: { onConfigure: (id: string) => void; onView?: (id: string) => void }) {
 
   return (
     <section id="models" className="py-20 sm:py-32 md:py-40 px-4 sm:px-6 bg-transparent relative overflow-hidden">
@@ -108,15 +108,17 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
                         <Leaf size={10} className="text-green-600 fill-green-600 flex-shrink-0" />
                         <p className="text-[8px] sm:text-[9px] uppercase tracking-[0.4em] text-green-600 font-bold">NO REGISTRATION</p>
                       </motion.div>
-                      <motion.h3
-                        className="text-2xl sm:text-2.5xl md:text-3xl font-display font-light tracking-tight group-hover:italic transition-all duration-500"
+                      <motion.button
+                        type="button"
+                        onClick={() => onView?.(vehicle.id)}
+                        className="text-left text-2xl sm:text-2.5xl md:text-3xl font-display font-light tracking-tight group-hover:italic transition-all duration-500"
                         initial={{ opacity: 0 }}
                         whileInView={{ opacity: 1 }}
                         viewport={{ once: true }}
                         transition={{ delay: index * 0.1 + 0.1 }}
                       >
                         {vehicle.name}
-                      </motion.h3>
+                      </motion.button>
                     </div>
                   </div>
 
@@ -194,9 +196,12 @@ export default function FeaturedVehicles({ onConfigure }: { onConfigure: (id: st
                     </motion.button>
                     <motion.div
                       className="w-10 sm:w-12 h-10 sm:h-12 rounded-lg sm:rounded-xl glass flex items-center justify-center cursor-pointer border-white/50 overflow-hidden relative flex-shrink-0"
+                      role="button"
+                      tabIndex={0}
                       whileHover={{ scale: 1.05, backgroundColor: "rgba(34, 197, 94, 0.2)" }}
                       whileTap={{ scale: 0.95 }}
-                      onClick={() => onConfigure(vehicle.id)}
+                      onClick={() => onView?.(vehicle.id)}
+                      onKeyDown={(event) => { if (event.key === 'Enter' || event.key === ' ') onView?.(vehicle.id); }}
                     >
                       <ArrowUpRight size={16} className="text-green-600 sm:w-[18px] sm:h-[18px]" />
                     </motion.div>

@@ -1,11 +1,13 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, ChevronDown } from 'lucide-react';
+import { vehicles } from '../data/vehicles';
 import { useState, useEffect } from 'react';
 
-export default function Navbar({ onContact, onFranchise, currentPage = 'home' }: { onContact: () => void; onFranchise?: () => void; currentPage?: string }) {
+export default function Navbar({ onContact, onFranchise, onNavigate, currentPage = 'home' }: { onContact?: () => void; onFranchise?: () => void; onNavigate?: (path: string) => void; currentPage?: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [activeLink, setActiveLink] = useState('');
+  const [productMenuOpen, setProductMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -14,10 +16,20 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
   }, []);
 
   const navLinks = [
-    { name: 'Products', href: '#models' },
-    { name: 'Why EV', href: '#technology' },
-    { name: 'Services', href: '#services' },
+    { name: 'Home', href: '/' },
+    { name: 'Products', href: '/products' },
+    { name: 'Why EV', href: '/why-ev' },
+    { name: 'Services', href: '/services' },
   ];
+
+  const navigateTo = (path: string) => {
+    setIsOpen(false);
+    if (onNavigate) {
+      onNavigate(path);
+      return;
+    }
+    window.location.href = path;
+  };
 
   return (
     <nav className={`fixed top-0 left-0 right-0 z-[100] transition-all duration-700 px-3 sm:px-4 md:px-6 ${scrolled ? 'pt-3 sm:pt-4 md:pt-5' : 'pt-4 sm:pt-6 md:pt-8'}`}>
@@ -26,10 +38,7 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
         <motion.div
           className="flex items-center gap-1.5 sm:gap-2 md:gap-3 group cursor-pointer flex-shrink-0"
           onClick={() => {
-            if (currentPage !== 'home' && onFranchise) {
-              onFranchise();
-            }
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            navigateTo('/');
           }}
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
@@ -48,44 +57,37 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
         {/* Desktop Links with Underline Animation */}
         <div className="hidden md:flex items-center gap-6 lg:gap-12 ml-auto mr-6 lg:mr-8">
           {navLinks.map((link) => (
-            <motion.button
-              key={link.name}
-              onClick={() => {
-                if (currentPage !== 'home' && onFranchise) {
-                  onFranchise();
-                  setTimeout(() => {
-                    const element = document.querySelector(link.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }, 100);
-                } else {
-                  const element = document.querySelector(link.href);
-                  if (element) {
-                    element.scrollIntoView({ behavior: 'smooth' });
-                  }
-                }
-              }}
-              className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
-              onHoverStart={() => setActiveLink(link.name)}
-              onHoverEnd={() => setActiveLink('')}
-            >
-              {link.name}
-              {activeLink === link.name && (
-                <motion.div
-                  className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-brand-cyan/50 rounded-full"
-                  layoutId="navbar-underline"
-                  initial={{ scaleX: 0 }}
-                  animate={{ scaleX: 1 }}
-                  exit={{ scaleX: 0 }}
-                  transition={{ duration: 0.3 }}
-                />
+            <div key={link.name} className="relative" onMouseEnter={() => link.name === 'Products' && setProductMenuOpen(true)} onMouseLeave={() => link.name === 'Products' && setProductMenuOpen(false)}>
+              <motion.button
+                onClick={() => link.name === 'Products' ? setProductMenuOpen((open) => !open) : navigateTo(link.href)}
+                className="flex items-center gap-1 text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
+                onHoverStart={() => setActiveLink(link.name)}
+                onHoverEnd={() => setActiveLink('')}
+              >
+                {link.name}
+                {link.name === 'Products' && <ChevronDown size={12} className={`transition-transform ${productMenuOpen ? 'rotate-180' : ''}`} />}
+                {activeLink === link.name && (
+                  <motion.div
+                    className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-brand-cyan/50 rounded-full"
+                    layoutId="navbar-underline"
+                    initial={{ scaleX: 0 }}
+                    animate={{ scaleX: 1 }}
+                    exit={{ scaleX: 0 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
+              </motion.button>
+              {link.name === 'Products' && productMenuOpen && (
+                <div className="absolute left-1/2 top-full mt-4 w-64 -translate-x-1/2 glass rounded-2xl p-3 shadow-2xl border-white/50 backdrop-blur-xl">
+                  {vehicles.map((vehicle) => (
+                    <button key={vehicle.id} onClick={() => navigateTo(`/products/${vehicle.id}`)} className="w-full rounded-xl px-4 py-3 text-left text-[10px] font-bold uppercase tracking-[0.14em] text-black/60 hover:bg-brand-cyan/10 hover:text-brand-cyan transition-colors">{vehicle.name}</button>
+                  ))}
+                </div>
               )}
-            </motion.button>
+            </div>
           ))}
-          {onFranchise && (
-            <motion.button
-              onClick={onFranchise}
+          <motion.button
+              onClick={() => navigateTo('/franchise')}
               className="text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
               onHoverStart={() => setActiveLink('Franchise')}
               onHoverEnd={() => setActiveLink('')}
@@ -102,12 +104,11 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
                 />
               )}
             </motion.button>
-          )}
         </div>
 
         <div className="hidden md:flex items-center gap-3 flex-shrink-0">
           <motion.button
-            onClick={onContact}
+            onClick={() => onContact ? onContact() : navigateTo('/contact')}
             className="px-5 md:px-6 lg:px-8 py-2 md:py-2.5 lg:py-3 bg-black text-white text-[9px] md:text-[10px] lg:text-xs font-bold rounded-full uppercase tracking-[0.2em] shadow-lg hover:shadow-xl shadow-black/20 overflow-hidden relative group transition-all active:scale-95"
             whileHover={{ scale: 1.08 }}
             whileTap={{ scale: 0.95 }}
@@ -154,39 +155,26 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
             className="md:hidden absolute top-20 sm:top-24 left-3 sm:left-4 right-3 sm:right-4 glass rounded-2xl sm:rounded-3xl p-4 sm:p-6 flex flex-col gap-3 sm:gap-4 shadow-2xl border-white/40 backdrop-blur-xl"
           >
             {navLinks.map((link, index) => (
-              <motion.button
-                key={link.name}
-                onClick={() => {
-                  setIsOpen(false);
-                  if (currentPage !== 'home' && onFranchise) {
-                    onFranchise();
-                    setTimeout(() => {
-                      const element = document.querySelector(link.href);
-                      if (element) {
-                        element.scrollIntoView({ behavior: 'smooth' });
-                      }
-                    }, 100);
-                  } else {
-                    const element = document.querySelector(link.href);
-                    if (element) {
-                      element.scrollIntoView({ behavior: 'smooth' });
-                    }
-                  }
-                }}
-                className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ delay: index * 0.1 }}
-              >
-                {link.name}
-              </motion.button>
+              <div key={link.name}>
+                <motion.button
+                  onClick={() => link.name === 'Products' ? setProductMenuOpen((open) => !open) : navigateTo(link.href)}
+                  className="flex items-center gap-2 text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: index * 0.1 }}
+                >
+                  {link.name}
+                  {link.name === 'Products' && <ChevronDown size={16} className={`transition-transform ${productMenuOpen ? 'rotate-180' : ''}`} />}
+                </motion.button>
+                {link.name === 'Products' && productMenuOpen && (
+                  <div className="ml-4 border-l border-brand-cyan/20 pl-4 pb-2">
+                    {vehicles.map((vehicle) => <button key={vehicle.id} onClick={() => navigateTo(`/products/${vehicle.id}`)} className="block w-full py-2 text-left text-xs text-black/60 hover:text-brand-cyan">{vehicle.name}</button>)}
+                  </div>
+                )}
+              </div>
             ))}
-            {onFranchise && (
-              <motion.button
-                onClick={() => {
-                  setIsOpen(false);
-                  onFranchise();
-                }}
+            <motion.button
+                onClick={() => navigateTo('/franchise')}
                 className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -194,16 +182,14 @@ export default function Navbar({ onContact, onFranchise, currentPage = 'home' }:
               >
                 Franchise
               </motion.button>
-            )}
             <motion.button
               onClick={() => {
-                setIsOpen(false);
-                onContact();
+                if (onContact) onContact(); else navigateTo('/contact');
               }}
               className="mt-4 sm:mt-6 px-6 sm:px-8 py-3 sm:py-4 bg-brand-cyan text-white font-bold rounded-lg sm:rounded-2xl uppercase tracking-[0.2em] text-[10px] sm:text-xs shadow-lg shadow-brand-cyan/20 overflow-hidden relative group active:scale-95"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: (navLinks.length + (onFranchise ? 1 : 0)) * 0.1 + 0.2 }}
+              transition={{ delay: (navLinks.length + 1) * 0.1 + 0.2 }}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
             >

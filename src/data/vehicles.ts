@@ -26,7 +26,7 @@ export const vehicles: Vehicle[] = [
     range: '120 km (Extensible to 300 km)',
     acceleration: 'High Performance',
     topSpeed: '',
-    basePrice: 'Contact for Price Details',
+    basePrice: 35000,
     image: 'https://cdn.builder.io/api/v1/image/assets%2Fcb8e28b98e7d478c907b197aa0e49640%2F537a31a658544d2580e4f2051d168cbd?format=webp&width=800&height=1200',
     video: '/videos/axigear-hestur-werewolf.mp4',
     description: 'Premium electric scooter with extended range capability and advanced features.',
