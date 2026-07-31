@@ -1,5 +1,5 @@
-import { useState } from 'react';
-import { Mail, MapPin, Phone } from 'lucide-react';
+import { useState, type ReactNode } from 'react';
+import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
 import FeaturedVehicles from './FeaturedVehicles';
@@ -15,13 +15,26 @@ interface RoutePageProps {
   onNavigate: (path: string) => void;
 }
 
-function PageIntro({ eyebrow, title, description }: { eyebrow: string; title: string; description: string }) {
+function PageIntro({ eyebrow, title, description, highlights, action }: { eyebrow: string; title: ReactNode; description: string; highlights: string[]; action?: { label: string; onClick: () => void } }) {
   return (
-    <section className="px-4 sm:px-6 pt-36 pb-20 md:pt-48 md:pb-28">
-      <div className="max-w-7xl mx-auto">
-        <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">{eyebrow}</span>
-        <h1 className="max-w-5xl text-5xl sm:text-7xl md:text-8xl font-sans font-extralight tracking-[-0.05em] leading-[0.85] mb-8">{title}</h1>
-        <p className="max-w-2xl text-black/50 text-sm sm:text-base md:text-lg leading-relaxed">{description}</p>
+    <section className="relative overflow-hidden px-4 sm:px-6 pt-36 pb-20 md:pt-48 md:pb-28">
+      <div className="absolute top-20 right-[-8rem] w-80 h-80 rounded-full bg-brand-cyan/[0.12] blur-[100px] pointer-events-none" />
+      <div className="absolute bottom-0 left-[-6rem] w-72 h-72 rounded-full bg-green-400/[0.08] blur-[100px] pointer-events-none" />
+      <div className="max-w-7xl mx-auto relative z-10">
+        <div className="grid lg:grid-cols-[1.25fr_0.75fr] gap-10 lg:gap-20 items-end">
+          <div>
+            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-6 block">{eyebrow}</span>
+            <h1 className="max-w-5xl text-5xl sm:text-7xl md:text-8xl font-sans font-extralight tracking-[-0.05em] leading-[0.85] mb-8">{title}</h1>
+            <p className="max-w-2xl text-black/50 text-sm sm:text-base md:text-lg leading-relaxed">{description}</p>
+            {action && <button onClick={action.onClick} className="mt-8 inline-flex items-center gap-3 px-6 py-3 bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-brand-cyan">{action.label}<ArrowUpRight size={15} /></button>}
+          </div>
+          <div className="glass rounded-[28px] p-6 sm:p-8 border-white/60">
+            <span className="text-[9px] font-mono uppercase tracking-[0.35em] text-black/40">Axigear standard</span>
+            <div className="mt-6 space-y-4">
+              {highlights.map((highlight, index) => <div key={highlight} className="flex items-center gap-4 border-t border-black/5 pt-4"><span className="text-brand-cyan text-xs font-mono">0{index + 1}</span><span className="text-sm font-medium text-black/70">{highlight}</span></div>)}
+            </div>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -48,19 +61,19 @@ export default function RoutePage({ path, onNavigate }: RoutePageProps) {
       <main>
         {path === '/products' && (
           <>
-            <PageIntro eyebrow="Axigear Product Range" title={<>Electric <span className="italic font-normal">two-wheelers.</span></>} description="Explore practical, stylish electric scooters designed for everyday city rides, longer commutes, and a cleaner future." />
+            <PageIntro eyebrow="Axigear Product Range" title={<>Electric <span className="italic font-normal">two-wheelers.</span></>} description="Explore practical, stylish electric scooters designed for everyday city rides, longer commutes, and a cleaner future." highlights={["Purpose-built for city rides", "Range for every commute", "Explore your ideal configuration"]} action={{ label: "View the range", onClick: () => document.querySelector('#models')?.scrollIntoView({ behavior: 'smooth' }) }} />
             <FeaturedVehicles onConfigure={openConfigurator} />
           </>
         )}
         {path === '/why-ev' && (
           <>
-            <PageIntro eyebrow="Why Electric Mobility" title={<>The future <span className="italic font-normal">benefits.</span></>} description="Discover why switching to electric mobility means lower running costs, cleaner cities, and a quieter ride." />
+            <PageIntro eyebrow="Why Electric Mobility" title={<>The future <span className="italic font-normal">benefits.</span></>} description="Discover why switching to electric mobility means lower running costs, cleaner cities, and a quieter ride." highlights={["Zero tailpipe emissions", "Lower everyday running costs", "Quieter, cleaner urban travel"]} action={{ label: "See the benefits", onClick: () => document.querySelector('#technology')?.scrollIntoView({ behavior: 'smooth' }) }} />
             <Technology />
           </>
         )}
         {path === '/services' && (
           <>
-            <PageIntro eyebrow="Beyond The Sale" title={<>Services & <span className="italic font-normal">support.</span></>} description="Our relationship with customers extends far beyond the point of sale with dedicated support for every Axigear journey." />
+            <PageIntro eyebrow="Beyond The Sale" title={<>Services & <span className="italic font-normal">support.</span></>} description="Our relationship with customers extends far beyond the point of sale with dedicated support for every Axigear journey." highlights={["Expert EV servicing", "Genuine parts supply", "Support for the long ride"]} action={{ label: "Explore support", onClick: () => document.querySelector('#services')?.scrollIntoView({ behavior: 'smooth' }) }} />
             <Services />
           </>
         )}

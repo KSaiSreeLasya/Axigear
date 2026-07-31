@@ -14,6 +14,7 @@ export default function Navbar({ onContact, onFranchise, onNavigate, currentPage
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '/' },
     { name: 'Products', href: '/products' },
     { name: 'Why EV', href: '/why-ev' },
     { name: 'Services', href: '/services' },
