@@ -40,6 +40,32 @@ function PageIntro({ eyebrow, title, description, highlights, action }: { eyebro
   );
 }
 
+function ProductDetail({ vehicle, onConfigure, onBack }: { vehicle: Vehicle; onConfigure: () => void; onBack: () => void }) {
+  const priceLabel = `₹${(vehicle.basePrice / 1000).toFixed(0)}k`;
+
+  return (
+    <section className="relative overflow-hidden px-4 sm:px-6 pt-36 pb-24 md:pt-48 md:pb-32">
+      <div className="absolute top-24 right-0 w-[32rem] h-[32rem] rounded-full bg-brand-cyan/[0.1] blur-[130px] pointer-events-none" />
+      <div className="max-w-7xl mx-auto relative z-10">
+        <button onClick={onBack} className="mb-10 text-[10px] uppercase tracking-[0.3em] font-bold text-black/40 hover:text-brand-cyan">← Back to products</button>
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-10 lg:gap-20 items-center">
+          <div className="glass rounded-[36px] p-6 sm:p-10 border-white/60">
+            {vehicle.video ? <video src={vehicle.video} className="w-full rounded-2xl object-contain drop-shadow-[0_25px_55px_rgba(0,0,0,0.15)]" autoPlay muted loop playsInline /> : <img src={vehicle.image} alt={vehicle.name} className="w-full object-contain drop-shadow-[0_25px_55px_rgba(0,0,0,0.15)]" referrerPolicy="no-referrer" />}
+          </div>
+          <div>
+            <span className="text-brand-cyan tracking-[0.5em] uppercase text-[10px] font-bold mb-5 block">{vehicle.type}</span>
+            <h1 className="text-5xl sm:text-7xl font-sans font-extralight tracking-[-0.05em] leading-[0.9] mb-7">{vehicle.name}</h1>
+            <p className="text-black/50 text-base leading-relaxed max-w-lg mb-8">{vehicle.description}</p>
+            <div className="glass rounded-2xl p-5 mb-8 border-white/60"><span className="text-[9px] uppercase tracking-[0.3em] text-black/40 font-bold block mb-2">Starting price</span><span className="text-3xl font-display font-light text-green-600">{priceLabel}</span></div>
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 mb-9">{[["Range", vehicle.range], ["Performance", vehicle.acceleration], ["Top speed", vehicle.topSpeed || "City tuned"]].map(([label, value]) => <div key={label} className="rounded-2xl bg-white/50 border border-black/5 p-4"><span className="text-[9px] uppercase tracking-[0.2em] text-black/40 block mb-2">{label}</span><span className="text-sm font-medium text-black/70">{value}</span></div>)}</div>
+            <button onClick={onConfigure} className="inline-flex items-center justify-center px-8 py-4 bg-black text-white rounded-full text-[10px] font-bold uppercase tracking-[0.25em] hover:bg-brand-cyan">Configure this model</button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
+}
+
 export default function RoutePage({ path, onNavigate }: RoutePageProps) {
   const [contactOpen, setContactOpen] = useState(false);
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
@@ -54,15 +80,19 @@ export default function RoutePage({ path, onNavigate }: RoutePageProps) {
   };
 
   const isFranchise = path === '/franchise';
+  const productSlug = path.startsWith('/products/') ? decodeURIComponent(path.slice('/products/'.length)).toLowerCase() : '';
+  const selectedProduct = vehicles.find((vehicle) => vehicle.id === productSlug || vehicle.name.toLowerCase() === productSlug);
+
+  const openProduct = (vehicleId: string) => onNavigate(`/products/${vehicleId}`);
 
   return (
     <div className="relative min-h-screen">
       <Navbar onNavigate={onNavigate} />
       <main>
-        {path === '/products' && (
+        {selectedProduct ? <ProductDetail vehicle={selectedProduct} onConfigure={() => openConfigurator(selectedProduct.id)} onBack={() => onNavigate('/products')} /> : path === '/products' && (
           <>
             <PageIntro eyebrow="Axigear Product Range" title={<>Electric <span className="italic font-normal">two-wheelers.</span></>} description="Explore practical, stylish electric scooters designed for everyday city rides, longer commutes, and a cleaner future." highlights={["Purpose-built for city rides", "Range for every commute", "Explore your ideal configuration"]} action={{ label: "View the range", onClick: () => document.querySelector('#models')?.scrollIntoView({ behavior: 'smooth' }) }} />
-            <FeaturedVehicles onConfigure={openConfigurator} />
+            <FeaturedVehicles onConfigure={openConfigurator} onView={openProduct} />
           </>
         )}
         {path === '/why-ev' && (
