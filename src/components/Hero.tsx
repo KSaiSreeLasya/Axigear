@@ -58,13 +58,12 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
               Explore the range
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
-            <button
-              type="button"
-              onClick={() => onConfigure('axigear-hestur-werewolf')}
+            <a
+              href="#services"
               className="flex items-center justify-center gap-2 rounded-xl border border-black/10 px-7 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70 transition-all hover:border-brand-cyan/40 hover:text-brand-cyan sm:px-8"
             >
-              Build your ride
-            </button>
+              Why Axigear
+            </a>
           </motion.div>
 
           <motion.div
