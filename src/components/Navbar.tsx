@@ -58,25 +58,37 @@ export default function Navbar({ onContact, onFranchise, onNavigate, currentPage
         <div className="hidden md:flex items-center gap-6 lg:gap-12 ml-auto mr-6 lg:mr-8">
           {navLinks.map((link) => (
             <div key={link.name} className="relative" onMouseEnter={() => link.name === 'Products' && setProductMenuOpen(true)} onMouseLeave={() => link.name === 'Products' && setProductMenuOpen(false)}>
-              <motion.button
-                onClick={() => link.name === 'Products' ? setProductMenuOpen((open) => !open) : navigateTo(link.href)}
-                className="flex items-center gap-1 text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
-                onHoverStart={() => setActiveLink(link.name)}
-                onHoverEnd={() => setActiveLink('')}
-              >
-                {link.name}
-                {link.name === 'Products' && <ChevronDown size={12} className={`transition-transform ${productMenuOpen ? 'rotate-180' : ''}`} />}
-                {activeLink === link.name && (
-                  <motion.div
-                    className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-brand-cyan/50 rounded-full"
-                    layoutId="navbar-underline"
-                    initial={{ scaleX: 0 }}
-                    animate={{ scaleX: 1 }}
-                    exit={{ scaleX: 0 }}
-                    transition={{ duration: 0.3 }}
-                  />
+              <div className="flex items-center gap-1">
+                <motion.button
+                  onClick={() => navigateTo(link.href)}
+                  className="flex items-center gap-1 text-[9px] md:text-[10px] lg:text-xs font-bold uppercase tracking-[0.2em] text-black/50 hover:text-brand-cyan transition-colors relative whitespace-nowrap"
+                  onHoverStart={() => setActiveLink(link.name)}
+                  onHoverEnd={() => setActiveLink('')}
+                >
+                  {link.name}
+                  {activeLink === link.name && (
+                    <motion.div
+                      className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-brand-cyan to-brand-cyan/50 rounded-full"
+                      layoutId="navbar-underline"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      exit={{ scaleX: 0 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  )}
+                </motion.button>
+                {link.name === 'Products' && (
+                  <button
+                    type="button"
+                    onClick={() => setProductMenuOpen((open) => !open)}
+                    className="text-black/50 hover:text-brand-cyan transition-colors"
+                    aria-label="Toggle product menu"
+                    aria-expanded={productMenuOpen}
+                  >
+                    <ChevronDown size={12} className={`transition-transform ${productMenuOpen ? 'rotate-180' : ''}`} />
+                  </button>
                 )}
-              </motion.button>
+              </div>
               {link.name === 'Products' && productMenuOpen && (
                 <div className="absolute left-1/2 top-full mt-4 w-64 -translate-x-1/2 glass rounded-2xl p-3 shadow-2xl border-white/50 backdrop-blur-xl">
                   {vehicles.map((vehicle) => (
@@ -156,16 +168,30 @@ export default function Navbar({ onContact, onFranchise, onNavigate, currentPage
           >
             {navLinks.map((link, index) => (
               <div key={link.name}>
-                <motion.button
-                  onClick={() => link.name === 'Products' ? setProductMenuOpen((open) => !open) : navigateTo(link.href)}
-                  className="flex items-center gap-2 text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
+                <motion.div
+                  className="flex items-center gap-2"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  {link.name}
-                  {link.name === 'Products' && <ChevronDown size={16} className={`transition-transform ${productMenuOpen ? 'rotate-180' : ''}`} />}
-                </motion.button>
+                  <button
+                    onClick={() => navigateTo(link.href)}
+                    className="text-base sm:text-lg font-sans font-light tracking-tight text-black/80 hover:text-brand-cyan transition-colors py-2 text-left"
+                  >
+                    {link.name}
+                  </button>
+                  {link.name === 'Products' && (
+                    <button
+                      type="button"
+                      onClick={() => setProductMenuOpen((open) => !open)}
+                      className="py-2 text-black/80 hover:text-brand-cyan transition-colors"
+                      aria-label="Toggle product menu"
+                      aria-expanded={productMenuOpen}
+                    >
+                      <ChevronDown size={16} className={`transition-transform ${productMenuOpen ? 'rotate-180' : ''}`} />
+                    </button>
+                  )}
+                </motion.div>
                 {link.name === 'Products' && productMenuOpen && (
                   <div className="ml-4 border-l border-brand-cyan/20 pl-4 pb-2">
                     {vehicles.map((vehicle) => <button key={vehicle.id} onClick={() => navigateTo(`/products/${vehicle.id}`)} className="block w-full py-2 text-left text-xs text-black/60 hover:text-brand-cyan">{vehicle.name}</button>)}

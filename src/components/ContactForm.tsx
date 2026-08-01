@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, MapPin, Phone, Mail, AlertCircle } from 'lucide-react';
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, ChangeEvent } from 'react';
 import Swal from 'sweetalert2';
 import { submitContactForm } from '../utils/supabase';
 
@@ -56,7 +56,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
     setFormData(prev => ({
       ...prev,
