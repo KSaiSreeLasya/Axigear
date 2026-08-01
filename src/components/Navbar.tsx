@@ -57,7 +57,7 @@ export default function Navbar({ onContact, onFranchise, onNavigate, currentPage
         {/* Desktop Links with Underline Animation */}
         <div className="hidden md:flex items-center gap-6 lg:gap-12 ml-auto mr-6 lg:mr-8">
           {navLinks.map((link) => (
-            <div key={link.name} className="relative" onMouseEnter={() => link.name === 'Products' && setProductMenuOpen(true)} onMouseLeave={() => link.name === 'Products' && setProductMenuOpen(false)}>
+            <div key={link.name} className="relative">
               <div className="flex items-center gap-1">
                 <motion.button
                   onClick={() => navigateTo(link.href)}
