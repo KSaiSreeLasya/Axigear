@@ -1,4 +1,4 @@
-import { ArrowDown, ArrowRight, BatteryCharging, Leaf, ShieldCheck, Sparkles, Zap } from 'lucide-react';
+import { ArrowDown, ArrowRight, ArrowUpRight, BatteryCharging, Leaf, ShieldCheck, Sparkles, Zap } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function Hero({ onConfigure }: { onConfigure: (id: string) => void }) {
@@ -51,20 +51,20 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.52, duration: 0.7 }}
           >
-            <button
-              type="button"
-              onClick={() => onConfigure('axigear-hestur-werewolf')}
+            <a
+              href="#models"
               className="group flex items-center justify-center gap-3 rounded-xl bg-black px-7 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-white shadow-lg shadow-black/15 transition-all hover:bg-brand-cyan hover:shadow-2xl hover:shadow-brand-cyan/20 active:scale-95 sm:px-8"
             >
               Explore the range
-              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-            </button>
-            <a
-              href="#services"
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <button
+              type="button"
+              onClick={() => onConfigure('axigear-hestur-werewolf')}
               className="flex items-center justify-center gap-2 rounded-xl border border-black/10 px-7 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70 transition-all hover:border-brand-cyan/40 hover:text-brand-cyan sm:px-8"
             >
-              Why Axigear
-            </a>
+              Build your ride
+            </button>
           </motion.div>
 
           <motion.div
