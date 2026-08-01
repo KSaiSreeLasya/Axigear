@@ -110,7 +110,7 @@ export default function RoutePage({ path, onNavigate }: RoutePageProps) {
         {isFranchise && <Franchise onContact={() => setContactOpen(true)} />}
         {path === '/contact' && (
           <>
-            <PageIntro eyebrow="Connect With Axigear" title={<>Let’s move <span className="italic font-normal">forward.</span></>} description="Talk to our team about products, test rides, service support, or franchise opportunities." />
+            <PageIntro eyebrow="Connect With Axigear" title={<>Let’s move <span className="italic font-normal">forward.</span></>} description="Talk to our team about products, test rides, service support, or franchise opportunities." highlights={["Product and test-ride guidance", "Service and support assistance", "Franchise opportunity inquiries"]} />
             <section className="px-4 sm:px-6 pb-32">
               <div className="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-[0.8fr_1.2fr] gap-8">
                 <div className="glass rounded-[32px] p-8 sm:p-12 space-y-8">
