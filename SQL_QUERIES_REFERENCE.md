@@ -47,14 +47,16 @@ CREATE POLICY "Allow select submissions" ON public.contact_submissions
 INSERT INTO public.contact_submissions (
   full_name, 
   email, 
-  inquiry_type, 
-  message, 
+  inquiry_type,
+  message,
+  phone_number,
   user_agent
 ) VALUES (
   'John Doe',
   'john@example.com',
   'General Inquiry',
   'I am interested in purchasing an electric scooter. Can you provide more information about the Axigear Pro RTO model?',
+  '+91 98765 43210',
   'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36'
 )
 RETURNING *;

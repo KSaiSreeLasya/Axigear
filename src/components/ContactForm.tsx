@@ -13,6 +13,7 @@ interface ContactFormProps {
 interface FormData {
   fullName: string;
   email: string;
+  phoneNumber: string;
   inquiryType: string;
   message: string;
 }
@@ -27,6 +28,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
+    phoneNumber: '',
     inquiryType: 'General Inquiry',
     message: '',
   });
@@ -61,6 +63,13 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
       newErrors.email = 'Email is required';
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
+    }
+
+    const phoneRegex = /^\+?[0-9\s()-]{7,20}$/;
+    if (!formData.phoneNumber.trim()) {
+      newErrors.phoneNumber = 'Phone number is required';
+    } else if (!phoneRegex.test(formData.phoneNumber.trim())) {
+      newErrors.phoneNumber = 'Please enter a valid phone number';
     }
 
     if (!formData.message.trim()) {
@@ -114,6 +123,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
           to_email: recipientEmail,
           from_name: formData.fullName,
           from_email: formData.email,
+          phone_number: formData.phoneNumber,
           inquiry_type: formData.inquiryType,
           message: formData.message,
           reply_to: formData.email,
@@ -124,6 +134,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
       const storageResult = await submitContactForm({
         full_name: formData.fullName,
         email: formData.email,
+        phone_number: formData.phoneNumber,
         inquiry_type: formData.inquiryType,
         message: formData.message,
         user_agent: navigator.userAgent,
@@ -152,6 +163,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
         setFormData({
           fullName: '',
           email: '',
+          phoneNumber: '',
           inquiryType: 'General Inquiry',
           message: '',
         });
@@ -293,7 +305,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                     className="space-y-6"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {['fullName', 'email'].map((field, idx) => (
+                      {['fullName', 'email', 'phoneNumber'].map((field, idx) => (
                         <motion.div
                           key={field}
                           className="flex flex-col gap-2"
@@ -302,11 +314,11 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           transition={{ delay: 0.1 + idx * 0.05 }}
                         >
                           <label className="text-xs md:text-sm uppercase tracking-widest text-black/60 font-semibold ml-1">
-                            {field === 'fullName' ? 'Full Name' : 'Email Address'}
+                            {field === 'fullName' ? 'Full Name' : field === 'email' ? 'Email Address' : 'Phone Number'}
                           </label>
                           <motion.div className="relative">
                             <input
-                              type={field === 'email' ? 'email' : 'text'}
+                              type={field === 'email' ? 'email' : field === 'phoneNumber' ? 'tel' : 'text'}
                               name={field}
                               value={formData[field as keyof FormData]}
                               onChange={handleChange}
@@ -317,7 +329,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                                   ? 'border-red-400 focus:border-red-500'
                                   : 'border-black/5 focus:border-brand-cyan'
                               }`}
-                              placeholder={field === 'fullName' ? 'John Doe' : 'john@example.com'}
+                              placeholder={field === 'fullName' ? 'John Doe' : field === 'email' ? 'john@example.com' : '+91 98765 43210'}
                             />
                             {errors[field] && (
                               <motion.div
