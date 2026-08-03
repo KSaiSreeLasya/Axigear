@@ -1,7 +1,8 @@
 import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, MapPin, Phone, Mail, AlertCircle } from 'lucide-react';
-import { useState, FormEvent, ChangeEvent } from 'react';
+import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import Swal from 'sweetalert2';
+import emailjs from '@emailjs/browser';
 import { submitContactForm } from '../utils/supabase';
 
 interface ContactFormProps {
@@ -12,6 +13,7 @@ interface ContactFormProps {
 interface FormData {
   fullName: string;
   email: string;
+  phoneNumber: string;
   inquiryType: string;
   message: string;
 }
@@ -26,11 +28,28 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
   const [formData, setFormData] = useState<FormData>({
     fullName: '',
     email: '',
+    phoneNumber: '',
     inquiryType: 'General Inquiry',
     message: '',
   });
   const [errors, setErrors] = useState<FormErrors>({});
-  const [focusedField, setFocusedField] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!isOpen) return;
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') onClose();
+    };
+    const previousOverflow = document.body.style.overflow;
+
+    document.body.style.overflow = 'hidden';
+    window.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [isOpen, onClose]);
 
   const validateForm = (): boolean => {
     const newErrors: FormErrors = {};
@@ -44,6 +63,13 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
       newErrors.email = 'Email is required';
     } else if (!emailRegex.test(formData.email)) {
       newErrors.email = 'Please enter a valid email';
+    }
+
+    const phoneRegex = /^\+?[0-9\s()-]{7,20}$/;
+    if (!formData.phoneNumber.trim()) {
+      newErrors.phoneNumber = 'Phone number is required';
+    } else if (!phoneRegex.test(formData.phoneNumber.trim())) {
+      newErrors.phoneNumber = 'Please enter a valid phone number';
     }
 
     if (!formData.message.trim()) {
@@ -81,56 +107,77 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Submit to Supabase
-      const result = await submitContactForm({
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const recipientEmail = import.meta.env.VITE_EMAILJS_TO_EMAIL || 'kottesaisreelasya@gmail.com';
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('Email delivery is not configured. Add the EmailJS environment variables and try again.');
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: recipientEmail,
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phoneNumber,
+          inquiry: formData.inquiryType,
+          from_name: formData.fullName,
+          from_email: formData.email,
+          phone_number: formData.phoneNumber,
+          inquiry_type: formData.inquiryType,
+          message: formData.message,
+          reply_to: formData.email,
+        },
+        publicKey,
+      );
+
+      const storageResult = await submitContactForm({
         full_name: formData.fullName,
         email: formData.email,
+        phone_number: formData.phoneNumber,
         inquiry_type: formData.inquiryType,
         message: formData.message,
         user_agent: navigator.userAgent,
       });
 
-      if (result.success) {
-        // Show SweetAlert success message
-        await Swal.fire({
-          title: 'Success!',
-          text: 'Thank you for reaching out! We will get back to you within 24 hours.',
-          icon: 'success',
-          confirmButtonText: 'Great!',
-          confirmButtonColor: '#0f766e',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          timer: 3000,
-          timerProgressBar: true,
-        });
-
-        setIsSubmitted(true);
-
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setFormData({
-            fullName: '',
-            email: '',
-            inquiryType: 'General Inquiry',
-            message: '',
-          });
-          onClose();
-        }, 1000);
-      } else {
-        // Show error alert
-        await Swal.fire({
-          title: 'Error!',
-          text: result.error || 'Failed to submit the form. Please try again.',
-          icon: 'error',
-          confirmButtonText: 'Try Again',
-          confirmButtonColor: '#dc2626',
-        });
+      if (!storageResult.success) {
+        console.warn('Contact email sent, but the Supabase record could not be saved:', storageResult.error);
       }
+
+      await Swal.fire({
+        title: 'Success!',
+        text: 'Thank you for reaching out! We will get back to you within 24 hours.',
+        icon: 'success',
+        confirmButtonText: 'Great!',
+        confirmButtonColor: '#0f766e',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          fullName: '',
+          email: '',
+          phoneNumber: '',
+          inquiryType: 'General Inquiry',
+          message: '',
+        });
+        onClose();
+      }, 1000);
     } catch (error) {
       console.error('Error submitting form:', error);
       await Swal.fire({
         title: 'Error!',
-        text: 'An unexpected error occurred. Please try again later.',
+        text: error instanceof Error ? error.message : 'An unexpected error occurred. Please try again later.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#dc2626',
@@ -153,6 +200,9 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
           />
 
           <motion.div
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-form-title"
             initial={{ opacity: 0, scale: 0.9, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
@@ -165,6 +215,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
               className="absolute top-4 right-4 z-20 w-10 h-10 rounded-full bg-black text-white flex items-center justify-center shadow-lg hover:shadow-xl overflow-hidden relative group border border-black/30"
               whileHover={{ scale: 1.15, backgroundColor: '#0f172a' }}
               whileTap={{ scale: 0.95 }}
+              aria-label="Close contact form"
               title="Close"
             >
               <X size={20} className="relative z-10" />
@@ -232,8 +283,8 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                   src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3805.3045241898153!2d78.34556287493729!3d17.492970783412304!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb93860329a3f3%3A0x8882b1be660002ad!2sAxigear%20Electric%20Lounge!5e0!3m2!1sen!2sin!4v1776837934689!5m2!1sen!2sin"
                   width="100%"
                   height="180"
-                  style={{ border: 0, borderRadius: '12px' }}
-                  allowFullScreen=""
+                  className="border-0 rounded-xl"
+                  allowFullScreen
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                 />
@@ -242,6 +293,11 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
             {/* Right: Form */}
             <div className="flex-[1.2] p-6 md:p-7 bg-white/40 backdrop-blur-md overflow-y-auto">
+              <div className="mb-6 pr-10">
+                <span className="text-brand-cyan tracking-[0.35em] uppercase text-[9px] font-bold">Start a conversation</span>
+                <h3 id="contact-form-title" className="mt-2 text-xl md:text-2xl font-sans font-extralight tracking-tight uppercase text-black">How can we help?</h3>
+                <p className="mt-2 text-xs leading-relaxed text-black/55">Share a few details and our team will respond within 24 hours.</p>
+              </div>
               <AnimatePresence mode="wait">
                 {!isSubmitted ? (
                   <motion.form
@@ -253,7 +309,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                     className="space-y-6"
                   >
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                      {['fullName', 'email'].map((field, idx) => (
+                      {['fullName', 'email', 'phoneNumber'].map((field, idx) => (
                         <motion.div
                           key={field}
                           className="flex flex-col gap-2"
@@ -262,22 +318,22 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           transition={{ delay: 0.1 + idx * 0.05 }}
                         >
                           <label className="text-xs md:text-sm uppercase tracking-widest text-black/60 font-semibold ml-1">
-                            {field === 'fullName' ? 'Full Name' : 'Email Address'}
+                            {field === 'fullName' ? 'Full Name' : field === 'email' ? 'Email Address' : 'Phone Number'}
                           </label>
                           <motion.div className="relative">
                             <input
-                              type={field === 'email' ? 'email' : 'text'}
+                              type={field === 'email' ? 'email' : field === 'phoneNumber' ? 'tel' : 'text'}
                               name={field}
                               value={formData[field as keyof FormData]}
                               onChange={handleChange}
-                              onFocus={() => setFocusedField(field)}
-                              onBlur={() => setFocusedField(null)}
+                              aria-invalid={Boolean(errors[field])}
+                              aria-describedby={errors[field] ? `${field}-error` : undefined}
                               className={`w-full bg-black/5 border rounded-xl px-4 py-3 text-sm focus:outline-none transition-all ${
                                 errors[field]
                                   ? 'border-red-400 focus:border-red-500'
                                   : 'border-black/5 focus:border-brand-cyan'
                               }`}
-                              placeholder={field === 'fullName' ? 'John Doe' : 'john@example.com'}
+                              placeholder={field === 'fullName' ? 'John Doe' : field === 'email' ? 'john@example.com' : '+91 98765 43210'}
                             />
                             {errors[field] && (
                               <motion.div
@@ -291,6 +347,7 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           </motion.div>
                           {errors[field] && (
                             <motion.p
+                              id={`${field}-error`}
                               className="text-xs text-red-600 font-medium ml-1"
                               initial={{ opacity: 0, y: -5 }}
                               animate={{ opacity: 1, y: 0 }}
@@ -334,8 +391,9 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           name="message"
                           value={formData.message}
                           onChange={handleChange}
-                          onFocus={() => setFocusedField('message')}
-                          onBlur={() => setFocusedField(null)}
+                          maxLength={500}
+                          aria-invalid={Boolean(errors.message)}
+                          aria-describedby={errors.message ? 'message-error' : 'message-help'}
                           className={`w-full bg-black/5 border rounded-xl px-4 py-3 text-sm focus:outline-none transition-all min-h-[120px] resize-none ${
                             errors.message
                               ? 'border-red-400 focus:border-red-500'
@@ -353,15 +411,21 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                           </motion.div>
                         )}
                       </motion.div>
-                      {errors.message && (
+                      <div className="flex items-center justify-between gap-3">
+                        {errors.message ? (
                         <motion.p
+                          id="message-error"
                           className="text-xs text-red-600 font-medium ml-1"
                           initial={{ opacity: 0, y: -5 }}
                           animate={{ opacity: 1, y: 0 }}
                         >
                           {errors.message}
                         </motion.p>
-                      )}
+                        ) : (
+                          <p id="message-help" className="text-xs text-black/45">A few sentences help us respond more effectively.</p>
+                        )}
+                        <span className="shrink-0 text-[10px] font-mono text-black/40">{formData.message.length}/500</span>
+                      </div>
                     </motion.div>
 
                     <motion.button

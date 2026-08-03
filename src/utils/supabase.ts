@@ -37,7 +37,7 @@ export async function submitContactForm(data: ContactSubmission) {
     }
 
     const { data: response, error } = await supabase
-      .from('contact_submissions')
+      .from('contact_form_submissions')
       .insert([data])
       .select();
 
