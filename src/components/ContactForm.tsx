@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'motion/react';
 import { X, Send, MapPin, Phone, Mail, AlertCircle } from 'lucide-react';
 import { useEffect, useState, FormEvent, ChangeEvent } from 'react';
 import Swal from 'sweetalert2';
+import emailjs from '@emailjs/browser';
 import { submitContactForm } from '../utils/supabase';
 
 interface ContactFormProps {
@@ -97,8 +98,30 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
     setIsSubmitting(true);
 
     try {
-      // Submit to Supabase
-      const result = await submitContactForm({
+      const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
+      const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
+      const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+      const recipientEmail = import.meta.env.VITE_EMAILJS_TO_EMAIL || 'kottesaisreelasya@gmail.com';
+
+      if (!serviceId || !templateId || !publicKey) {
+        throw new Error('Email delivery is not configured. Add the EmailJS environment variables and try again.');
+      }
+
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          to_email: recipientEmail,
+          from_name: formData.fullName,
+          from_email: formData.email,
+          inquiry_type: formData.inquiryType,
+          message: formData.message,
+          reply_to: formData.email,
+        },
+        publicKey,
+      );
+
+      const storageResult = await submitContactForm({
         full_name: formData.fullName,
         email: formData.email,
         inquiry_type: formData.inquiryType,
@@ -106,47 +129,39 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
         user_agent: navigator.userAgent,
       });
 
-      if (result.success) {
-        // Show SweetAlert success message
-        await Swal.fire({
-          title: 'Success!',
-          text: 'Thank you for reaching out! We will get back to you within 24 hours.',
-          icon: 'success',
-          confirmButtonText: 'Great!',
-          confirmButtonColor: '#0f766e',
-          allowOutsideClick: false,
-          allowEscapeKey: false,
-          timer: 3000,
-          timerProgressBar: true,
-        });
-
-        setIsSubmitted(true);
-
-        setTimeout(() => {
-          setIsSubmitted(false);
-          setFormData({
-            fullName: '',
-            email: '',
-            inquiryType: 'General Inquiry',
-            message: '',
-          });
-          onClose();
-        }, 1000);
-      } else {
-        // Show error alert
-        await Swal.fire({
-          title: 'Error!',
-          text: result.error || 'Failed to submit the form. Please try again.',
-          icon: 'error',
-          confirmButtonText: 'Try Again',
-          confirmButtonColor: '#dc2626',
-        });
+      if (!storageResult.success) {
+        console.warn('Contact email sent, but the Supabase record could not be saved:', storageResult.error);
       }
+
+      await Swal.fire({
+        title: 'Success!',
+        text: 'Thank you for reaching out! We will get back to you within 24 hours.',
+        icon: 'success',
+        confirmButtonText: 'Great!',
+        confirmButtonColor: '#0f766e',
+        allowOutsideClick: false,
+        allowEscapeKey: false,
+        timer: 3000,
+        timerProgressBar: true,
+      });
+
+      setIsSubmitted(true);
+
+      setTimeout(() => {
+        setIsSubmitted(false);
+        setFormData({
+          fullName: '',
+          email: '',
+          inquiryType: 'General Inquiry',
+          message: '',
+        });
+        onClose();
+      }, 1000);
     } catch (error) {
       console.error('Error submitting form:', error);
       await Swal.fire({
         title: 'Error!',
-        text: 'An unexpected error occurred. Please try again later.',
+        text: error instanceof Error ? error.message : 'An unexpected error occurred. Please try again later.',
         icon: 'error',
         confirmButtonText: 'OK',
         confirmButtonColor: '#dc2626',
