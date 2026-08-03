@@ -121,6 +121,10 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
         templateId,
         {
           to_email: recipientEmail,
+          name: formData.fullName,
+          email: formData.email,
+          phone: formData.phoneNumber,
+          inquiry: formData.inquiryType,
           from_name: formData.fullName,
           from_email: formData.email,
           phone_number: formData.phoneNumber,
