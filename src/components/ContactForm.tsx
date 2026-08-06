@@ -58,18 +58,18 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
       newErrors.fullName = 'Full name is required';
     }
 
-    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    const emailRegex = /^[a-zA-Z0-9._%+-]{9}@gmail\.com$/;
     if (!formData.email.trim()) {
       newErrors.email = 'Email is required';
-    } else if (!emailRegex.test(formData.email)) {
-      newErrors.email = 'Please enter a valid email';
+    } else if (!emailRegex.test(formData.email.trim())) {
+      newErrors.email = 'Enter a valid 9-character Gmail ID ending in @gmail.com';
     }
 
-    const phoneRegex = /^\+?[0-9\s()-]{7,20}$/;
+    const phoneRegex = /^\d{10}$/;
     if (!formData.phoneNumber.trim()) {
       newErrors.phoneNumber = 'Phone number is required';
     } else if (!phoneRegex.test(formData.phoneNumber.trim())) {
-      newErrors.phoneNumber = 'Please enter a valid phone number';
+      newErrors.phoneNumber = 'Please enter a valid 10-digit phone number';
     }
 
     if (!formData.message.trim()) {
@@ -84,9 +84,10 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
+    const fieldValue = name === 'phoneNumber' ? value.replace(/\D/g, '').slice(0, 10) : value;
     setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: fieldValue,
     }));
     // Clear error for this field when user starts typing
     if (errors[name]) {
@@ -333,7 +334,10 @@ export default function ContactForm({ isOpen, onClose }: ContactFormProps) {
                                   ? 'border-red-400 focus:border-red-500'
                                   : 'border-black/5 focus:border-brand-cyan'
                               }`}
-                              placeholder={field === 'fullName' ? 'John Doe' : field === 'email' ? 'john@example.com' : '+91 98765 43210'}
+                              inputMode={field === 'phoneNumber' ? 'numeric' : undefined}
+                              maxLength={field === 'phoneNumber' ? 10 : undefined}
+                              pattern={field === 'phoneNumber' ? '\\d{10}' : undefined}
+                              placeholder={field === 'fullName' ? 'John Doe' : field === 'email' ? '9charid@gmail.com' : '9876543210'}
                             />
                             {errors[field] && (
                               <motion.div
