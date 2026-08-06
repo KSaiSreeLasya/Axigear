@@ -52,10 +52,10 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
             transition={{ delay: 0.52, duration: 0.7 }}
           >
             <a
-              href="#models"
+              href="/products"
               className="group flex items-center justify-center gap-3 rounded-xl bg-black px-7 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-white shadow-lg shadow-black/15 transition-all hover:bg-brand-cyan hover:shadow-2xl hover:shadow-brand-cyan/20 active:scale-95 sm:px-8"
             >
-              Explore the range
+              Explore products
               <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </a>
             <a
@@ -96,18 +96,21 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
           <div className="absolute h-[13rem] w-[13rem] rounded-full border border-brand-cyan/15 sm:h-[19rem] sm:w-[19rem]" />
           <div className="absolute h-[9rem] w-[9rem] rounded-full bg-brand-cyan/[0.1] blur-3xl sm:h-[14rem] sm:w-[14rem]" />
 
-          <motion.div
-            className="relative flex h-[15rem] w-[15rem] flex-col items-center justify-center rounded-[3rem] border border-white/80 bg-white/65 p-8 text-center shadow-[0_30px_90px_rgba(59,130,246,0.18)] backdrop-blur-xl sm:h-[22rem] sm:w-[22rem] sm:rounded-[4rem]"
+          <motion.a
+            href="/products"
+            aria-label="Explore Axigear products"
+            className="group relative flex h-[15rem] w-[15rem] flex-col items-center justify-center rounded-[3rem] border border-white/80 bg-white/65 p-8 text-center shadow-[0_30px_90px_rgba(59,130,246,0.18)] backdrop-blur-xl transition-shadow hover:shadow-[0_30px_100px_rgba(59,130,246,0.3)] sm:h-[22rem] sm:w-[22rem] sm:rounded-[4rem]"
             animate={{ y: [0, -10, 0], rotate: [0, 1.5, 0] }}
             transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }}
           >
-            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-xl shadow-brand-cyan/15 sm:mb-7 sm:h-20 sm:w-20 sm:rounded-3xl">
+            <div className="mb-5 flex h-14 w-14 items-center justify-center rounded-2xl bg-black text-white shadow-xl shadow-brand-cyan/15 transition-transform group-hover:scale-105 sm:mb-7 sm:h-20 sm:w-20 sm:rounded-3xl">
               <Zap className="h-7 w-7 fill-brand-cyan text-brand-cyan sm:h-10 sm:w-10" />
             </div>
-            <p className="text-[9px] font-bold uppercase tracking-[0.35em] text-brand-cyan sm:text-[10px]">Axigear</p>
+            <p className="text-[9px] font-bold uppercase tracking-[0.35em] text-brand-cyan sm:text-[10px]">Axigear products</p>
             <p className="mt-3 font-display text-3xl font-light tracking-[-0.05em] text-black sm:text-5xl">Electric, elevated.</p>
-            <p className="mt-4 max-w-[13rem] text-[10px] leading-5 text-black/45 sm:text-xs sm:leading-6">Performance that feels natural. Technology that stays out of your way.</p>
-          </motion.div>
+            <p className="mt-4 max-w-[13rem] text-[10px] leading-5 text-black/45 sm:text-xs sm:leading-6">Explore electric two-wheelers designed for every commute.</p>
+            <span className="mt-5 inline-flex items-center gap-2 text-[9px] font-bold uppercase tracking-[0.2em] text-black/55 transition-colors group-hover:text-brand-cyan sm:mt-7">View range <ArrowUpRight className="h-3.5 w-3.5" /></span>
+          </motion.a>
 
           <motion.div
             className="absolute right-0 top-5 rounded-2xl border border-white/70 bg-white/60 px-4 py-3 shadow-xl shadow-brand-cyan/10 backdrop-blur-xl sm:right-2 sm:top-10 sm:px-5 sm:py-4"
