@@ -62,9 +62,9 @@ export default function App() {
       },
       "priceRange": "₹40,000 - ₹1,50,000",
       "sameAs": [
-        "https://www.facebook.com/axigear",
-        "https://www.instagram.com/axigear",
-        "https://www.twitter.com/axigear"
+        "https://www.facebook.com/profile.php?id=61574356725279",
+        "https://www.instagram.com/axigearelectriclounge/",
+        "https://www.linkedin.com/company/axigear/"
       ]
     });
 
