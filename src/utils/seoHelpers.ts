@@ -5,6 +5,7 @@ export interface SEOMetadata {
   ogTitle?: string;
   ogDescription?: string;
   canonical?: string;
+  robots?: string;
 }
 
 export const updateMetaTags = (metadata: SEOMetadata) => {
@@ -48,6 +49,14 @@ export const updateMetaTags = (metadata: SEOMetadata) => {
     document.head.appendChild(ogDescription);
   }
   ogDescription.setAttribute('content', metadata.ogDescription || metadata.description);
+
+  let robotsMeta = document.querySelector('meta[name="robots"]');
+  if (!robotsMeta) {
+    robotsMeta = document.createElement('meta');
+    robotsMeta.setAttribute('name', 'robots');
+    document.head.appendChild(robotsMeta);
+  }
+  robotsMeta.setAttribute('content', metadata.robots || 'index, follow');
 
   // Update canonical URL
   if (metadata.canonical) {

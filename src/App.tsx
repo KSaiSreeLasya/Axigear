@@ -13,6 +13,8 @@ import RoutePage from './components/RoutePage';
 import { motion, useScroll, useSpring } from 'motion/react';
 import { useState, useEffect } from 'react';
 import { Vehicle, vehicles } from './data/vehicles';
+import { seoMetadata } from './data/seoMetadata';
+import { updateMetaTags } from './utils/seoHelpers';
 
 export default function App() {
   const [selectedVehicle, setSelectedVehicle] = useState<Vehicle | null>(null);
@@ -26,6 +28,10 @@ export default function App() {
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
   }, []);
+
+  useEffect(() => {
+    if (path === '/') updateMetaTags(seoMetadata.home);
+  }, [path]);
 
   const navigateTo = (nextPath: string) => {
     window.history.pushState({}, '', nextPath);
@@ -56,9 +62,9 @@ export default function App() {
       },
       "priceRange": "₹40,000 - ₹1,50,000",
       "sameAs": [
-        "https://www.facebook.com/axigear",
-        "https://www.instagram.com/axigear",
-        "https://www.twitter.com/axigear"
+        "https://www.facebook.com/profile.php?id=61574356725279",
+        "https://www.instagram.com/axigearelectriclounge/",
+        "https://www.linkedin.com/company/axigear/"
       ]
     });
 

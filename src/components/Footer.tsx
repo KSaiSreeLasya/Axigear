@@ -1,4 +1,4 @@
-import { Instagram, Twitter, Facebook, Youtube, ArrowRight, Mail, MapPin, Phone } from 'lucide-react';
+import { Instagram, Facebook, Linkedin, Mail, MapPin, Phone } from 'lucide-react';
 import { motion } from 'motion/react';
 
 export default function Footer() {
@@ -33,10 +33,17 @@ export default function Footer() {
               Progressive electric mobility company redefining urban transportation through innovation, reliability, and sustainability.
             </p>
             <div className="flex gap-4 mb-8">
-              {[Facebook, Twitter, Instagram, Youtube].map((Icon, i) => (
-                <a 
-                  key={i} 
-                  href="#" 
+              {[
+                { label: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61574356725279' },
+                { label: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/axigearelectriclounge/' },
+                { label: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/axigear/' },
+              ].map(({ label, icon: Icon, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit Axigear on ${label}`}
                   className="w-12 h-12 rounded-full glass border-black/5 flex items-center justify-center text-black/40 hover:bg-black hover:text-white transition-all shadow-sm hover:scale-110"
                 >
                   <Icon size={18} />

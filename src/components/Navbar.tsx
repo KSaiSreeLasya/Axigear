@@ -1,7 +1,13 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Menu, X, ChevronDown } from 'lucide-react';
+import { Facebook, Instagram, Linkedin, Menu, X, ChevronDown } from 'lucide-react';
 import { vehicles } from '../data/vehicles';
 import { useState, useEffect } from 'react';
+
+const socialLinks = [
+  { label: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/profile.php?id=61574356725279' },
+  { label: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/axigearelectriclounge/' },
+  { label: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/company/axigear/' },
+];
 
 export default function Navbar({ onContact, onFranchise, onNavigate, currentPage = 'home' }: { onContact?: () => void; onFranchise?: () => void; onNavigate?: (path: string) => void; currentPage?: string }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -119,6 +125,20 @@ export default function Navbar({ onContact, onFranchise, onNavigate, currentPage
         </div>
 
         <div className="hidden md:flex items-center gap-3 flex-shrink-0">
+          <div className="flex items-center gap-1 border-r border-black/10 pr-3">
+            {socialLinks.map(({ label, icon: Icon, href }) => (
+              <a
+                key={label}
+                href={href}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={`Visit Axigear on ${label}`}
+                className="flex h-8 w-8 items-center justify-center rounded-full text-black/50 transition-colors hover:bg-brand-cyan/10 hover:text-brand-cyan"
+              >
+                <Icon size={15} />
+              </a>
+            ))}
+          </div>
           <motion.button
             onClick={() => onContact ? onContact() : navigateTo('/contact')}
             className="px-5 md:px-6 lg:px-8 py-2 md:py-2.5 lg:py-3 bg-black text-white text-[9px] md:text-[10px] lg:text-xs font-bold rounded-full uppercase tracking-[0.2em] shadow-lg hover:shadow-xl shadow-black/20 overflow-hidden relative group transition-all active:scale-95"
@@ -208,6 +228,20 @@ export default function Navbar({ onContact, onFranchise, onNavigate, currentPage
               >
                 Franchise
               </motion.button>
+            <div className="mt-4 flex items-center gap-2 border-t border-black/10 pt-4">
+              {socialLinks.map(({ label, icon: Icon, href }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={`Visit Axigear on ${label}`}
+                  className="flex h-10 w-10 items-center justify-center rounded-full text-black/60 transition-colors hover:bg-brand-cyan/10 hover:text-brand-cyan"
+                >
+                  <Icon size={17} />
+                </a>
+              ))}
+            </div>
             <motion.button
               onClick={() => {
                 if (onContact) onContact(); else navigateTo('/contact');

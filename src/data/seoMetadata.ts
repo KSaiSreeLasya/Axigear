@@ -5,16 +5,20 @@ export interface SEOMetadata {
   ogTitle: string;
   ogDescription: string;
   path?: string;
+  canonical?: string;
+  robots?: string;
 }
 
 export const seoMetadata: Record<string, SEOMetadata> = {
   home: {
-    title: "Electric Scooters in Hyderabad – Best EV Scooty Deals | Axigear",
-    description: "Explore electric scooters in Hyderabad with affordable pricing, long battery range, and eco-friendly performance for daily commuting.",
-    keywords: "electric scooter Hyderabad, EV scooty, best electric scooter price, affordable e-scooter",
-    ogTitle: "Electric Scooters in Hyderabad – Best EV Scooty Deals | Axigear",
-    ogDescription: "Explore electric scooters in Hyderabad with affordable pricing, long battery range, and eco-friendly performance for daily commuting.",
-    path: "/"
+    title: "Best Electric Scooters in Hyderabad | Axigear Electric Lounge",
+    description: "Buy best Axigear electric scooters in Hyderabad with affordable price and long battery range, no RTO registration. Details-contact Axigear.",
+    keywords: "best electric scooters, EV scooter price, two wheeler electric scooters, no RTO registration, long battery range, affordable price.",
+    ogTitle: "Best Electric Scooters in Hyderabad | Axigear Electric Lounge",
+    ogDescription: "Buy best Axigear electric scooters in Hyderabad with affordable price and long battery range, no RTO registration. Details-contact Axigear.",
+    path: "/",
+    canonical: "https://axigearelectric.com/",
+    robots: "index, follow"
   },
   buyPage: {
     title: "Buy Electric Scooter in Hyderabad – Price & Models | Axigear",
@@ -167,5 +171,45 @@ export const seoMetadata: Record<string, SEOMetadata> = {
     ogTitle: "Best Electric Scooters for City Ride in Hyderabad | Axigear",
     ogDescription: "Upgrade your daily ride with efficient, stylish, and reliable electric scooters designed for city commuting.",
     path: "/city-ride"
+  },
+  axigearHesturWerewolf: {
+    title: "Hestur Electric Scooters | Axigear Hestur Were Wolf",
+    description: "Discover Hestur electric scooters starting price at 35k with 120km extensible to 300km range, high performance of Axigear Hestur Were Wolf EV.",
+    keywords: "hestur EV scooter, long range EV, high speed electric scooter, hestur electric scooter, hestur electric scooter price, scooter with digital display.",
+    ogTitle: "Hestur Electric Scooters | Axigear Hestur Were Wolf",
+    ogDescription: "Discover Hestur electric scooters starting price at 35k with 120km extensible to 300km range, high performance of Axigear Hestur Were Wolf EV.",
+    path: "/products/axigear-hestur-werewolf",
+    canonical: "https://axigearelectric.com/products/axigear-hestur-werewolf",
+    robots: "index, follow"
+  },
+  axigearSport: {
+    title: "Sport Electric Scooter | Axigear Sport",
+    description: "Buy the best sport electric scooter starting price at 85k with 100km standard performance Axigear Sport electric scooter built for urban commuters.",
+    keywords: "the electric scooter highest range, electric scooter sport, most range electric scooter, best stylish electric scooter, electric scooter cheapest price.",
+    ogTitle: "Sport Electric Scooter | Axigear Sport",
+    ogDescription: "Buy the best sport electric scooter starting price at 85k with 100km standard performance Axigear Sport electric scooter built for urban commuters.",
+    path: "/products/axigear-sport",
+    canonical: "https://axigearelectric.com/products/axigear-sport",
+    robots: "index, follow"
+  },
+  axigearElite: {
+    title: "Elite Electric Scooter | Axigear Elite",
+    description: "Looking for an elite electric scooter? Explore Axigear Elite EV scooters starting price at 65k, 80km range with high performance for everyday commuting.",
+    keywords: "high performance electric scooter, long range EV, high speed electric scooter, hestur electric scooter, elite EV scooter, best budget EV scooter.",
+    ogTitle: "Elite Electric Scooter | Axigear Elite",
+    ogDescription: "Looking for an elite electric scooter? Explore Axigear Elite EV scooters starting price at 65k, 80km range with high performance for everyday commuting.",
+    path: "/products/axigear-elite",
+    canonical: "https://axigearelectric.com/products/axigear-elite",
+    robots: "index, follow"
+  },
+  axigearHesterDyno: {
+    title: "Hestur Dyno E Scooter in Hyderabad | Axigear Hestur Dyno",
+    description: "Looking to buy a scooter starting price at 65k, 80km range with dynamic performance? Try Axigear Hestur Dyno for long battery range and smooth riding experience.",
+    keywords: "best electric scooter without registration, budget friendly electric scooter, longest range EV scooter, cheap and best electric scooter, EV scooter with highest range.",
+    ogTitle: "Hestur Dyno E Scooter in Hyderabad | Axigear Hestur Dyno",
+    ogDescription: "Looking to buy a scooter starting price at 65k, 80km range with dynamic performance? Try Axigear Hestur Dyno for long battery range and smooth riding experience.",
+    path: "/products/axigear-hester-dyno",
+    canonical: "https://axigearelectric.com/products/axigear-hester-dyno",
+    robots: "index, follow"
   }
 };
