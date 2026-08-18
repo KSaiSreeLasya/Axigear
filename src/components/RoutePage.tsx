@@ -1,4 +1,4 @@
-import { useState, type ReactNode } from 'react';
+import { useEffect, useState, type ReactNode } from 'react';
 import { ArrowUpRight, Mail, MapPin, Phone } from 'lucide-react';
 import Navbar from './Navbar';
 import Footer from './Footer';
@@ -9,6 +9,8 @@ import Franchise from './Franchise';
 import ContactForm from './ContactForm';
 import Configurator from './Configurator';
 import { Vehicle, vehicles } from '../data/vehicles';
+import { seoMetadata } from '../data/seoMetadata';
+import { updateMetaTags } from '../utils/seoHelpers';
 
 interface RoutePageProps {
   path: string;
@@ -82,6 +84,16 @@ export default function RoutePage({ path, onNavigate }: RoutePageProps) {
   const isFranchise = path === '/franchise';
   const productSlug = path.startsWith('/products/') ? decodeURIComponent(path.slice('/products/'.length)).toLowerCase() : '';
   const selectedProduct = vehicles.find((vehicle) => vehicle.id === productSlug || vehicle.name.toLowerCase() === productSlug);
+  const productMetadata = {
+    'axigear-hestur-werewolf': seoMetadata.axigearHesturWerewolf,
+    'axigear-sport': seoMetadata.axigearSport,
+    'axigear-elite': seoMetadata.axigearElite,
+    'axigear-hester-dyno': seoMetadata.axigearHesterDyno,
+  }[productSlug];
+
+  useEffect(() => {
+    if (productMetadata) updateMetaTags(productMetadata);
+  }, [productMetadata]);
 
   const openProduct = (vehicleId: string) => onNavigate(`/products/${vehicleId}`);
 
