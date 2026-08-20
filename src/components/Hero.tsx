@@ -8,25 +8,45 @@ const heroBanners = [
     vehicle: vehicles[0],
     eyebrow: 'Extended-range electric',
     title: 'Go beyond\nthe everyday.',
-    accent: 'from-cyan-300 via-brand-cyan to-blue-600',
-    backdrop: 'from-[#f1fbfc] via-white to-[#e7f5f7]',
-    glow: 'bg-brand-cyan/20',
+    accent: 'from-purple-300 via-violet-500 to-fuchsia-500',
+    backdrop: 'from-[#fbf8ff] via-white to-[#f2eaff]',
+    glow: 'bg-purple-300/20',
+    signal: 'text-purple-500',
+    ring: 'border-purple-500/15',
+    floor: 'bg-purple-300/15',
   },
   {
     vehicle: vehicles[1],
     eyebrow: 'Built for the city',
     title: 'Charge less.\nRide more.',
-    accent: 'from-orange-300 via-orange-400 to-red-500',
-    backdrop: 'from-[#fffaf5] via-white to-[#fff0e7]',
-    glow: 'bg-orange-300/20',
+    accent: 'from-yellow-300 via-amber-400 to-orange-400',
+    backdrop: 'from-[#fffdf3] via-white to-[#fff4cf]',
+    glow: 'bg-yellow-300/20',
+    signal: 'text-amber-500',
+    ring: 'border-amber-500/15',
+    floor: 'bg-yellow-300/15',
   },
   {
     vehicle: vehicles[2],
     eyebrow: 'Everyday performance',
     title: 'Own every\nturn ahead.',
-    accent: 'from-violet-300 via-fuchsia-400 to-rose-500',
-    backdrop: 'from-[#fcf9ff] via-white to-[#f5effd]',
-    glow: 'bg-fuchsia-300/20',
+    accent: 'from-lime-300 via-emerald-400 to-green-500',
+    backdrop: 'from-[#f7fff8] via-white to-[#e8f8eb]',
+    glow: 'bg-green-300/20',
+    signal: 'text-emerald-500',
+    ring: 'border-emerald-500/15',
+    floor: 'bg-emerald-300/15',
+  },
+  {
+    vehicle: vehicles[3],
+    eyebrow: 'Dynamic by design',
+    title: 'Find your\nnext rhythm.',
+    accent: 'from-pink-300 via-rose-400 to-fuchsia-500',
+    backdrop: 'from-[#fff8fc] via-white to-[#fdeaf5]',
+    glow: 'bg-pink-300/20',
+    signal: 'text-pink-500',
+    ring: 'border-pink-500/15',
+    floor: 'bg-pink-300/15',
   },
 ];
 
@@ -89,9 +109,9 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
           </div>
 
           <div className="relative flex min-h-[25rem] items-center justify-center sm:min-h-[31rem] lg:min-h-[39rem]">
-            <div className="absolute h-[18rem] w-[18rem] rounded-full border border-brand-cyan/15 sm:h-[27rem] sm:w-[27rem]" />
+            <div className={`absolute h-[18rem] w-[18rem] rounded-full border sm:h-[27rem] sm:w-[27rem] ${banner.ring}`} />
             <div className="absolute h-[23rem] w-[23rem] rounded-full border border-black/[0.06] sm:h-[35rem] sm:w-[35rem]" />
-            <div className="absolute bottom-6 left-0 right-0 h-24 rounded-[100%] bg-brand-cyan/15 blur-2xl" />
+            <div className={`absolute bottom-6 left-0 right-0 h-24 rounded-[100%] blur-2xl ${banner.floor}`} />
             <AnimatePresence mode="wait">
               <motion.img
                 key={banner.vehicle.id}
@@ -113,9 +133,9 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
 
         <div className="relative z-20 grid gap-4 border-t border-black/10 pt-5 md:grid-cols-[1fr_auto] md:items-center">
           <div className="flex flex-wrap gap-x-7 gap-y-3 text-black/60">
-            <div className="flex items-center gap-2"><BatteryCharging className="h-4 w-4 text-brand-cyan" /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">{banner.vehicle.range} range</span></div>
-            <div className="flex items-center gap-2"><Gauge className="h-4 w-4 text-brand-cyan" /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">{banner.vehicle.acceleration}</span></div>
-            <div className="flex items-center gap-2"><Zap className="h-4 w-4 text-brand-cyan" /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">Zero tailpipe emissions</span></div>
+            <div className="flex items-center gap-2"><BatteryCharging className={`h-4 w-4 ${banner.signal}`} /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">{banner.vehicle.range} range</span></div>
+            <div className="flex items-center gap-2"><Gauge className={`h-4 w-4 ${banner.signal}`} /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">{banner.vehicle.acceleration}</span></div>
+            <div className="flex items-center gap-2"><Zap className={`h-4 w-4 ${banner.signal}`} /><span className="text-[10px] font-bold uppercase tracking-[0.16em]">Zero tailpipe emissions</span></div>
           </div>
 
           <div className="flex items-center gap-3">
