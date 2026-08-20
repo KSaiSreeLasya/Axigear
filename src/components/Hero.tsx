@@ -45,6 +45,7 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
   const selectBanner = (index: number) => setActiveBanner((index + heroBanners.length) % heroBanners.length);
 
   return (
+    <>
     <section className="relative overflow-hidden bg-white pt-20 sm:pt-24">
       <div className={`absolute inset-0 bg-gradient-to-br ${banner.backdrop} transition-colors duration-700`} />
       <div className={`absolute left-[35%] top-1/2 h-[32rem] w-[32rem] -translate-y-1/2 rounded-full ${banner.glow} blur-[160px] transition-colors duration-700`} />
@@ -129,5 +130,58 @@ export default function Hero({ onConfigure }: { onConfigure: (id: string) => voi
         </div>
       </div>
     </section>
+
+    <section className="relative overflow-hidden border-t border-black/[0.06] bg-[#fbfeff] py-20 sm:py-28 md:py-36">
+      <div className="absolute right-[-10rem] top-[-12rem] h-[30rem] w-[30rem] rounded-full bg-brand-cyan/[0.12] blur-[120px]" />
+      <div className="absolute bottom-[-14rem] left-[-12rem] h-[28rem] w-[28rem] rounded-full bg-sky-200/[0.22] blur-[120px]" />
+      <div className="relative mx-auto grid max-w-7xl items-end gap-12 px-4 sm:px-6 md:gap-16 lg:grid-cols-[1fr_0.85fr] lg:px-8">
+        <motion.div
+          initial={{ opacity: 0, y: 28 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+        >
+          <div className="mb-7 flex items-center gap-3 sm:mb-9">
+            <span className="h-px w-10 bg-brand-cyan sm:w-14" />
+            <span className="text-[10px] font-bold uppercase tracking-[0.38em] text-brand-cyan sm:text-[11px]">The future moves here</span>
+          </div>
+          <h2 className="max-w-4xl text-5xl font-light leading-[0.95] tracking-[-0.06em] text-black sm:text-7xl md:text-8xl lg:text-[7rem]">
+            Move with
+            <span className="mt-2 block bg-gradient-to-r from-brand-cyan via-brand-cyan/80 to-green-500/70 bg-clip-text font-normal italic text-transparent sm:mt-3">purpose.</span>
+          </h2>
+          <p className="mt-7 max-w-xl text-sm leading-7 text-black/55 sm:mt-9 sm:text-base sm:leading-8 md:text-lg">
+            Electric mobility designed around your everyday. Experience confident performance, thoughtful technology, and a cleaner way to go further.
+          </p>
+          <div className="mt-9 flex flex-col gap-3 sm:mt-11 sm:flex-row sm:items-center sm:gap-4">
+            <a href="/products" className="group inline-flex items-center justify-center gap-3 rounded-xl bg-black px-7 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-white shadow-lg shadow-black/10 transition-all hover:bg-brand-cyan hover:shadow-brand-cyan/20 active:scale-95 sm:px-8">
+              Explore products <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </a>
+            <a href="#services" className="inline-flex items-center justify-center gap-2 rounded-xl border border-black/10 px-7 py-4 text-[10px] font-bold uppercase tracking-[0.25em] text-black/70 transition-all hover:border-brand-cyan/40 hover:text-brand-cyan sm:px-8">
+              Why Axigear
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
+          className="grid grid-cols-3 gap-4 border-t border-black/10 pt-6 sm:gap-8 sm:pt-7"
+          initial={{ opacity: 0, y: 22 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ delay: 0.15, duration: 0.7 }}
+        >
+          {[
+            { value: '120+', label: 'KM RANGE', icon: BatteryCharging },
+            { value: '0%', label: 'TAILPIPE EMISSIONS', icon: Zap },
+            { value: '24/7', label: 'OWNER SUPPORT', icon: Gauge },
+          ].map(({ value, label, icon: Icon }) => (
+            <div key={label} className="flex flex-col gap-2">
+              <Icon className="h-4 w-4 text-brand-cyan sm:h-5 sm:w-5" />
+              <p className="text-xl font-light tracking-tight text-black sm:text-2xl">{value}</p>
+              <p className="max-w-[7rem] text-[8px] font-bold leading-4 tracking-[0.16em] text-black/40 sm:text-[9px]">{label}</p>
+            </div>
+          ))}
+        </motion.div>
+      </div>
+    </section>
+    </>
   );
 }
